@@ -1,0 +1,24 @@
+<div mat-dialog-title class="title">Team Information</div>
+<form [formGroup]="teamForm" (ngSubmit)="onSubmit()">
+    <div mat-dialog-content class="content">
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Team</mat-label>
+                <input matInput placeholder="Team" formControlName="team">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Coach</mat-label>
+                <input matInput placeholder="Coach" formControlName="coach">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Place</mat-label>
+                <input matInput placeholder="Place" formControlName="place" type="number">
+            </mat-form-field>
+        </div>
+    </div>
+    <div mat-dialog-actions class="actions">
+        <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+        <button mat-raised-button color="primary" type="submit">{{data ? 'Update' : 'Save'}}</button>
+    </div>
+</form>
+

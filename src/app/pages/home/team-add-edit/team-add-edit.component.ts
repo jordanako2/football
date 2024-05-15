@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule  } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -60,6 +60,12 @@ export class TeamAddEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.teamForm = this._fb.group({
+      file_name: '',
+      team: ['', [Validators.required, Validators.minLength(3)]],
+      coach: ['', [Validators.required, Validators.minLength(3)]],
+      place: ['', [Validators.required, Validators.minLength(3)]]
+    });
     if (this.data) {
       this.teamForm.patchValue(this.data);
       if (this.data.file_name) {
@@ -74,6 +80,7 @@ export class TeamAddEditComponent implements OnInit {
 
   onSubmit() {
     if (this.teamForm.valid) {
+      this.teamForm.markAllAsTouched();
       if (this.data) {
         this._teamService.updateTeam(this.data.id, this.teamForm.value).subscribe({
           next: (val: any) => {
@@ -86,6 +93,7 @@ export class TeamAddEditComponent implements OnInit {
           }
         })
       } else {
+        this.teamForm.markAllAsTouched();
         this._teamService.addTeam(this.teamForm.value).subscribe({
           next: (val: any) => {
             this._coreService.openSnackBar('Team added successfully')

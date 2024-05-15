@@ -2,8 +2,11 @@
 <form [formGroup]="teamForm" (ngSubmit)="onSubmit()">
     <div mat-dialog-content class="content">
         <div class="row">
-            <img *ngIf="imagePath" [src]="imagePath" alt="Uploaded Image" width="300px">
-            <input type="file" (change)="onFileSelected($event)">
+            <div class="logo">
+                <img *ngIf="imagePath" [src]="imagePath" alt="Uploaded Image" width="300px">
+                <span>Logo</span>
+                <input type="file" (change)="onFileSelected($event)">
+            </div>
             <mat-form-field appearance="outline">
                 <mat-label>Team</mat-label>
                 <input matInput placeholder="Team" formControlName="team">

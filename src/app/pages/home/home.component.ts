@@ -11,17 +11,20 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CoreService } from '../../core/core.service';
+import { CommonModule } from '@angular/common';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [MatButtonModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule, MatIconModule, MatSnackBarModule],
+  imports: [CommonModule, MatButtonModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule, MatIconModule, MatSnackBarModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.sass'
 })
 export class HomeComponent implements OnInit {
-  displayedColumns: string[] = ['team', 'coach', 'place', 'action'];
+  displayedColumns: string[] = ['logo', 'team', 'coach', 'place', 'action'];
   dataSource!: MatTableDataSource<any>;
+  imagePath: string | null = null;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -31,10 +34,12 @@ export class HomeComponent implements OnInit {
     private _dialog: MatDialog, 
     private _teamService: TeamService,
     private _coreService: CoreService,
+    private _configService: ApiService,
   ) {}
 
   ngOnInit(): void {
     this.getTeams();
+    this.imagePath =`${this._configService.URL_IMAGE}`;
   }
   
   openAddEditTeamForm() {

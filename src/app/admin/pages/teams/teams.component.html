@@ -1,13 +1,13 @@
 <div class="wrapper">
     <div class="header">
-        <h1>All Teams</h1>
-        <div class="search"> 
+        <h1 id="item1">All Teams</h1>
+        <div class="search" id="item2"> 
             <mat-form-field appearance="outline" class="search-content">
                 <input matInput (keyup)="applyFilter($event)" placeholder="Search" #input class="search-input">
                 <mat-icon matPrefix>search</mat-icon>
             </mat-form-field>
         </div>
-        <button mat-stroked-button color="primary" (click)="openAddEditTeamForm()">ADD TEAM</button>
+        <button id="item3" mat-flat-button color="primary" (click)="openAddEditTeamForm()">ADD TEAM</button>
     </div>
     <div class="content">
         <div class="table-container">

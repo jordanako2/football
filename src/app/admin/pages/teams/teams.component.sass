@@ -6,6 +6,8 @@
         display: flex
         justify-content: space-between
         align-items: center
+        flex-wrap: wrap
+        gap: 10px
         .search
             width: 50%
             .search-content
@@ -20,3 +22,21 @@
             overflow: auto
         .paginator
             border-top: 1px solid #DCDCDC
+
+@media only screen and (max-width: 600px) 
+  .wrapper 
+    .header
+        margin-top: 10px
+        #item1 
+            order: 1
+        #item2 
+            order: 3
+        #item3 
+            order: 2
+        .search
+            width: 100%
+        h1
+            padding: 0
+            margin: 0
+        
+  

@@ -1,0 +1,28 @@
+<div class="wrapper">
+    <div class="header">
+        <h3 class="title">Dominic Anuta Vega</h3>
+        <p class="email">doms12.vegs&#64;gmail.com</p>
+    </div>
+    <div class="content">
+        <mat-nav-list>
+            <span>HOME</span>
+            <mat-list-item routerLink="/admin/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                    <mat-icon matListItemIcon [style.color]="'#FFFFFF'">dashboard</mat-icon>
+                    <a matListItemTitle>Dashboard</a>
+            </mat-list-item>
+            <span>SITE</span>
+            <mat-list-item routerLink="/admin/posts" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <mat-icon matListItemIcon [style.color]="'#FFFFFF'">store</mat-icon>
+                <a matListItemTitle>Post</a>
+            </mat-list-item>
+            <mat-list-item routerLink="/admin/teams" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <mat-icon matListItemIcon [style.color]="'#FFFFFF'">store</mat-icon>
+                <a matListItemTitle>Teams</a>
+            </mat-list-item>
+            <mat-list-item routerLink="/admin/news" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <mat-icon matListItemIcon [style.color]="'#FFFFFF'">store</mat-icon>
+                <a matListItemTitle>News</a>
+            </mat-list-item>
+        </mat-nav-list>
+    </div>
+</div>

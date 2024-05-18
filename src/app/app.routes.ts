@@ -1,9 +1,14 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
+import { AdminRoutingModule } from './admin/admin.routes';
+import { ClientRoutingModule } from './client/client.route';
 
 export const routes: Routes = [
     {
+        path: 'admin',
+        loadChildren: () => AdminRoutingModule
+    },
+    {
         path: '',
-        component: HomeComponent
-    }
+        loadChildren: () => ClientRoutingModule
+    },
 ];

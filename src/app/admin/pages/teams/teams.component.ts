@@ -1,7 +1,7 @@
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { TeamAddEditComponent } from './team-add-edit/team-add-edit.component';
-import { TeamService } from '../../services/team.service';
+import { TeamService } from '../../../services/team.service';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
@@ -10,18 +10,18 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { CoreService } from '../../core/core.service';
+import { CoreService } from '../../../core/core.service';
 import { CommonModule } from '@angular/common';
-import { ApiService } from '../../services/api.service';
+import { ApiService } from '../../../services/api.service';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [CommonModule, MatButtonModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule, MatIconModule, MatSnackBarModule],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.sass'
+  templateUrl: './teams.component.html',
+  styleUrl: './teams.component.sass'
 })
-export class HomeComponent implements OnInit {
+export class TeamsComponent implements OnInit {
   displayedColumns: string[] = ['logo', 'team', 'coach', 'place', 'action'];
   dataSource!: MatTableDataSource<any>;
   imagePath: string | null = null;

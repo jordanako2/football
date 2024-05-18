@@ -1,0 +1,17 @@
+<div class="wrapper">
+    <div class="header">
+      <app-navbar></app-navbar>
+    </div>
+    <mat-drawer-container class="drawer-container">
+      <mat-drawer mode="side" opened class="side">
+        <app-sidebar></app-sidebar>
+      </mat-drawer>
+      <mat-drawer-content>
+        <div class="content">
+          <router-outlet />
+        </div>
+      </mat-drawer-content>
+    </mat-drawer-container>
+</div>
+  
+  

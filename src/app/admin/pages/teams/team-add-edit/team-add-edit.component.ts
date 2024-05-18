@@ -4,10 +4,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { TeamService } from '../../../services/team.service';
-import { CoreService } from '../../../core/core.service';
+import { TeamService } from '../../../../services/team.service';
+import { CoreService } from '../../../../core/core.service';
 import { CommonModule } from '@angular/common';
-import { ApiService } from '../../../services/api.service';
+import { ApiService } from '../../../../services/api.service';
 
 @Component({
   selector: 'app-team-add-edit',

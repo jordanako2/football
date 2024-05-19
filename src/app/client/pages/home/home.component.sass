@@ -1,0 +1,35 @@
+$background-image: '../../../../assets/background_image.jpg'
+
+.wrapper 
+  background-image: url(#{$background-image})
+  width: 1000px
+  height: 600px 
+  background-size: cover 
+  background-position: center 
+  background-repeat: no-repeat 
+  .container
+    display: flex
+    width: 80vw
+    padding: 20px
+    .left
+        width: 70%
+        height: 350px
+        display: flex
+        flex-direction: column
+        justify-content: center
+        p
+            margin: 0
+            font-size: 16px
+            font-weight: 500
+            color: #0092D7
+            line-height: 1.5
+        h1
+            margin: 0
+            font-size: 32px
+            font-weight: bold
+            color: #DA197C
+            line-height: 1
+    .right
+        width: 30%
+        background-color: blue
+        

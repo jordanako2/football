@@ -1,34 +1,45 @@
-$background-image: '../../../../assets/background_image.jpg'
+$background-image: '../../../../assets/background_image2.jpg'
 
 .wrapper 
   background-image: url(#{$background-image})
-  width: 1000px
-  height: 600px 
+  width: 100%
+  height: 100% 
   background-size: cover 
   background-position: center 
   background-repeat: no-repeat 
+  display: flex
+  justify-content: center
   .container
     display: flex
-    width: 65vw
-    padding: 20px
+    width: 90%
+    height: 100%
+    justify-content: space-between
+    
     .left
-        width: 70%
-        height: 350px
+        width: 30%
         display: flex
         flex-direction: column
         justify-content: center
         p
             margin: 0
             font-size: 16px
-            font-weight: 500
-            color: #0092D7
-            line-height: 2
+            font-weight: 200
+            color: #dbe1e4
+            line-height: 1.5
+            letter-spacing: 2px
         h1
             margin: 0
             font-size: 32px
             font-weight: bold
-            color: #DA197C
-            line-height: 1
+            color: #FFFFFF
+            line-height: 1.5
+        button
+            width: 50%
+            background-color: #B1001A
+            margin-top: 10px
     .right
-        width: 30%
+        width: 60%
+        display: flex
+        flex-direction: column
+        justify-content: center
         

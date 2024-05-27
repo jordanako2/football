@@ -1,25 +1,84 @@
 <div class="wrapper">
     <div class="container">
+        <div class="logo">
+            <img mat-card-image [src]="'https://florify.online/uploads/website/logo.png'" alt='logo' width="60%">
+        </div>
+        <div class="menu">
+            <div class="top">
+                <app-top-header></app-top-header>
+            </div>
+            <div class="middle">
+                <app-middle-header></app-middle-header>
+            </div>
+            <!-- <div class="bottom">
+                <app-bottom-header></app-bottom-header>
+            </div> -->
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="wrapper">
+    <div class="container">
         <div class="top-menu">
             <div class="right-top-menu">
                 <button mat-stroked-button class="login" style="font-size: 8px; padding: 10px; height:25px">LOGIN</button>
                 <button mat-flat-button style="font-size: 8px; padding: 10px; height:25px" color="primary" class="register">REGISTER</button>
-                <button [routerLink]="'/admin'" mat-flat-button style="font-size: 8px; padding: 10px; height:25px" color="primary" class="register">DASHBOARD</button>
             </div>
         </div>
-        <div class="bottom-menu">
-            <h1 class="logo">
-                <img src="../../../../assets/logo.png" alt="logo" width="150px">
-            </h1>
-            <div class="content-items">
+        <div class="bottom-menu">    
+            <div class="menu">
+                <img mat-card-image [src]="'https://florify.online/uploads/website/logo.png'" alt='logo' width="80px" height="80px">
                 <div class="item">HOME</div>
-                <div class="item">NEWS</div>
-                <div class="item">TEAMS</div>
-                <div class="item">VOTES</div>
-                <div class="item">BRACKETS</div>
-                <div class="item">ABOUT</div>
+                <div class="item" (mouseover)="toggleMenu(1)">LATEST</div>
+                <div *ngIf="isMenuOpen[1]" class="menu-list">
+                    LATEST
+                </div>
+            
+                <div class="item" (mouseover)="toggleMenu(2)">TEAMS</div>
+                <div *ngIf="isMenuOpen[2]" class="menu-list">
+                    TEAMS
+                </div>
+
+                <div class="item" (mouseover)="toggleMenu(3)">THE CLUB</div>
+                <div *ngIf="isMenuOpen[3]" class="menu-list">
+                    THE CLUB
+                </div>
+
+                <div class="item" (mouseover)="toggleMenu(4)">BRACKETS</div>
+                <div *ngIf="isMenuOpen[4]" class="menu-list">
+                    BRACKETS
+                </div>
+
                 <div class="item">CONTACT</div>
             </div>
         </div>
     </div>
-</div>
+</div> -->

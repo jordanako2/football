@@ -1,0 +1,10 @@
+<div class="wrapper">
+    <div class="container">
+        <span>TEAMS</span>
+        <div class="menu" *ngFor="let item of dataSource">
+            <div class="item">
+                <img mat-card-image [src]="imagePath + item.file_name" alt={{item.file_name}} width="30px" class="image">
+            </div>
+        </div>
+    </div>
+</div>

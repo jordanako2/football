@@ -1,83 +1,11 @@
 <div class="wrapper">
     <div class="container">
         <div class="left">
-            <div class="wrapper">
-                <div class="container">
-                    <mat-card class="card">
-                        <!-- <div class="header">
-                            
-                        </div> -->
-                        <div class="body">
-                            <h3>SUN 19 MAY 2024</h3>
-                            <p>PREMIER LEAGUE</p>
-                            <div class="score-container">
-                                <div class="team">
-                                    <img [src]="'https://florify.online/uploads/website/logo.png'" alt="team" width="50px">
-                                    <p>INABANGA</p>
-                                </div>
-                                <div class="score">
-                                    <p>2</p>
-                                    <span>:</span>
-                                    <p>1</p>
-                                </div>
-                                <div class="team">
-                                    <img [src]="'https://florify.online/uploads/website/logo.png'" alt="team" width="50px">
-                                    <p>CLARIN</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="footer">
-                            <button mat-flat-button>
-                                View All Matches
-                                <mat-icon>arrow_right_alt</mat-icon>
-                            </button>
-                        </div>
-                    </mat-card>
-            
-                    <mat-card class="leagues">
-                        <div class="header">
-                            <h1>League</h1>
-                        </div>
-                        <div class="body">
-                            <table mat-table [dataSource]="dataSource">
-                                <ng-container matColumnDef="position">
-                                    <th mat-header-cell *matHeaderCellDef> Position </th>
-                                    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-                                </ng-container>
-                                <ng-container matColumnDef="team">
-                                    <th mat-header-cell *matHeaderCellDef> Team </th>
-                                    <td mat-cell *matCellDef="let element"> {{element.team}} </td>
-                                </ng-container>
-                                <ng-container matColumnDef="played">
-                                    <th mat-header-cell *matHeaderCellDef> Played </th>
-                                    <td mat-cell *matCellDef="let element"> {{element.played}} </td>
-                                </ng-container>
-                                <ng-container matColumnDef="gd">
-                                    <th mat-header-cell *matHeaderCellDef> GD </th>
-                                    <td mat-cell *matCellDef="let element"> {{element.gd}} </td>
-                                </ng-container>
-                                <ng-container matColumnDef="points">
-                                    <th mat-header-cell *matHeaderCellDef> Points </th>
-                                    <td mat-cell *matCellDef="let element"> {{element.points}} </td>
-                                </ng-container>
-            
-                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                            </table>
-                        </div>
-                        <div class="footer">
-                            <button mat-flat-button>
-                                View More
-                                <mat-icon>arrow_right_alt</mat-icon>
-                            </button>
-                        </div>
-                    </mat-card>
-                </div>
-            </div>
+            <app-left-content></app-left-content>
         </div>
-        <div class="right">
+        <!-- <div class="right">
             <app-right-content></app-right-content>
-        </div>
+        </div> -->
         <!-- <div class="left">
             <app-left-content></app-left-content>
             <h1>Together We Rise,  <br/> United We Conquer!</h1>
@@ -85,10 +13,9 @@
             make our team exceptional. Every training session, every match, every goal—it's a step towards greatness. Let's embrace
             the challenges, support one another, and strive for excellence.</p>
             <button mat-flat-button style="font-size: 14px; padding: 10px" color="primary" class="register">JOIN US</button>
-        </div>
-        <div class="right">
-            <app-right-content></app-right-content>
-            <app-teams></app-teams>
         </div> -->
+        <div class="right">
+            <app-teams></app-teams>
+        </div>
     </div>
 </div>

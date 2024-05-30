@@ -14,7 +14,9 @@ export class ProfileComponent {
 
   user: any;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) {
+    this.user = this.authService.getUser();
+  }
 
   ngOnInit(): void {
     this.user = this.authService.getUser();

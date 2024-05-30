@@ -23,7 +23,7 @@ export class AuthService {
   }
   
   getUser(): any {
-    const token = this.cookieService.get('jwt');
+    const token = this.cookieService.get('key');
     if (token) {
       const decodedToken = jwtDecode(token) as { [key: string]: any };
       console.log(decodedToken)
@@ -32,22 +32,18 @@ export class AuthService {
       return null;
     }
   }
-  
-  // logout(): Observable<any> {
-  //   return this.http.post<any>(`${this.apiUrl}/logout`, {}, { withCredentials: true }).pipe(
-  //     tap(() => {
-  //       localStorage.removeItem('user');
-  //       this.router.navigate(['/']);
-  //     })
-  //   );
-  // }
 
+  isAuthenticated(): boolean {
+    return !!this.cookieService.get('key');
+  }
+  
   logout() {
     this.http.get('http://localhost:3000/auth/google/logout', { withCredentials: true })
       .subscribe(
         () => {
           // Clear local JWT token if stored
           // localStorage.removeItem('jwt'); // Uncomment if you use localStorage
+          this.cookieService.delete('key');
           this.router.navigate(['/login']);
         },
         (error) => {

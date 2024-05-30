@@ -20,10 +20,8 @@ export class ProfileComponent {
     this.user = this.authService.getUser();
   }
 
-  logout(): void {
-    this.authService.logout().subscribe(() => {
-      this.user = null;
-    });
+  logout() {
+    this.authService.logout();
   }
 
 }

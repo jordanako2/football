@@ -32,5 +32,6 @@ export class MiddleHeaderComponent {
   logout(event: Event) {
     event.preventDefault();
     this.authService.logout();
+    window.location.reload();
   }
 }

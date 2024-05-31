@@ -15,17 +15,19 @@ const routes: Routes = [
         children: [
           { path: '', redirectTo: 'home', pathMatch: 'full' },
           { path: 'home', component: HomeComponent },
+          {
+            path: 'login',
+            component: LoginComponent,
+            canActivate: [LoginGuard]
+          },
+          {
+            path: 'profile',
+            component: ProfileComponent,
+          }
         ]
     },
-    {
-      path: 'login',
-      component: LoginComponent,
-      canActivate: [LoginGuard]
-    },
-    {
-      path: 'profile',
-      component: ProfileComponent,
-    }
+   
+    
 
 ];
 

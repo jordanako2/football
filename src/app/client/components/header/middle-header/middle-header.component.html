@@ -2,7 +2,7 @@
     <div class="container">
         <div class="menu">
             <div class="items">
-                <div class="item">FOOTBALL LEAGUE</div>
+                <div class="item" [routerLink]="'/'">FOOTBALL LEAGUE</div>
                 <div class="item" (mouseover)="toggleMenu(1)">LATEST</div>
                 <div *ngIf="isMenuOpen[1]" class="menu-list">
                     <div class="menu-item-content">

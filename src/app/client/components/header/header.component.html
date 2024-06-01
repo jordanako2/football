@@ -1,7 +1,7 @@
 <div class="wrapper">
     <div class="container">
         <div class="logo" [routerLink]="'/'">
-            <img mat-card-image [src]="'https://florify.online/uploads/website/logo.png'" alt='logo' width="60%">
+            <img mat-card-image [src]="'https://florify.online/uploads/website/logo.png'" alt='logo'>
         </div>
         <div class="menu">
             <div class="top">
@@ -10,9 +10,18 @@
             <div class="middle">
                 <app-middle-header></app-middle-header>
             </div>
-            <!-- <div class="bottom">
-                <app-bottom-header></app-bottom-header>
-            </div> -->
+        </div>
+    </div>
+    <div class="mobileContainer">
+        <div class="content">
+            <div class="menu-container">
+                <button (click)="toggleMobileMenu()" class="menu-button">
+                    <mat-icon class="menuIcon">{{ isMobileMenuOpen ? 'close' : 'menu' }}</mat-icon>
+                </button>
+                <div class="menu" [ngClass]="{'open': isMobileMenuOpen}">
+                    <app-middle-header></app-middle-header>
+                </div>
+            </div>
         </div>
     </div>
 </div>

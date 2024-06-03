@@ -5,11 +5,12 @@ import { HeaderComponent } from '../../client/components/header/header.component
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { FacebookComponent } from './facebook/facebook.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [GoogleComponent, HeaderComponent, MatFormFieldModule, MatInputModule, MatButtonModule],
+  imports: [GoogleComponent, HeaderComponent, MatFormFieldModule, MatInputModule, MatButtonModule, FacebookComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.sass'
 })

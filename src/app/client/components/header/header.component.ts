@@ -12,16 +12,29 @@ import { BottomHeaderComponent } from './bottom-header/bottom-header.component';
 @Component({
   selector: 'client-header',
   standalone: true,
-  imports: [MatButtonModule, RouterLink, MatInputModule, MatIconModule, MatMenuModule, CommonModule, TopHeaderComponent, MiddleHeaderComponent, BottomHeaderComponent],
+  imports: [CommonModule, MatButtonModule, RouterLink, MatInputModule, MatIconModule, MatMenuModule, CommonModule, TopHeaderComponent, MiddleHeaderComponent, BottomHeaderComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.sass'
 })
 export class HeaderComponent {
 
   isMenuOpen: boolean[] = [false, false]; // Add more elements if needed
+  // isMobileMenuOpen = false;
 
   toggleMenu(index: number) {
     this.isMenuOpen[index] = true;
+  }
+
+  isMenuVisible = false;
+
+  // toggleMobileMenu() {
+  //   this.isMobileMenuOpen = !this.isMobileMenuOpen;
+  // }
+
+  isMobileMenuOpen = false;
+
+  toggleMobileMenu() {
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
   }
 
 }

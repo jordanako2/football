@@ -3,12 +3,14 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { UserService } from '../../services/user.service';
 import { User } from '../../user/user.interface';
 import { CommonModule } from '@angular/common';
-import { MatInputModule } from '@angular/material/input';
+import { MatFormField, MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, MatInputModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, MatInputModule, MatFormField, MatButtonModule, RouterLink],
   templateUrl: './register.component.html',
   styleUrl: './register.component.sass'
 })
@@ -19,7 +21,8 @@ export class RegisterComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {
     this.registerForm = this.formBuilder.group({
       given_name: ['', Validators.required],
@@ -51,9 +54,14 @@ export class RegisterComponent {
     this.userService.registerUser(user).subscribe(
       response => {
         console.log('User registered successfully:', response);
+        this.router.navigate(['/login']);
       },
       error => {
         console.error('Registration error:', error);
+
+        if (error.status === 400 && error.error.message === 'Email already exists') {
+          this.registerForm.controls['email'].setErrors({ emailExists: true });
+        }
       }
     );
   }

@@ -21,6 +21,10 @@ export class AuthService {
   login(): void {
     window.location.href = 'http://localhost:3000/auth/google/login';
   }
+
+  loginfb(): void {
+    window.location.href = 'http://localhost:3000/auth/facebook';
+  }
   
   getUser(): any {
     const token = this.cookieService.get('key');

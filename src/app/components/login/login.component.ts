@@ -7,12 +7,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { FacebookComponent } from './facebook/facebook.component';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { User } from '../../user/user.interface';
 import { CookieService } from 'ngx-cookie-service';
 import { UserService } from '../../services/user.service';
+import { FacebookService } from '../../services/facebook.service';
 
 
 @Component({
@@ -30,14 +31,20 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
+    private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private userService: UserService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private facebookService: FacebookService
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
+
+    if (this.facebookService.accountValue) {
+            this.router.navigate(['/']);
+        }
   }
 
   get f() { return this.loginForm.controls; }
@@ -103,6 +110,10 @@ export class LoginComponent implements OnInit {
         }
       }
     );
+  }
+
+  loginWithFacebook() {
+    this.facebookService.login();
   }
 
 

@@ -15,7 +15,8 @@ export class GoogleComponent {
   ngOnInit(): void {}
 
   login(): void {
-    this.authService.login();
+    this.authService.logingoogle();
+    
   }
 
 

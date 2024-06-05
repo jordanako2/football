@@ -2,30 +2,45 @@
     <div class="container">
         <div class="signin">
             <div class="title">Sign In</div>
-            <div class="field">
-                <span>Email</span>
-                <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Email">
-                </mat-form-field>
-            </div>
-            <div class="field">
-                <span>Password</span>
-                <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Password">
-                </mat-form-field>
-            </div>
-            <div class="forgot">
-                <a href="">Forgot password</a>
-                <button mat-flat-button>Sign in</button>
-            </div>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="field">
+                    <span>Email</span>
+                    <mat-form-field class="example-full-width">
+                        <input matInput type="email" id="email" formControlName="email">
+                        <div *ngIf="submitted && f['email'].errors" class="error">
+                            <div *ngIf="f['email'].errors['required']">Email is required</div>
+                            <div *ngIf="f['email'].errors['email']">Email is invalid</div>
+                        </div>
+                    </mat-form-field>
+                </div>
+                <div class="field">
+                    <span>Password</span>
+                    <mat-form-field class="example-full-width">
+                        <input matInput type="password" id="password" formControlName="password">
+                        <div *ngIf="submitted && f['password'].errors" class="error">
+                            <div *ngIf="f['password'].errors['required']">Password is required</div>
+                            <div *ngIf="f['password'].errors['minlength']">Password must be at least 6 characters long</div>
+                        </div>
+                    </mat-form-field>
+                </div>
+                <div class="error-container">
+                    <div *ngIf="submitted && f['password'].errors" class="error">
+                        <div *ngIf="f['password'].errors['invalidCredentials']">Invalid Credentials</div>
+                    </div>
+                </div>
+                <div class="forgot">
+                    <!-- <a href="">Forgot password</a> -->
+                    <button mat-flat-button type="submit">Sign in</button>
+                </div>
+            </form>
             <div class="loginWith">
                 <div class="line"></div>
                 <span>or login with</span>
                 <div class="line"></div>
             </div>
             <div class="social">
-                <div class="google-container">
-                    <app-google></app-google>
+                <div class="google-container" id="google-btn">
+                    <!-- <app-google></app-google> -->
                 </div>
                 <div class="facebook-container">
                     <app-facebook></app-facebook>

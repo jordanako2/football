@@ -25,6 +25,16 @@
                 span
                     font-weight: 500
                     letter-spacing: 2px
+                .error
+                    font-size: 12px
+                    font-style: italic
+                    color: red
+            .error-container
+                margin-bottom: 20px
+                .error
+                    font-size: 12px
+                    font-style: italic
+                    color: red
             .forgot
                 display: flex
                 justify-content: space-between
@@ -36,7 +46,7 @@
                 button
                     background-color: #1e1d7c
                     color: #FFFFFF
-                    width: 200px
+                    width: 100%
                     border-radius: 0
                     &:hover
                         background-color: #0F0E6A
@@ -54,12 +64,11 @@
             .social
                 margin-top: 20px
                 display: flex
-                justify-content: space-between
+                flex-direction: column
+                align-items: center
+                justify-content: center
+                width: 100%
                 gap: 10px
-                .google-container
-                    width: 100%
-                .facebook-container
-                    width: 100%
         .register
             width: 50%
             .title

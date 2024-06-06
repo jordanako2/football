@@ -39,9 +39,17 @@
                 <div class="line"></div>
             </div>
             <div class="social">
-                <div class="google-container" id="google-btn"></div>
-                <div class="facebook-container">
-                    <app-facebook></app-facebook>
+                <div class="google-container" id="google-btn">
+                    <!-- <app-google></app-google> -->
+                </div>
+                <div class="facebook-container" >
+                    <div (login)="loginWithFacebook()" class="fb-login-button" data-width="400px" data-size="large" data-button-type="continue_with"
+                        data-layout="" data-auto-logout-link="false" data-use-continue-as="false"></div>
+                    <!-- <button class="btn btn-facebook" (click)="loginWithFacebook()">
+                        <i class="fa fa-facebook me-1"></i>
+                        Login with Facebook
+                    </button> -->
+                    <!-- <app-facebook></app-facebook> -->
                 </div>  
             </div>
         </div>

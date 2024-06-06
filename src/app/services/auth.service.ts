@@ -11,8 +11,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiGoogleUrl = 'http://localhost:3000/auth/google'; 
-  private apiUrl = 'http://localhost:3000/auth/login';
+  private apiUrl = 'https://florify.online/auth/login';
 
   constructor(
     private http: HttpClient, 
@@ -33,16 +32,16 @@ export class AuthService {
       );
   }
 
-  logingoogle(): void {
-    window.location.href = 'http://localhost:3000/auth/google/login';
-  }
+  // logingoogle(): void {
+  //   window.location.href = 'http://localhost:3000/auth/google/login';
+  // }
 
-  handleGoogleCallback() {
-    const token = this.cookieService.get('key');
-    if (token) {
-      this.router.navigate(['/home']);
-    }
-  }
+  // handleGoogleCallback() {
+  //   const token = this.cookieService.get('key');
+  //   if (token) {
+  //     this.router.navigate(['/home']);
+  //   }
+  // }
 
   loginfb(): void {
     window.location.href = 'http://localhost:3000/auth/facebook';
@@ -65,13 +64,15 @@ export class AuthService {
   }
   
   logout() {
-    this.http.get('http://localhost:3000/auth/google/logout', { withCredentials: true })
+    this.http.get('https://florify.online/auth/google/logout', { withCredentials: true })
       .subscribe(
         () => {
-          // Clear local JWT token if stored
-          // localStorage.removeItem('jwt'); // Uncomment if you use localStorage
           this.cookieService.delete('key');
-          this.router.navigate(['/login']);
+          this.router.navigate(['/home']);
+          window.location.reload();
+          setTimeout(() => {
+              this.router.navigate(['/login']);
+          }, 2000);
         },
         (error) => {
           console.error('Error during logout:', error);

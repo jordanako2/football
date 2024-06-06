@@ -8,11 +8,16 @@ import { User } from '../user/user.interface';
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = 'http://localhost:3000/users/register';  // Adjust the URL as necessary
+  private apiUrl = 'https://florify.online/users/register';  
+  private apiGoogle = 'https://florify.online/users/google/register';
 
   constructor(private http: HttpClient) { }
 
   registerUser(user: User): Observable<User> {
     return this.http.post<User>(this.apiUrl, user);
+  }
+
+  registerGoogleUser(user: User): Observable<User> {
+    return this.http.post<User>(this.apiGoogle, user);
   }
 }

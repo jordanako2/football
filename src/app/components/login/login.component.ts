@@ -1,5 +1,6 @@
 declare var google: any;
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, Inject, NgZone, PLATFORM_ID, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { GoogleComponent } from './google/google.component';
 import { HeaderComponent } from '../../client/components/header/header.component';
@@ -13,17 +14,28 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { User } from '../../user/user.interface';
 import { CookieService } from 'ngx-cookie-service';
 import { UserService } from '../../services/user.service';
-
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [GoogleComponent, HeaderComponent, MatFormFieldModule, MatInputModule, MatButtonModule, FacebookComponent, RouterLink, CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    GoogleComponent,
+    HeaderComponent,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    FacebookComponent,
+    RouterLink,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.sass'
+  styleUrls: ['./login.component.sass']
 })
 export class LoginComponent implements OnInit {
-  private router = inject(Router)
+  private router = inject(Router);
   loginForm: FormGroup;
   data: User | null = null;
   submitted = false;
@@ -32,7 +44,9 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private formBuilder: FormBuilder,
     private userService: UserService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private ngZone: NgZone,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -43,45 +57,67 @@ export class LoginComponent implements OnInit {
   get f() { return this.loginForm.controls; }
 
   ngOnInit(): void {
-    google.accounts.id.initialize({
-      client_id: '657320183260-g9pe0d04ggrkjn1edct4res49fb223o9.apps.googleusercontent.com',
-      callback: (resp: any) => this.handleLogin(resp)
+    if (isPlatformBrowser(this.platformId)) {
+      this.loadGoogleScript().then(() => {
+        google.accounts.id.initialize({
+          client_id: environment.googleClientId,
+          callback: (resp: any) => this.handleGoogleLogin(resp)
+        });
+
+        google.accounts.id.renderButton(document.getElementById("google-btn"), {
+          theme: 'filled_blue',
+          size: 'large',
+          shape: 'rectangle',
+          width: 350
+        });
+      }).catch((error) => {
+        console.error('Error loading Google script:', error);
+      });
+    }
+  }
+
+  private loadGoogleScript(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = 'https://accounts.google.com/gsi/client';
+      script.async = true;
+      script.defer = true;
+      script.onload = () => resolve();
+      script.onerror = (error) => reject(error);
+      document.head.appendChild(script);
     });
-
-    google.accounts.id.renderButton(document.getElementById("google-btn"), {
-      theme: 'filled_blue',
-      size: 'large',
-      shape: 'rectangle',
-      width: 350
-    })
   }
 
-  private decodeToken(token: string){
-    return JSON.parse(atob(token.split(".")[1]))
+  private decodeToken(token: string) {
+    return JSON.parse(atob(token.split(".")[1]));
   }
-  handleLogin(resp: any){
-    if(resp) {
+
+  handleGoogleLogin(resp: any) {
+    if (resp) {
       this.cookieService.set('key', resp.credential, { secure: true, sameSite: 'Strict' });
       const payLoad = this.decodeToken(resp.credential);
-      console.log(payLoad)
+      console.log(payLoad);
       this.data = {
         given_name: payLoad.given_name,
         family_name: payLoad.family_name,
-        email: payLoad.email
+        email: payLoad.email,
+        socialId: payLoad.sub
       };
-        
-   
-      // sessionStorage.setItem("loggedInUser", JSON.stringify(payLoad))
-      this.userService.registerUser(this.data).subscribe(
+      console.log(this.data);
+      this.userService.registerGoogleUser(this.data).subscribe(
         response => {
-          console.log('User registered successfully:', response);
+          console.log('User login successfully:', response);
           this.router.navigate(['/login']);
+          window.location.reload();
+          setTimeout(() => {
+              this.router.navigate(['home']);
+          }, 2000);
         },
         error => {
-          console.error('Registration error:', error);
+          console.error('Login error:', error);
         }
       );
-      this.router.navigate(['home'])
+      this.router.navigate(['home']);
     }
   }
 
@@ -104,8 +140,4 @@ export class LoginComponent implements OnInit {
       }
     );
   }
-
-
-  
-
 }

@@ -44,14 +44,7 @@
         </div>
         <div class="mobileMenu">
             <div class="content">
-                <div class="right-items">
-                    <div *ngIf="!isAuthenticated" class="login" [routerLink]="'/login'">SIGN IN</div>
-                    <!-- <div *ngIf="!isAuthenticated" class="register">REGISTER</div> -->
-                    <div *ngIf="user" class="auth">
-                        <h2>Welcome, {{ user.given_name }}</h2>
-                        <button mat-flat-button (click)="logout($event)">Logout</button>
-                    </div>
-                </div>
+               
                 <div class="items">
                     <div class="item" [routerLink]="'/'">FOOTBALL LEAGUE</div>
                     <div class="item" [routerLink]="'/'">LATEST</div>

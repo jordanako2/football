@@ -15,6 +15,7 @@ import { User } from '../../user/user.interface';
 import { CookieService } from 'ngx-cookie-service';
 import { UserService } from '../../services/user.service';
 import { environment } from '../../environments/environment';
+import { FacebookService } from '../../services/facebook.service';
 
 @Component({
   selector: 'app-login',
@@ -46,6 +47,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private userService: UserService,
     private cookieService: CookieService,
+    private facebookService: FacebookService,
     private ngZone: NgZone,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {

@@ -1,12 +1,10 @@
+declare var FB: any;
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, from, of, EMPTY } from 'rxjs';
 import { concatMap, map, tap } from 'rxjs/operators';
-declare var FB: any;
 import { environment } from '../environments/environment';
-
-const baseUrl = `${environment.apiUrl}/accounts`;
 
 export interface Account {
     id: string;

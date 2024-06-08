@@ -30,10 +30,9 @@ export class GoogleService {
         });
 
         google.accounts.id.renderButton(document.getElementById("google-btn"), {
-          theme: 'filled_blue',
           size: 'large',
           shape: 'rectangle',
-          width: 350
+          width: 300
         });
       }).catch((error) => {
         console.error('Error loading Google script:', error);

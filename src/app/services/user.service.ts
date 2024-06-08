@@ -10,6 +10,7 @@ import { User } from '../user/user.interface';
 export class UserService {
   private apiUrl = 'https://florify.online/users/register';  
   private apiGoogle = 'https://florify.online/users/google/register';
+  private apiFacebook = 'http://localhost:3000/users/facebook/register';
 
   constructor(private http: HttpClient) { }
 
@@ -19,5 +20,9 @@ export class UserService {
 
   registerGoogleUser(user: User): Observable<User> {
     return this.http.post<User>(this.apiGoogle, user);
+  }
+
+  registerFacebookUser(user: User): Observable<User> {
+    return this.http.post<User>(this.apiFacebook, user);
   }
 }

@@ -6,12 +6,13 @@ import { tap } from 'rxjs/operators';
 import { CookieService } from 'ngx-cookie-service';
 import { jwtDecode } from 'jwt-decode';
 import { map } from 'rxjs/operators';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'https://florify.online/auth/login';
+  private apiUrl = environment.apiUrl+'/auth/login';
 
   constructor(
     private http: HttpClient, 
@@ -32,19 +33,8 @@ export class AuthService {
       );
   }
 
-  // logingoogle(): void {
-  //   window.location.href = 'http://localhost:3000/auth/google/login';
-  // }
-
-  // handleGoogleCallback() {
-  //   const token = this.cookieService.get('key');
-  //   if (token) {
-  //     this.router.navigate(['/home']);
-  //   }
-  // }
-
   loginfb(): void {
-    window.location.href = 'http://localhost:3000/auth/facebook';
+    window.location.href = environment.apiUrl+'/auth/facebook';
   }
   
   getUser(): any {
@@ -64,7 +54,7 @@ export class AuthService {
   }
   
   logout() {
-    this.http.get('https://florify.online/auth/google/logout', { withCredentials: true })
+    this.http.get(environment.apiUrl+'/auth/logout', { withCredentials: true })
       .subscribe(
         () => {
           this.cookieService.delete('key');
@@ -79,6 +69,4 @@ export class AuthService {
         }
       );
   }
-  
-  
 }

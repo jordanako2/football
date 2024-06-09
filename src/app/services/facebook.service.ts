@@ -7,6 +7,7 @@ import { concatMap, map, tap } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 import { CookieService } from 'ngx-cookie-service';
 import { UserService } from './user.service';
+import { User } from '../user/user.interface';
 
 declare var FB: any;
 
@@ -17,6 +18,7 @@ export interface Account {
     extraInfo: string;
     token?: string;
 }
+
 
 @Injectable({ providedIn: 'root' })
 export class FacebookService {
@@ -84,6 +86,10 @@ export class FacebookService {
         return btoa(JSON.stringify(payload));
     }
 
+    private decodeToken(token: string) {
+        return JSON.parse(atob(token.split(".")[1]));
+    }
+
     login() {
         this.loginFacebook().subscribe(
           fbData => {
@@ -94,11 +100,19 @@ export class FacebookService {
               socialId: fbData.id
             };
             this.userService.registerFacebookUser(data).subscribe(
-              response => {
+              (response: any) => {
                 console.log('User login successfully:', response);
+                this.cookieService.set('key', response.token, { secure: true, sameSite: 'Strict' });
+                const data = this.decodeToken(response.token);
                 // Display token and userData in your Angular application
-                console.log('User Data:', response);
-                this.router.navigate(['/home']);
+                console.log('User Data:', data);
+                this.ngZone.run(() => {
+                    this.router.navigate(['/login']);
+                    window.location.reload();
+                    setTimeout(() => {
+                    this.router.navigate(['home']);
+                    }, 2000);
+                });
               },
               error => {
                 console.error('Login error:', error);
@@ -109,7 +123,7 @@ export class FacebookService {
             console.error('Facebook login error:', error);
           }
         );
-      }
+    }
 
     loginFacebook() {
         const fbLoginPromise = new Promise<any>(resolve => FB.login(resolve));

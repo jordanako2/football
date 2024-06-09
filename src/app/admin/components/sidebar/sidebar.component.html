@@ -23,6 +23,10 @@
                 <mat-icon matListItemIcon [style.color]="'#FFFFFF'">store</mat-icon>
                 <a matListItemTitle>News</a>
             </mat-list-item>
+            <mat-list-item routerLink="/admin/users" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <mat-icon matListItemIcon [style.color]="'#FFFFFF'">group</mat-icon>
+                <a matListItemTitle>Users</a>
+            </mat-list-item>
         </mat-nav-list>
     </div>
 </div>

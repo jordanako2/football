@@ -7,7 +7,6 @@ import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
-import { LeftsideContentComponent } from "./leftside-content/leftside-content.component";
 
 
 export interface PeriodicElement {
@@ -46,7 +45,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
     standalone: true,
     templateUrl: './home.component.html',
     styleUrl: './home.component.sass',
-    imports: [TeamsComponent, MatButton, LeftContentComponent, RightContentComponent, MatTableModule, MatIconModule, MatCardModule, MatTabsModule, LeftsideContentComponent]
+    imports: [TeamsComponent, MatButton, LeftContentComponent, RightContentComponent, MatTableModule, MatIconModule, MatCardModule, MatTabsModule,]
 })
 export class HomeComponent {
 

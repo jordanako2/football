@@ -67,18 +67,17 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-    this.authService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe(
-      () => {
+    this.authService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe({
+      next: () => {
         console.log('Login successful');
-        window.location.reload();
       },
-      error => {
+      error: (error) => {
         console.error('Login failed', error);
-
         if (error.status === 401 && error.error.message === 'Invalid credentials') {
           this.loginForm.controls['password'].setErrors({ invalidCredentials: true });
         }
       }
-    );
+    });
   }
+
 }

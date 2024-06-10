@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../../../services/auth.service';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
+import { GoogleService } from '../../../../services/google.service';
 
 @Component({
   selector: 'app-middle-header',
@@ -13,15 +14,28 @@ import { RouterLink } from '@angular/router';
 })
 export class MiddleHeaderComponent {
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private googleService: GoogleService
+  ) {}
 
   isMenuOpen: boolean[] = [false, false, false, false]; 
   isAuthenticated: boolean = false;
   user: any;
 
   ngOnInit() {
-    // Check authentication status
-    this.isAuthenticated = this.authService.isAuthenticated();
+    this.authService.user$.subscribe(user => {
+      this.user = user;
+    });
+    this.authService.isAuthenticated$.subscribe(isAuthenticated => {
+      this.isAuthenticated = isAuthenticated;
+    });
+    this.googleService.user$.subscribe(user => {
+      this.user = user;
+    });
+    this.googleService.isAuthenticated$.subscribe(isAuthenticated => {
+      this.isAuthenticated = isAuthenticated;
+    });
     this.user = this.authService.getUser();
   }
 
@@ -32,6 +46,5 @@ export class MiddleHeaderComponent {
   logout(event: Event) {
     event.preventDefault();
     this.authService.logout();
-    // window.location.reload();
   }
 }

@@ -5,6 +5,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { UserService } from './user.service';
 import { Router } from '@angular/router';
 import { User } from '../user/user.interface';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 declare var google: any
 
@@ -12,6 +13,9 @@ declare var google: any
   providedIn: 'root'
 })
 export class GoogleService {
+  private userSubject = new BehaviorSubject<any>(null);
+  public user$ = this.userSubject.asObservable();
+  private isAuthenticatedSubject = new BehaviorSubject<boolean>(this.isAuthenticated());
 
   constructor(
     private cookieService: CookieService,
@@ -56,7 +60,7 @@ export class GoogleService {
     return JSON.parse(atob(token.split(".")[1]));
   }
 
-  private handleGoogleLogin(resp: any) {
+  handleGoogleLogin(resp: any): void {
     if (resp) {
       this.cookieService.set('key', resp.credential, { secure: true, sameSite: 'Strict' });
       const payLoad = this.decodeToken(resp.credential);
@@ -69,12 +73,10 @@ export class GoogleService {
       this.userService.registerGoogleUser(data).subscribe(
         response => {
           console.log('User login successfully:', response);
+          this.userSubject.next(payLoad);
+          this.isAuthenticatedSubject.next(true);
           this.ngZone.run(() => {
-            this.router.navigate(['/login']);
-            window.location.reload();
-            setTimeout(() => {
-              this.router.navigate(['home']);
-            }, 2000);
+            this.router.navigate(['/home']);
           });
         },
         error => {
@@ -82,5 +84,13 @@ export class GoogleService {
         }
       );
     }
+  }
+
+  isAuthenticated(): boolean {
+    return !!this.cookieService.get('key');
+  }
+
+  get isAuthenticated$(): Observable<boolean> {
+    return this.isAuthenticatedSubject.asObservable();
   }
 }

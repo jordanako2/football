@@ -37,8 +37,15 @@
                 <div *ngIf="!isAuthenticated" class="login" [routerLink]="'/login'">SIGN IN</div>
                 <!-- <div *ngIf="!isAuthenticated" class="register">REGISTER</div> -->
                 <div *ngIf="user" class="auth">
-                    <h2>Welcome, {{ user.given_name }}</h2>
-                    <button mat-flat-button (click)="logout($event)">Logout</button>
+                    <button mat-flat-button class="team-button" [routerLink]="'/team'">Create a team</button>
+                    <div>
+                        <button mat-button (click)="toggleDropdown()">Welcome, {{ user.given_name }} <mat-icon>keyboard_arrow_down</mat-icon></button>
+                        <mat-card *ngIf="showDropdown">
+                            <mat-selection-list>
+                                <mat-list-item (click)="logout($event)"><mat-icon matListItemIcon>logout</mat-icon> Logout</mat-list-item>
+                            </mat-selection-list>
+                        </mat-card>
+                    </div>
                 </div>
             </div>
         </div>
@@ -49,7 +56,7 @@
                     <!-- <div *ngIf="!isAuthenticated" class="register">REGISTER</div> -->
                     <div *ngIf="user" class="auth">
                         <h2>Welcome, {{ user.given_name }}</h2>
-                        <button mat-flat-button (click)="logout($event)">Logout</button>
+                       
                     </div>
                 </div>
                 <div class="items">

@@ -45,7 +45,6 @@ export class AuthService {
   getUser(): any {
     const token = this.cookieService.get('key');
     if (token) {
-      this.router.navigate(['/home']);
       const decodedToken = jwtDecode(token) as { [key: string]: any };
       console.log(decodedToken)
       return decodedToken;
@@ -69,7 +68,7 @@ export class AuthService {
           this.cookieService.delete('key');
           this.userSubject.next(null);
           this.isAuthenticatedSubject.next(false); 
-          this.router.navigate(['/home']);
+          this.router.navigate(['/']);
         },
         error: (error) => {
           console.error('Error during logout:', error);

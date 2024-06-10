@@ -76,7 +76,7 @@ export class GoogleService {
           this.userSubject.next(payLoad);
           this.isAuthenticatedSubject.next(true);
           this.ngZone.run(() => {
-            this.router.navigate(['/home']);
+            this.router.navigate(['/']);
           });
         },
         error => {

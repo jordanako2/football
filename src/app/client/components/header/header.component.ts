@@ -9,16 +9,19 @@ import { TopHeaderComponent } from './top-header/top-header.component';
 import { MiddleHeaderComponent } from './middle-header/middle-header.component';
 import { BottomHeaderComponent } from './bottom-header/bottom-header.component';
 import { AuthService } from '../../../services/auth.service';
+import { MatCardModule } from '@angular/material/card';
+import { MatListItem, MatSelectionList } from '@angular/material/list';
 
 @Component({
   selector: 'client-header',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, RouterLink, MatInputModule, MatIconModule, MatMenuModule, CommonModule, TopHeaderComponent, MiddleHeaderComponent, BottomHeaderComponent],
+  imports: [MatCardModule, MatSelectionList, MatListItem, CommonModule, MatButtonModule, RouterLink, MatInputModule, MatIconModule, MatMenuModule, CommonModule, TopHeaderComponent, MiddleHeaderComponent, BottomHeaderComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.sass'
 })
 export class HeaderComponent {
 
+  showDropdown = false;
   isAuthenticated: boolean = false;
   user: any;
   isMenuOpen: boolean[] = [false, false]; // Add more elements if needed
@@ -26,6 +29,9 @@ export class HeaderComponent {
   
   constructor(private authService: AuthService) {}
 
+  toggleDropdown() {
+    this.showDropdown = !this.showDropdown;
+  }
 
   ngOnInit() {
     // Check authentication status

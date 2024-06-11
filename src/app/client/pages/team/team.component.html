@@ -6,13 +6,11 @@
         <div class="body">
             <div class="team-content">
                 <div class="logo">
-                    <span>Team Logo</span>
                     <img *ngIf="imagePath" [src]="imagePath" alt="Uploaded Image" width="300px">
                     <input type="file" (change)="onFileSelected($event)">
                 </div>
                 <div class="fields">
                     <mat-form-field appearance="outline">
-                        <span>Team Logo</span>
                         <mat-label>Team</mat-label>
                         <input matInput placeholder="Team" formControlName="team">
                         <mat-error *ngIf="teamForm.get('team')?.hasError('required') && teamForm.get('team')?.touched">
@@ -43,9 +41,14 @@
                         </mat-error>
                     </mat-form-field>
                 </div>
+                <div class="button">
+                    <button mat-flat-button>SAVE TEAM</button>
+                </div>
             </div>
             <div class="member-content">
-                asd
+                <div class="button">
+                    <button mat-flat-button>ADD MEMBERS</button>
+                </div>
             </div>
         </div>
     </div>

@@ -4,11 +4,12 @@ import { ApiService } from '../../../services/api.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-team',
   standalone: true,
-  imports: [CommonModule, MatFormFieldModule, MatInputModule,],
+  imports: [CommonModule, MatFormFieldModule, MatInputModule, MatButtonModule],
   templateUrl: './team.component.html',
   styleUrl: './team.component.sass'
 })

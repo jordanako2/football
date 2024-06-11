@@ -1,22 +1,26 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { CookieService } from 'ngx-cookie-service';
 import { jwtDecode } from 'jwt-decode';
 import { map } from 'rxjs/operators';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'https://florify.online/auth/login';
+  private apiUrl = environment.apiUrl+'/auth/login';
+  private userSubject = new BehaviorSubject<any>(null);
+  public user$ = this.userSubject.asObservable();
+  private isAuthenticatedSubject = new BehaviorSubject<boolean>(this.isAuthenticated());
 
   constructor(
     private http: HttpClient, 
     private router: Router,
-    private cookieService: CookieService
+    private cookieService: CookieService,
   ) {}
 
   login(email: string, password: string): Observable<void> {
@@ -26,31 +30,21 @@ export class AuthService {
           const token = response.accessToken;
           this.cookieService.set('key', token, { secure: true, sameSite: 'Strict' });
           const decodedToken = jwtDecode(token);
+          this.userSubject.next(decodedToken); 
+          this.isAuthenticatedSubject.next(true); 
           this.router.navigate(['/']);
           console.log(decodedToken);
         })
       );
   }
 
-  // logingoogle(): void {
-  //   window.location.href = 'http://localhost:3000/auth/google/login';
-  // }
-
-  // handleGoogleCallback() {
-  //   const token = this.cookieService.get('key');
-  //   if (token) {
-  //     this.router.navigate(['/home']);
-  //   }
-  // }
-
   loginfb(): void {
-    window.location.href = 'http://localhost:3000/auth/facebook';
+    window.location.href = environment.apiUrl+'/auth/facebook';
   }
   
   getUser(): any {
     const token = this.cookieService.get('key');
     if (token) {
-      this.router.navigate(['/home']);
       const decodedToken = jwtDecode(token) as { [key: string]: any };
       console.log(decodedToken)
       return decodedToken;
@@ -62,23 +56,24 @@ export class AuthService {
   isAuthenticated(): boolean {
     return !!this.cookieService.get('key');
   }
-  
-  logout() {
-    this.http.get('https://florify.online/auth/google/logout', { withCredentials: true })
-      .subscribe(
-        () => {
-          this.cookieService.delete('key');
-          this.router.navigate(['/home']);
-          window.location.reload();
-          setTimeout(() => {
-              this.router.navigate(['/login']);
-          }, 2000);
-        },
-        (error) => {
-          console.error('Error during logout:', error);
-        }
-      );
+
+  get isAuthenticated$(): Observable<boolean> {
+    return this.isAuthenticatedSubject.asObservable();
   }
   
-  
+  logout(): void {
+    this.http.get(environment.apiUrl + '/auth/logout', { withCredentials: true })
+      .subscribe({
+        next: () => {
+          this.cookieService.delete('key');
+          this.userSubject.next(null);
+          this.isAuthenticatedSubject.next(false); 
+          this.router.navigate(['/']);
+        },
+        error: (error) => {
+          console.error('Error during logout:', error);
+        }
+      });
+  }
+
 }

@@ -5,6 +5,7 @@ import { AdminComponent } from './admin.component';
 import { NewsComponent } from './pages/news/news.component';
 import { TeamsComponent } from './pages/teams/teams.component';
 import { PostsComponent } from './pages/posts/posts.component';
+import { UsersComponent } from './pages/users/users.component';
 
 const routes: Routes = [
     {
@@ -16,6 +17,7 @@ const routes: Routes = [
           { path: 'news', component: NewsComponent },
           { path: 'teams', component: TeamsComponent },
           { path: 'posts', component: PostsComponent },
+          { path: 'users', component: UsersComponent },
         ]
     }
 ];

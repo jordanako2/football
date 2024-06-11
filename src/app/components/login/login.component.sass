@@ -53,22 +53,34 @@
             .loginWith
                 margin-top: 20px
                 display: flex
-                align-items: baseline
-                gap: 20px
-                .line
-                    width: 200px
-                    border-bottom: solid 1px rgb(228,228,228)
+                justify-content: center
                 span
                     font-weight: 500
                     letter-spacing: 2px
             .social
                 margin-top: 20px
+                width: 100%
                 display: flex
                 flex-direction: column
                 align-items: center
-                justify-content: center
-                width: 100%
-                gap: 10px
+                .facebook-container
+                    margin-top: 10px
+                    border: solid 1px #1877F2
+                    border-radius: 5px
+                    width: 300px
+                    .btn-facebook
+                        margin: 5px
+                        width: 100%
+                        display: flex
+                        align-items: center
+                        justify-content: center
+                        cursor: pointer
+                        span
+                            margin-left: 20px
+                            font-size: 18px
+                            color: #1877F2
+                            font-weight: 500
+                        
         .register
             width: 50%
             .title

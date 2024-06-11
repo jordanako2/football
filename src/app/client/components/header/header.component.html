@@ -6,12 +6,7 @@
         <div class="spacer"></div>
         <div class="spacer"></div>
         <div class="right-items">
-            <div *ngIf="!isAuthenticated" class="login" [routerLink]="'/login'">Sign in</div>
-            <!-- <div *ngIf="!isAuthenticated" class="register">REGISTER</div> -->
-            <div *ngIf="user" class="auth">
-                <h2>Welcome, {{ user.given_name }}</h2>
-                <button mat-flat-button (click)="logout($event)">Logout</button>
-            </div>
+            <div *ngIf="!isAuthenticated" class="login" [routerLink]="'/login'">SIGN IN</div>
         </div>
         <div class="spacer"></div>
         

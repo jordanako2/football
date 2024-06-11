@@ -7,6 +7,7 @@ import { ProfileComponent } from '../components/profile/profile.component';
 import { LoginGuard } from '../guards/login.guard';
 import { AuthGuard } from '../guards/auth.guard';
 import { RegisterComponent } from '../components/register/register.component';
+import { TeamComponent } from './pages/team/team.component';
 
 
 const routes: Routes = [
@@ -14,8 +15,8 @@ const routes: Routes = [
         path: '',
         component: ClientComponent,
         children: [
-          { path: '', redirectTo: 'home', pathMatch: 'full' },
-          { path: 'home', component: HomeComponent },
+          // { path: '', redirectTo: 'home', pathMatch: 'full' },
+          { path: '', component: HomeComponent },
           {
             path: 'login',
             component: LoginComponent,
@@ -28,6 +29,10 @@ const routes: Routes = [
           {
             path: 'profile',
             component: ProfileComponent,
+          },
+          {
+            path: 'team',
+            component: TeamComponent,
           }
         ]
     },

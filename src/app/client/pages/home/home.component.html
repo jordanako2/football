@@ -1,5 +1,11 @@
 <div class="wrapper">
     <div class="container">
+        <div class="media-screen">
+        <mat-tab-group animationDuration="0ms">
+            <mat-tab label="Latest"><app-right-content></app-right-content></mat-tab>
+            <mat-tab label="Competitions"><app-left-content></app-left-content></mat-tab>
+          </mat-tab-group>
+        </div>
         <div class="left">
             <app-left-content></app-left-content>
         </div>

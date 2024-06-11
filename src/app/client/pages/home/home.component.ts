@@ -6,6 +6,8 @@ import { RightContentComponent } from './right-content/right-content.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
+import {MatTabsModule} from '@angular/material/tabs';
+
 
 export interface PeriodicElement {
   team: string;
@@ -39,11 +41,11 @@ const ELEMENT_DATA: PeriodicElement[] = [
 ];
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [TeamsComponent, MatButton, LeftContentComponent, RightContentComponent, MatTableModule, MatIconModule, MatCardModule],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.sass'
+    selector: 'app-home',
+    standalone: true,
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.sass',
+    imports: [TeamsComponent, MatButton, LeftContentComponent, RightContentComponent, MatTableModule, MatIconModule, MatCardModule, MatTabsModule,]
 })
 export class HomeComponent {
 

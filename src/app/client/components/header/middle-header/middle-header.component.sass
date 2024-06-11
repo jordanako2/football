@@ -43,6 +43,7 @@
                         font-size: 18px
             .items
                 display: flex
+                flex-wrap: wrap
                 .item 
                     font-size: 18px
                     cursor: pointer
@@ -91,6 +92,8 @@
                 display: none
             .mobileMenu
                 display: block
+                .login
+                    color: #0F0E6A
                 .items
                     display: flex
                     flex-direction: column
@@ -102,8 +105,35 @@
                         cursor: pointer
                         color: #0F0E6A
                         font-weight: 500
+                        border-bottom: 1px solid #d3d3d3
                         
                         &:hover
                             border-bottom: solid 2px #0F0E6A
 
+@media (max-width: 900px) 
+    .wrapper
+        .container
+            justify-content: center
+            .menu
+                display: none
+            .mobileMenu
+                display: block
+                justify-content: center
+                .content
+                    justify-content: center
+                .items
+                    display: flex
+                    flex-direction: column
+                    margin: 0
+                    padding: 0
+                    .item 
+                        font-size: 14px
+                        line-height: 3.33
+                        padding: 10px 20px
+                        cursor: pointer
+                        color: #0F0E6A
+                        font-weight: 500
+                        border-bottom: 1px solid #d3d3d3                
+                        &:hover
+                            border-bottom: solid 2px #0F0E6A
   

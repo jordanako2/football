@@ -3,6 +3,18 @@
         <div class="logo" [routerLink]="'/'">
             <img mat-card-image [src]="'https://florify.online/uploads/website/logo.png'" alt='logo'>
         </div>
+        <div class="spacer"></div>
+        <div class="spacer"></div>
+        <div class="right-items">
+            <div *ngIf="!isAuthenticated" class="login" [routerLink]="'/login'">Sign in</div>
+            <!-- <div *ngIf="!isAuthenticated" class="register">REGISTER</div> -->
+            <div *ngIf="user" class="auth">
+                <h2>Welcome, {{ user.given_name }}</h2>
+                <button mat-flat-button (click)="logout($event)">Logout</button>
+            </div>
+        </div>
+        <div class="spacer"></div>
+        
         <div class="menu">
             <div class="top">
                 <app-top-header></app-top-header>
@@ -11,7 +23,13 @@
                 <app-middle-header></app-middle-header>
             </div>
         </div>
+
+
+
+
+
     </div>
+    
     <div class="mobileContainer">
         <div class="content">
             <div class="menu-container">
@@ -22,8 +40,13 @@
                     <app-middle-header></app-middle-header>
                 </div>
             </div>
+            
+            
         </div>
+        
     </div>
+
+
 </div>
 
 

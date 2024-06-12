@@ -16,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './middle-header.component.sass'
 })
 export class MiddleHeaderComponent {
+
   showDropdown = false;
 
   toggleDropdown() {
@@ -58,5 +59,12 @@ export class MiddleHeaderComponent {
   logout(event: Event) {
     event.preventDefault();
     this.authService.logout();
+
   }
-}
+
+  }
+  
+
+
+
+

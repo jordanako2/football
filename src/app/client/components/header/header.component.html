@@ -3,13 +3,6 @@
         <div class="logo" [routerLink]="'/'">
             <img mat-card-image [src]="'https://florify.online/uploads/website/logo.png'" alt='logo'>
         </div>
-        <div class="spacer"></div>
-        <div class="spacer"></div>
-        <div class="right-items">
-            <div *ngIf="!isAuthenticated" class="login" [routerLink]="'/login'">SIGN IN</div>
-        </div>
-        <div class="spacer"></div>
-        
         <div class="menu">
             <div class="top">
                 <app-top-header></app-top-header>
@@ -18,16 +11,15 @@
                 <app-middle-header></app-middle-header>
             </div>
         </div>
-
-
-
-
-
     </div>
     
     <div class="mobileContainer">
         <div class="content">
             <div class="menu-container">
+                <div *ngIf="!isAuthenticated" class="signin" [routerLink]="'/login'">SIGN IN</div>
+                <div *ngIf="user" class="login">
+                    <button mat-flat-button class="team-button" [routerLink]="'/team'">CREATE TEAM</button>
+                </div>
                 <button (click)="toggleMobileMenu()" class="menu-button">
                     <mat-icon class="menuIcon">{{ isMobileMenuOpen ? 'close' : 'menu' }}</mat-icon>
                 </button>
@@ -35,10 +27,7 @@
                     <app-middle-header></app-middle-header>
                 </div>
             </div>
-            
-            
         </div>
-        
     </div>
 
 

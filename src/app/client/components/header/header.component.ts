@@ -11,11 +11,13 @@ import { BottomHeaderComponent } from './bottom-header/bottom-header.component';
 import { AuthService } from '../../../services/auth.service';
 import { MatCardModule } from '@angular/material/card';
 import { MatListItem, MatSelectionList } from '@angular/material/list';
+import { MatDividerModule } from '@angular/material/divider';
+import { GoogleService } from '../../../services/google.service';
 
 @Component({
   selector: 'client-header',
   standalone: true,
-  imports: [MatCardModule, MatSelectionList, MatListItem, CommonModule, MatButtonModule, RouterLink, MatInputModule, MatIconModule, MatMenuModule, CommonModule, TopHeaderComponent, MiddleHeaderComponent, BottomHeaderComponent],
+  imports: [MatDividerModule, MatCardModule, MatSelectionList, MatListItem, CommonModule, MatButtonModule, RouterLink, MatInputModule, MatIconModule, MatMenuModule, CommonModule, TopHeaderComponent, MiddleHeaderComponent, BottomHeaderComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.sass'
 })
@@ -27,15 +29,32 @@ export class HeaderComponent {
   isMenuOpen: boolean[] = [false, false]; // Add more elements if needed
   // isMobileMenuOpen = false;
   
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private googleService: GoogleService
+  ) {}
 
   toggleDropdown() {
     this.showDropdown = !this.showDropdown;
   }
 
   ngOnInit() {
-    // Check authentication status
-    this.isAuthenticated = this.authService.isAuthenticated();
+    this.authService.user$.subscribe(user => {
+      this.user = user;
+      this.showDropdown = false;
+    });
+    this.authService.isAuthenticated$.subscribe(isAuthenticated => {
+      this.isAuthenticated = isAuthenticated;
+      this.showDropdown = false;
+    });
+    this.googleService.user$.subscribe(user => {
+      this.user = user;
+      this.showDropdown = false;
+    });
+    this.googleService.isAuthenticated$.subscribe(isAuthenticated => {
+      this.isAuthenticated = isAuthenticated;
+      this.showDropdown = false;
+    });
     this.user = this.authService.getUser();
   }
 

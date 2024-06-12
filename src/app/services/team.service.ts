@@ -19,7 +19,7 @@ export class TeamService {
   }
 
   getTeams(): Observable<any> {
-    return this._http.get(environment.apiUrl+`/football/teams`);
+    return this._http.get(`http://localhost:3000/football/teams`);
   }
 
   deleteTeam(id: number): Observable<any> {

@@ -50,7 +50,6 @@ export class LeagueTeamUpdateComponent {
     this.imagePath = `${this._configService.URL_IMAGE}`;
 
     if (this.data) {
-      console.log(this.data)
       this.leagueForm.patchValue(this.data);
     } 
 

@@ -14,6 +14,10 @@ export class LeagueService {
     return this._http.post(environment.apiUrl+`/football/leagues`, data);
   }
 
+  getLeagueById(id: number): Observable<any> {
+    return this._http.get(environment.apiUrl + `/football/leagues/${id}`);
+  }
+
   updateLeague(id: number, data: any): Observable<any> {
     return this._http.patch(environment.apiUrl+`/football/leagues/${id}`, data);
   }

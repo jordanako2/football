@@ -11,18 +11,18 @@ export class LeagueService {
   constructor(private _http: HttpClient) { }
 
   addLeague(data: any): Observable<any> {
-    return this._http.post(`http://localhost:3000/football/leagues`, data);
+    return this._http.post(environment.apiUrl+`/football/leagues`, data);
   }
 
   updateLeague(id: number, data: any): Observable<any> {
-    return this._http.patch(`http://localhost:3000/football/leagues/${id}`, data);
+    return this._http.patch(environment.apiUrl+`/football/leagues/${id}`, data);
   }
 
   getLeagues(): Observable<any> {
-    return this._http.get(`http://localhost:3000/football/leagues`);
+    return this._http.get(environment.apiUrl+`/football/leagues`);
   }
 
   deleteLeague(id: number): Observable<any> {
-    return this._http.delete(`http://localhost:3000/football/leagues/${id}`)
+    return this._http.delete(environment.apiUrl+`/football/leagues/${id}`)
   }
 }

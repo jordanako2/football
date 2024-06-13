@@ -11,7 +11,7 @@ export class LeagueTeamService {
   constructor(private _http: HttpClient) { }
 
   addLeagueTeam(data: any): Observable<any> {
-    return this._http.post(`http://localhost:3000/football/league-teams`, data);
+    return this._http.post(environment.apiUrl+`/football/league-teams`, data);
   }
 
 //   updateLeague(id: number, data: any): Observable<any> {
@@ -19,7 +19,7 @@ export class LeagueTeamService {
 //   }
 
   getLeagueTeams(leagueId: number): Observable<any> {
-    return this._http.get(`http://localhost:3000/football/league-teams/${leagueId}`);
+    return this._http.get(environment.apiUrl+`/football/league-teams/${leagueId}`);
   }
 
 //   deleteLeague(id: number): Observable<any> {

@@ -16,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './middle-header.component.sass'
 })
 export class MiddleHeaderComponent {
+
   showDropdown = false;
 
   toggleDropdown() {
@@ -34,15 +35,19 @@ export class MiddleHeaderComponent {
   ngOnInit() {
     this.authService.user$.subscribe(user => {
       this.user = user;
+      this.showDropdown = false;
     });
     this.authService.isAuthenticated$.subscribe(isAuthenticated => {
       this.isAuthenticated = isAuthenticated;
+      this.showDropdown = false;
     });
     this.googleService.user$.subscribe(user => {
       this.user = user;
+      this.showDropdown = false;
     });
     this.googleService.isAuthenticated$.subscribe(isAuthenticated => {
       this.isAuthenticated = isAuthenticated;
+      this.showDropdown = false;
     });
     this.user = this.authService.getUser();
   }
@@ -54,5 +59,12 @@ export class MiddleHeaderComponent {
   logout(event: Event) {
     event.preventDefault();
     this.authService.logout();
+
   }
-}
+
+  }
+  
+
+
+
+

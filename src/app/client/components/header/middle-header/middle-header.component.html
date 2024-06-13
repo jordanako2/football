@@ -35,9 +35,8 @@
             </div>
             <div class="right-items">
                 <div *ngIf="!isAuthenticated" class="login" [routerLink]="'/login'">SIGN IN</div>
-                <!-- <div *ngIf="!isAuthenticated" class="register">REGISTER</div> -->
                 <div *ngIf="user" class="auth">
-                    <button mat-flat-button class="team-button" [routerLink]="'/team'">Create a team</button>
+                    <button mat-flat-button class="team-button" [routerLink]="'/team'">Create team</button>
                     <div>
                         <button mat-button (click)="toggleDropdown()">Welcome, {{ user.given_name }} <mat-icon>keyboard_arrow_down</mat-icon></button>
                         <mat-card *ngIf="showDropdown">
@@ -51,21 +50,23 @@
         </div>
         <div class="mobileMenu">
             <div class="content">
-                <div class="right-items">
-                    <div *ngIf="!isAuthenticated" class="login" [routerLink]="'/login'">SIGN IN</div>
-                    <!-- <div *ngIf="!isAuthenticated" class="register">REGISTER</div> -->
+                <div class="login">
                     <div *ngIf="user" class="auth">
-                        <h2>Welcome, {{ user.given_name }}</h2>
-                       
+                        <h1>Welcome, {{ user.given_name }}</h1>
                     </div>
                 </div>
                 <div class="items">
                     <div class="item" [routerLink]="'/'">FOOTBALL LEAGUE</div>
                     <div class="item" [routerLink]="'/'">LATEST</div>
-                    <div class="item" [routerLink]="'/'">TEAMS</div>
+                    <div class="item" (mouseover)="toggleMenu(2)" [routerLink]="'/'">TEAMS</div>
                     <div class="item" [routerLink]="'/'">THE CLUB</div>
                     <div class="item" [routerLink]="'/'">BRACKETS</div>
                     <div class="item" [routerLink]="'/'">CONTACT</div>
+                </div>
+                <div class="logout">
+                    <div *ngIf="user" class="auth">
+                        <button mat-button (click)="logout($event)"><mat-icon matListItemIcon>logout</mat-icon>Logout</button>
+                    </div>
                 </div>
             </div>
         </div>

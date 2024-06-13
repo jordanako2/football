@@ -21,6 +21,8 @@
                 height: 5.3rem
     .mobileContainer
         display: none
+    .right-items
+        display: none
 
 @media (max-width: 600px) 
     .wrapper
@@ -30,6 +32,7 @@
         .container
             width: 90%
             padding: 15px
+            justify-content: space-between
             .logo
                 width: 60px
                 img
@@ -42,64 +45,58 @@
             .content
                 display: flex
                 gap: 20px
-                // .search
-                //     padding: 10px
-                //     &:hover
-                //         background-color: #0f0e6a
-                //     .icon
-                //         font-size: 30px
-                //         color: #0F0E6A
-                //         &:hover
-                //             color: #FFFFFF
-                
+                .right-items
+                    display: block
                 .menu-container 
-                    // position: relative
-                    
-
+                    display: flex
+                    align-items: center
+                    gap: 5px
+                    width: 100%
+                    .signin
+                        font-size: 14px
+                        font-weight: 400
+                        line-height: 1.4285714286
+                        letter-spacing: 2px
+                        cursor: pointer
+                        margin-left: 10px
+                        width: 100px
+                    .login
+                        font-size: 14px
+                        font-weight: 400
+                        line-height: 1.4285714286
+                        letter-spacing: 2px
+                        cursor: pointer
+                        margin-left: 10px
+                        display: flex
+                        button
+                            width: 150px
+                            background-color: #0F0E6A
+                            color: white
                     .menu-button 
-                        position: fixed
-                        top: 25px
-                        right: 20px
-                        padding: 10px 20px
+                        padding: 5px 10px
                         color: white
                         border: none
+                        border-radius: 5px
                         cursor: pointer
-                        z-index: 1000
                         &:hover
                             background-color: #0F0E6A
                         .menuIcon
                             color: #0F0E6A
                             &:hover
                                 color: #FFFFFF
-
-                    // .icon-button 
-                    //     position: absolute
-                    //     top: 20px
-                    //     left: 80px
-                    //     padding: 10px
-                    //     background-color: transparent
-                    //     border: none
-                    //     cursor: pointer
-                    //     z-index: 1000
-                        
-
-                    //     .icon 
-                    //         font-size: 24px
-                    //         color: #007bff
-                        
-
                     .menu 
                         position: fixed
+                        z-index: 3
                         top: 0
                         left: 0
-                        width: 100%
+                        width: auto
                         height: 100%
-                        background-color: #B1001A
+                        background-color: #fff
                         color: #FFFFFF
                         transform: translateX(-100%)
                         transition: transform 0.3s ease-in-out
                         padding: 20px
-                    
+                        justify-content: center
 
                     .menu.open 
                         transform: translateX(0)
@@ -114,135 +111,119 @@
                             color: white
                             border: none
                             cursor: pointer
-                    
-
-                    
-
-                
-
-                
-
-
-  
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    // .wrapper
-//     width: 100%
-//     display: flex
-//     justify-content: center
-//     align-items: center
-//     position: relative
-//     .container
-//         width: 90%
-//         .top-menu
-//             display: flex
-//             align-content: center
-//             justify-content: flex-end
-//             padding: 10px 0
-//             border-bottom: solid 1px
-//             border-color: #c7c8ca
-//             .right-top-menu
-//                 display: flex
-//                 gap: 5px
-                
-//                 .register
-//                     background-color: #B10019
-//                     border-radius: 5px
-//                 .login
-//                     border-radius: 5px
-//         .bottom-menu
-//             display: flex
-//             align-items: center
-//             justify-content: space-between
-//             // padding: 5px 0
             
-//             .menu 
-//                 display: flex
-
-//                 .item 
-//                     font-size: 18px
-//                     cursor: pointer
-//                     line-height: 3.33
-//                     padding: 10px 20px
-//                     cursor: pointer
-                   
-//                     &:hover
-//                         border-bottom: solid 5px #243346
-                
-
-//                 .menu-list 
-//                     position: absolute
-//                     top: calc(100%)
-//                     left: 0
-//                     background-color: #243346
-//                     opacity: 10
-//                     list-style: none
-//                     display: none
-//                     width: 100%
-//                     opacity: 0
-//                     transition: opacity 0.3s ease
-                    
-                
-
-//                 .item:hover + .menu-list 
-//                     display: block
-//                     opacity: 1
-                
-                
-
-
-//             // .content-items
-//             //     display: flex
-//             //     align-items: center
-//             //     justify-content: space-between
-//             //     gap: 20px
-//             //     .item
-//             //         font-size: 18px
-//             //         cursor: pointer
-//             //         line-height: 3.33
-//             //         color: #B1001A
-//             //         &:hover
-//             //             font-weight: 400
-//             //             border-bottom: solid 1px #B1001A
-//             //     .search-container
-//             //             display: flex
-//             //             gap: 5px
-//             //             padding: 10px
-//             //             border-radius: 50px
-//             //             border: solid 1px #B1001A
-//             //             input
-//             //                 width: 300px
-//             //                 font-size: 20px
-//             //                 outline: none
-//             //                 border: none
-//             //                 &:focus
-//             //                     outline: none
                             
+@media screen and (max-width: 900px) 
+    .wrapper
+        width: 100%
+        display: flex
+        align-items: center
+        .container
+            width: 90%
+            padding: 15px
+            justify-content: space-between
+            .logo
+                width: 60px
+                img
+                    width: 100%
+            .menu
+                display: none
+        .mobileContainer
+            display: block
+            margin-right: 20px
+            .content
+                display: flex
+                gap: 20px
+                .right-items
+                    display: block
+                .menu-container 
+                    display: flex
+                    align-items: center
+                    gap: 5px
+                    width: 100%
+                    .signin
+                        font-size: 14px
+                        font-weight: 400
+                        line-height: 1.4285714286
+                        letter-spacing: 2px
+                        cursor: pointer
+                        margin-left: 10px
+                        width: 100px
+                    .login
+                        font-size: 14px
+                        font-weight: 400
+                        line-height: 1.4285714286
+                        letter-spacing: 2px
+                        cursor: pointer
+                        margin-left: 10px
+                        display: flex
+                        button
+                            width: 150px
+                            background-color: #0F0E6A
+                            color: white
+                    .menu-button 
+                        padding: 5px 10px
+                        color: white
+                        border: none
+                        border-radius: 5px
+                        cursor: pointer
+                        &:hover
+                            background-color: #0F0E6A
+                        .menuIcon
+                            color: #0F0E6A
+                            &:hover
+                                color: #FFFFFF
+                    .menu 
+                        position: fixed
+                        z-index: 3
+                        top: 0
+                        left: 0
+                        width: auto
+                        height: 100%
+                        background-color: #fff
+                        color: #FFFFFF
+                        transform: translateX(-100%)
+                        transition: transform 0.3s ease-in-out
+                        padding: 20px
+                        justify-content: center
 
+                    .menu.open 
+                        transform: translateX(0)
+                    
+
+                        .close-button 
+                            position: absolute
+                            top: 10px
+                            right: 10px
+                            padding: 5px 10px
+                            background-color: red
+                            color: white
+                            border: none
+                            cursor: pointer
+
+@media screen and (min-width: 1200px)
+    .wrapper
+        width: 100%
+        display: flex
+        justify-content: center
+        .container
+            width: 90%
+            display: flex
+            align-items: center
+            .logo
+                cursor: pointer
+                width: 100px
+                display: flex
+                justify-content: center
+                img
+                    width: 100px
+            .menu
+                width: 100%
+                margin-left: 20px
+                    
+                .middle
+                    height: 5.3rem
+        .mobileContainer
+            display: none
+        .right-items
+            display: none

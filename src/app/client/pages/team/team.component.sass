@@ -3,21 +3,28 @@
     display: flex
     justify-content: center
     .container
-        padding-top: 150px
         width: 100%
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
         .header
+            width: 100%
             background-color: #46001A
-            padding: 2% 10%
             color: #FFFFFF
             h1
+                margin: 2% 10%
                 letter-spacing: 5px
                 font-weight: bold
                 font-size: 32px
         .body
-            width: 60%
-            padding: 2% 10%
+            width: 90%
+            display: flex
             .team-content
+                margin-top: 10px
+                width: 50%
                 display: flex
+                flex-direction: column
                 gap: 10px
                 .logo
                     display: flex
@@ -29,4 +36,35 @@
                 .fields
                     display: flex
                     flex-direction: column
-                    width: 50%
+                    width: 100%
+                .button
+                    display: flex
+                    justify-content: flex-end
+                    button
+                        background-color: #0F0E6A
+                        color: #FFFFFF
+            .member-content
+                margin-top: 10px
+                .button
+                    display: flex
+                    justify-content: flex-end
+                    button
+                        background-color: #0F0E6A
+                        color: #FFFFFF
+
+@media (max-width: 600px) 
+    .wrapper
+        padding: 40% 0
+        .container
+            padding: 20px
+            .header
+                h1
+                    margin: 5% 5%
+            .body
+                display: flex
+                flex-direction: column
+                width: 100%
+                .team-content
+                    width: 100%
+
+

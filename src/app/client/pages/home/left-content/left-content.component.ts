@@ -13,16 +13,16 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, team: 'Clarin', played: 38, gd: 62, points: 91},
-  {position: 2, team: 'Inabanga', played: 38, gd: 62, points: 91},
-  {position: 3, team: 'Sagbayan', played: 38, gd: 62, points: 91},
-  {position: 4, team: 'Carmen', played: 38, gd: 62, points: 91},
-  {position: 5, team: 'Talibon', played: 38, gd: 62, points: 91},
-  {position: 6, team: 'Tagbilaran', played: 38, gd: 62, points: 91},
-  {position: 7, team: 'Carmen', played: 38, gd: 62, points: 91},
-  {position: 8, team: 'Sikatuna', played: 38, gd: 62, points: 91},
-  {position: 9, team: 'Mabini', played: 38, gd: 62, points: 91},
-  {position: 10, team: 'Danao', played: 38, gd: 62, points: 91},
+  {position: 1, team: 'Huskies', played: 38, gd: 62, points: 91},
+  {position: 2, team: 'Tigers', played: 38, gd: 62, points: 91},
+  {position: 3, team: 'Panglao Dophins', played: 38, gd: 62, points: 91},
+  {position: 4, team: 'Tubigon', played: 38, gd: 62, points: 91},
+  {position: 5, team: 'Clarin', played: 38, gd: 62, points: 91},
+  {position: 6, team: 'Sagbayan', played: 38, gd: 62, points: 91},
+  {position: 7, team: 'Talibon', played: 38, gd: 62, points: 91},
+  {position: 8, team: 'Alicia', played: 38, gd: 62, points: 91},
+  {position: 9, team: 'Seirra Bullones', played: 38, gd: 62, points: 91},
+  {position: 10, team: 'Gaher', played: 38, gd: 62, points: 91},
 ];
 
 @Component({

@@ -1,0 +1,56 @@
+<div class="wrapper">
+    <div mat-dialog-title class="title">
+        <img *ngIf="data.team && data.team.file_name" [src]="imagePath + data.team.file_name"
+            [alt]="data.team.file_name" width="50px">
+        {{data.team?.team}} Results
+    </div>
+    <form [formGroup]="leagueForm" (ngSubmit)="onSubmit()">
+        <div mat-dialog-content class="content">
+            <div class="row">
+                <mat-form-field appearance="outline">
+                    <mat-label>Played</mat-label>
+                    <input matInput type="number" placeholder="Played" formControlName="played">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Won</mat-label>
+                    <input matInput type="number" placeholder="Won" formControlName="won">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Drawn</mat-label>
+                    <input matInput type="number" placeholder="Drawn" formControlName="drawn">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Lost</mat-label>
+                    <input matInput type="number" placeholder="Lost" formControlName="lost">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Goals For</mat-label>
+                    <input matInput type="number" placeholder="Goals For" formControlName="goals_for">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Goals Against</mat-label>
+                    <input matInput type="number" placeholder="Goals Against" formControlName="goals_against">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Goal Difference</mat-label>
+                    <input matInput type="number" placeholder="Goal Difference" formControlName="goals_difference">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Points</mat-label>
+                    <input matInput type="number" placeholder="Points" formControlName="points">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Status</mat-label>
+                    <mat-select formControlName="stat">
+                        <mat-option [value]="1">Active</mat-option>
+                        <mat-option [value]="0">Inactive</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div mat-dialog-actions class="actions">
+            <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+            <button mat-raised-button color="primary" type="submit">{{data ? 'Update' : 'Save'}}</button>
+        </div>
+    </form>
+</div>

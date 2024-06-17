@@ -1,0 +1,131 @@
+import { Component } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { LeagueTeamDialogComponent } from './league-team-dialog/league-team-dialog.component';
+import { LeagueTeamService } from '../../../../services/league-team.service';
+import { CommonModule } from '@angular/common';
+import { ApiService } from '../../../../services/api.service';
+import { LeagueTeamUpdateComponent } from './league-team-update/league-team-update.component';
+import { LeagueService } from '../../../../services/league.service';
+
+export interface PeriodicElement {
+  position: number;
+  team_id: number;
+  played: number;
+  won: number;
+  drawn: number;
+  lost: number;
+  goals_for: number;
+  goals_against: number;
+  goals_difference: number;
+  points: number;
+  stat?: number;
+  team: {
+    file_name: string;
+    team: string;
+  }
+}
+
+@Component({
+  selector: 'app-league-details',
+  standalone: true,
+  imports: [MatButtonModule, MatIconModule, RouterLink, MatTableModule, CommonModule],
+  templateUrl: './league-details.component.html',
+  styleUrls: ['./league-details.component.sass']
+})
+export class LeagueDetailsComponent {
+
+  displayedColumns: string[] = ['position', 'team_id', 'played', 'won', 'drawn', 'lost', 'goals_for', 'goals_against', 'goals_difference', 'points', 'stat', 'action'];
+  leagueId: number | null = null;
+  dataSource!: MatTableDataSource<any>;
+  imagePath: string | null = null;
+  title: string | null = null;
+  
+  constructor(
+    public dialog: MatDialog, 
+    private route: ActivatedRoute,
+    private leagueTeamService: LeagueTeamService,
+    private leagueService: LeagueService,
+    private _configService: ApiService,
+  ) {}
+
+  ngOnInit(): void {
+    this.imagePath = `${this._configService.URL_IMAGE}`;
+    this.route.params.subscribe(params => {
+      this.leagueId = +params['id'];  
+      this.getLeagueTeams(this.leagueId);
+      this.getLeagueById(this.leagueId);
+    });
+  }
+
+  getLeagueById(leagueId: number) {
+    this.leagueService.getLeagueById(leagueId).subscribe(
+      (response) => {
+        this.title = response.title;
+      },
+      (error) => {
+        console.error('Error fetching team:', error);
+      }
+    );
+  }
+
+  getLeagueTeams(leagueId: number) {
+    this.leagueTeamService.getLeagueTeams(leagueId).subscribe({
+      next: (res) => {
+        const activeTeams = res.filter((team: PeriodicElement) => team.stat !== 0);
+        const inactiveTeams = res.filter((team: PeriodicElement) => team.stat === 0);
+
+        activeTeams.sort((a: PeriodicElement, b: PeriodicElement) => b.points - a.points);
+
+        const sortedTeams = [...activeTeams, ...inactiveTeams];
+
+        sortedTeams.forEach((element: PeriodicElement, index: number) => {
+          element.position = index + 1;
+        });
+
+        this.dataSource = new MatTableDataSource(sortedTeams);
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
+
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(LeagueTeamDialogComponent, {
+      data: { leagueId: this.leagueId }
+    });
+
+    dialogRef.afterClosed().subscribe({
+      next: (val) => {
+        if (val && this.leagueId !== null) {
+          this.getLeagueTeams(this.leagueId);
+        }
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
+
+  openEditForm(data: any) {
+    const dialogRef = this.dialog.open(LeagueTeamUpdateComponent, {
+      data,
+    });
+
+    dialogRef.afterClosed().subscribe({
+        next: (val) => {
+          if (val && this.leagueId !== null) {
+            this.getLeagueTeams(this.leagueId);
+          }
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      })
+  }
+}

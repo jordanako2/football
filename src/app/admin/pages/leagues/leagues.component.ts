@@ -23,7 +23,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './leagues.component.sass'
 })
 export class LeaguesComponent {
-  displayedColumns: string[] = ['title', 'created_on', 'stat', 'action'];
+  displayedColumns: string[] = ['title', 'created_on', 'status', 'action'];
   dataSource!: MatTableDataSource<any>;
   imagePath: string | null = null;
 

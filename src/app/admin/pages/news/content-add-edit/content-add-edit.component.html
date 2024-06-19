@@ -1,0 +1,25 @@
+<div class="wrapper">
+    <div mat-dialog-title class="title">Content Information</div>
+    <form [formGroup]="contentForm" (ngSubmit)="onSubmit()">
+        <div mat-dialog-content class="content">
+            <div class="row">
+                <mat-form-field appearance="outline">
+                    <mat-label>Title</mat-label>
+                    <input matInput placeholder="Title" formControlName="title">
+                    <mat-error *ngIf="contentForm.get('title')?.hasError('required') && contentForm.get('title')?.touched">
+                        required
+                    </mat-error>
+                    <mat-error *ngIf="contentForm.get('title')?.hasError('minlength') && contentForm.get('title')?.touched">
+                        title must be at least 3 characters long
+                    </mat-error>
+                </mat-form-field>
+                    <quill-editor [modules]="modules" [style]="{height: '300px' }" formControlName="content"></quill-editor>
+                
+            </div>
+        </div>
+        <div mat-dialog-actions class="actions">
+            <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+            <button mat-raised-button color="primary" type="submit">{{data ? 'Update' : 'Save'}}</button>
+        </div>
+    </form>
+</div>

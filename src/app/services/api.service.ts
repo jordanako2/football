@@ -5,5 +5,5 @@ import { environment } from '../environments/environment';
   providedIn: 'root'
 })
 export class ApiService {
-  public readonly URL_IMAGE = environment.apiUrl+`/uploads/`;
+  public readonly URL_IMAGE = `https://florify.online/uploads/`;
 }

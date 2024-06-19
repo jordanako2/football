@@ -1,0 +1,98 @@
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { TeamService } from '../../../../../../services/team.service';
+import { CoreService } from '../../../../../../core/core.service';
+import { CommonModule } from '@angular/common';
+import { ApiService } from '../../../../../../services/api.service';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { ChangeDetectionStrategy } from '@angular/core';
+import { provideNativeDateAdapter } from '@angular/material/core';
+import { MatchService } from '../../../../../../services/match.service';
+
+@Component({
+  selector: 'app-team-add-edit',
+  standalone: true,
+  imports: [
+    MatButtonModule, 
+    MatDialogModule, 
+    MatFormFieldModule, 
+    MatInputModule, 
+    ReactiveFormsModule, 
+    CommonModule, 
+    MatDatepickerModule, 
+    MatNativeDateModule
+  ],
+  providers: [provideNativeDateAdapter()],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  templateUrl: './team-match-add-edit.component.html',
+  styleUrl: './team-match-add-edit.component.sass'
+})
+export class TeamMatchAddEditComponent {
+
+  selectedImage: File | null = null;
+  imagePath: string | null = null;
+  teamForm: FormGroup;
+  leagueId: number | null = null;
+
+  constructor(
+    private _fb: FormBuilder, 
+    private matchService: MatchService, 
+    private _dialogRef: MatDialogRef<TeamMatchAddEditComponent>,
+    private _coreService: CoreService,
+    private _configService: ApiService,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {
+    this.leagueId = data.leagueId;
+    this.teamForm = this._fb.group({
+      match_date: '',
+      location: '',
+    })
+  }
+
+  ngOnInit(): void {
+    this.teamForm = this._fb.group({
+      match_date: ['', [Validators.required]],
+      location: ['', [Validators.required]],
+    });
+    this.teamForm.patchValue(this.data);
+  }
+
+  onSubmit() {
+    if (this.teamForm.valid) {
+      this.teamForm.markAllAsTouched();
+      const formData = {
+        ...this.teamForm.value,
+        league_id: this.leagueId
+      };
+      if (this.data.id) {
+        this.matchService.updateMatch(this.data.id, formData).subscribe({
+          next: (val: any) => {
+            this._coreService.openSnackBar('Match schedule updated successfully')
+            this._dialogRef.close(true);
+          },
+          error: (err: any) => {
+            console.error(err);
+          }
+        })
+      } else {
+        this.teamForm.markAllAsTouched();
+        this.matchService.addMatch(formData).subscribe({
+          next: (val: any) => {
+            this._coreService.openSnackBar('Match schedule added successfully')
+            this._dialogRef.close(true);
+          },
+          error: (err: any) => {
+            console.error(err);
+          }
+        })
+      }
+      
+    }
+  }
+
+}

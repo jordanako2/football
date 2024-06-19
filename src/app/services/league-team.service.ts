@@ -14,9 +14,9 @@ export class LeagueTeamService {
     return this._http.post(environment.apiUrl+`/football/league-teams`, data);
   }
 
-//   updateLeague(id: number, data: any): Observable<any> {
-//     return this._http.patch(`http://localhost:3000/football/leagues/${id}`, data);
-//   }
+  updateLeagueTeams(id: number, data: any): Observable<any> {
+    return this._http.patch(environment.apiUrl+`/football/league-teams/${id}`, data);
+  }
 
   getLeagueTeams(leagueId: number): Observable<any> {
     return this._http.get(environment.apiUrl+`/football/league-teams/${leagueId}`);

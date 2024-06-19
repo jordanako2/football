@@ -33,20 +33,17 @@ export class LeagueAddEditComponent {
   ) {
     this.leagueForm = this._fb.group({
       title: '',
-      stat: '',
+      status: '',
     })
   }
 
   ngOnInit(): void {
     this.leagueForm = this._fb.group({
       title: ['', [Validators.required, Validators.minLength(3)]],
-      stat: ['', [Validators.required,]],
+      status: ['', [Validators.required,]],
     });
     if (this.data) {
-      this.leagueForm.patchValue({
-        title: this.data.title,
-        stat: this.data.stat.toString(),
-      });
+      this.leagueForm.patchValue(this.data);
     } 
   }
 

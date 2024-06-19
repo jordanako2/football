@@ -41,7 +41,6 @@ export class LeagueTeamDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.imagePath =`${this._configService.URL_IMAGE}`;
-    console.log('League ID:', this.leagueId);
     this.getTeams();
   }
 
@@ -70,7 +69,6 @@ export class LeagueTeamDialogComponent implements OnInit {
 
     this.leagueTeamService.addLeagueTeam(selectedTeams).subscribe({
       next: (response) => {
-        console.log('League team successfully added:', response);
         this.dialogRef.close(true);
       },
       error: (error) => {

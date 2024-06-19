@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
+import { ContentsService } from '../../../../services/contents.service';
 
 export interface Tile {
   cols: number;
@@ -45,9 +46,13 @@ const featureData: Features[] = [
 })
 export class RightContentComponent {
 
+
   tiles: Tile[] = [];
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private _contentService: ContentsService,
+  ) {}
 
   ngOnInit() {
     this.breakpointObserver.observe(['(max-width: 600px)']).subscribe((state: BreakpointState) => {
@@ -65,6 +70,14 @@ export class RightContentComponent {
         ];
       }
     });
+    this.getContentList();
+  }
+  getContentList(){
+    this._contentService.getContent().subscribe({
+      next:(res) => {
+      },
+      error: console.log,
+    })
   }
 
 

@@ -3,6 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
+import { LeaguesComponent } from '../../../components/leagues/leagues.component';
 
 export interface PeriodicElement {
   team: string;
@@ -28,7 +29,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 @Component({
   selector: 'app-left-content',
   standalone: true,
-  imports: [MatCardModule, MatButtonModule, MatIconModule, MatTableModule],
+  imports: [MatCardModule, MatButtonModule, MatIconModule, MatTableModule, LeaguesComponent],
   templateUrl: './left-content.component.html',
   styleUrl: './left-content.component.sass'
 })

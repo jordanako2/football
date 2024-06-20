@@ -1,0 +1,38 @@
+<div *ngFor="let league of leagues">
+    <h2>{{ league.title }}</h2>
+    <table mat-table [dataSource]="league.teams">
+        <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef> Pos </th>
+            <td mat-cell *matCellDef="let element; let i = index"> {{ i + 1 }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="team">
+            <th mat-header-cell *matHeaderCellDef class="custom-width-columm-team"> Team </th>
+            <td mat-cell *matCellDef="let element" class="custom-width-columm-team"> {{ element.team }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="played">
+            <th mat-header-cell *matHeaderCellDef  class="custom-width-column"> Pl </th>
+            <td mat-cell *matCellDef="let element"  class="custom-width-column"> {{ element.played }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="gd">
+            <th mat-header-cell *matHeaderCellDef  class="custom-width-column"> GD </th>
+            <td mat-cell *matCellDef="let element"  class="custom-width-column"> {{ element.gd }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="points">
+            <th mat-header-cell *matHeaderCellDef  class="custom-width-column"> Pts </th>
+            <td mat-cell *matCellDef="let element"  class="custom-width-column-pts"> {{ element.points }} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <div class="footer">
+        <div class="matches">
+            <span>View More</span>
+            <mat-icon>arrow_right_alt</mat-icon>
+        </div>
+    </div>
+</div>

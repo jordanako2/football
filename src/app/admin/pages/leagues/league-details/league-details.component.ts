@@ -10,6 +10,8 @@ import { CommonModule } from '@angular/common';
 import { ApiService } from '../../../../services/api.service';
 import { LeagueTeamUpdateComponent } from './league-team-update/league-team-update.component';
 import { LeagueService } from '../../../../services/league.service';
+import { MatTabsModule } from '@angular/material/tabs';
+import { LeagueTeamMatchComponent } from './league-team-match/league-team-match.component';
 
 export interface PeriodicElement {
   position: number;
@@ -32,7 +34,7 @@ export interface PeriodicElement {
 @Component({
   selector: 'app-league-details',
   standalone: true,
-  imports: [MatButtonModule, MatIconModule, RouterLink, MatTableModule, CommonModule],
+  imports: [MatButtonModule, MatIconModule, RouterLink, MatTableModule, CommonModule, MatTabsModule, LeagueTeamMatchComponent],
   templateUrl: './league-details.component.html',
   styleUrls: ['./league-details.component.sass']
 })

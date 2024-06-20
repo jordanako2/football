@@ -10,6 +10,9 @@ import { CommonModule } from '@angular/common';
 import { TeamSelectComponent } from './team-select/team-select.component';
 import { ApiService } from '../../../../../services/api.service';
 import { DatePipe } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TeamScoreComponent } from './team-score/team-score.component';
 
 interface Match {
   id: number;
@@ -20,10 +23,9 @@ interface Match {
 @Component({
   selector: 'app-league-team-match',
   standalone: true,
-  imports: [MatButtonModule, MatTableModule, CommonModule],
+  imports: [MatButtonModule, MatTableModule, CommonModule, MatIconModule, MatTooltipModule],
   providers: [
-    DatePipe // Ensure DatePipe is provided
-    // Add other services or providers
+    DatePipe 
   ],
   templateUrl: './league-team-match.component.html',
   styleUrl: './league-team-match.component.sass'
@@ -31,7 +33,7 @@ interface Match {
 export class LeagueTeamMatchComponent {
 
   leagueId: number | null = null;
-  displayedColumns: string[] = ['day', 'match_date', 'match_time', 'location', 'for', 'result', 'against', 'status', 'action'];
+  displayedColumns: string[] = ['match_date', 'match_time', 'location', 'for', 'result', 'against', 'status', 'action'];
   dataSource!: MatTableDataSource<any>;
   imagePath: string | null = null;
 
@@ -61,11 +63,56 @@ export class LeagueTeamMatchComponent {
           match.match_time = this.datePipe.transform(matchTime, 'h:mm a') || '';
         });
         this.dataSource = new MatTableDataSource(res);
+        console.log(res)
       },
       error: (err) => {
         console.log(err);
       }
     });
+  }
+
+  updateScore(element: any, index: number, id: number, team_id: number) {
+    console.log(`Update team for match ID ${element.id} at index ${index}`);
+    const dialogRef = this.dialog.open(TeamScoreComponent, {
+        data: { 
+          score_id: id,
+          team_id: team_id,
+          leagueId: this.leagueId, 
+          matchId: element.id 
+        }
+    });
+    dialogRef.afterClosed().subscribe({
+      next: (val) => {
+        if (val) {
+          this.getMatches()
+        }
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+  }
+
+  updateTeam(element: any, index: number, id: number, team_id: number) {
+    console.log(`Update team for match ID ${element.id} at index ${index}`);
+    const dialogRef = this.dialog.open(TeamSelectComponent, {
+        data: { 
+          score_id: id,
+          team_id: team_id,
+          leagueId: this.leagueId, 
+          matchId: element.id 
+        }
+    });
+    dialogRef.afterClosed().subscribe({
+      next: (val) => {
+        if (val) {
+          this.getMatches()
+        }
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
   }
 
   addTeam(element: any, index: number) {

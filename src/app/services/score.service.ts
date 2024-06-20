@@ -15,7 +15,7 @@ export class ScoreService {
   }
 
   updateScore(id: number, data: any): Observable<any> {
-    return this._http.patch(environment.apiUrl+`/football/teams/${id}`, data);
+    return this._http.patch(environment.apiUrl+`/football/scores/${id}`, data);
   }
 
 //   getTeams(): Observable<any> {

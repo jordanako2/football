@@ -17,7 +17,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { ScoreService } from '../../../../../../services/score.service';
 
 @Component({
-  selector: 'team-select',
+  selector: 'app-team-score',
   standalone: true,
   imports: [
     MatButtonModule, 
@@ -28,10 +28,10 @@ import { ScoreService } from '../../../../../../services/score.service';
     CommonModule, 
     MatSelectModule
   ],
-  templateUrl: './team-select.component.html',
-  styleUrl: './team-select.component.sass'
+  templateUrl: './team-score.component.html',
+  styleUrl: './team-score.component.sass'
 })
-export class TeamSelectComponent {
+export class TeamScoreComponent {
 
   teams: any[] = [];
   selectedImage: File | null = null;
@@ -39,11 +39,13 @@ export class TeamSelectComponent {
   teamForm: FormGroup;
   leagueId: number | null = null;
   matchId: number | null = null;
+  teamName: string | null = null;
+  teamId: any;
 
   constructor(
     private _fb: FormBuilder, 
     private matchService: MatchService, 
-    private _dialogRef: MatDialogRef<TeamSelectComponent>,
+    private _dialogRef: MatDialogRef<TeamScoreComponent>,
     private _coreService: CoreService,
     private _configService: ApiService,
     private teamService: TeamService,
@@ -53,18 +55,15 @@ export class TeamSelectComponent {
     this.matchId = data.matchId;
     this.leagueId = data.leagueId;
     this.teamForm = this._fb.group({
-      team_id: '',
       points: 0
     })
   }
 
   ngOnInit(): void {
-    this.teamForm = this._fb.group({
-      team_id: ['', [Validators.required]],
-    });
     this.teamForm.patchValue(this.data);
     this.imagePath =`${this._configService.URL_IMAGE}`;
     this.getTeams()
+    this.getTeambyId()
     console.log(this.data)
   }
 
@@ -77,6 +76,19 @@ export class TeamSelectComponent {
         console.log(err);
       }
     })
+  }
+
+  getTeambyId() {
+    this.teamService.getTeamById(this.data.team_id).subscribe({
+      next: (res: any) => {
+        this.teamId = res
+        console.log(res)
+      },
+      error: (err: any) => {
+        console.log(err)
+      }
+    }
+    );
   }
 
   onSubmit() {
@@ -98,23 +110,8 @@ export class TeamSelectComponent {
             this._coreService.openSnackBar(errorMessage);
           }
         });
-      } else {
-        this.teamForm.markAllAsTouched();
-        this.scoreService.addScore(formData).subscribe({
-          next: (val: any) => {
-            this._coreService.openSnackBar('Team score added successfully');
-            this._dialogRef.close(true);
-          },
-          error: (err: any) => {
-            const errorMessage = err?.error?.message || 'Error adding team score';
-            this._coreService.openSnackBar(errorMessage);
-          }
-        });
-      }
+      } 
     }
   }
-
-
-
 
 }

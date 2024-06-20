@@ -18,6 +18,10 @@ export class TeamService {
     return this._http.patch(environment.apiUrl+`/football/teams/${id}`, data);
   }
 
+  getTeamById(id: number): Observable<any> {
+    return this._http.get(environment.apiUrl + `/football/teams/${id}`);
+  }
+
   getTeams(): Observable<any> {
     return this._http.get(environment.apiUrl+`/football/teams`);
   }

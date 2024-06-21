@@ -47,20 +47,19 @@ export class LeagueTeamMatchComponent {
   ) {}
 
   ngOnInit(): void {
-    this.getMatches();
     this.route.params.subscribe(params => {
       this.leagueId = +params['id'];  
+      this.getMatches(this.leagueId);
     });
-    this.imagePath =`${this._configService.URL_IMAGE}`;
+    this.imagePath = `${this._configService.URL_IMAGE}`;
   }
 
-  getMatches() {
-    this.matchesService.getMatches().subscribe({
-      next: (res: Match[]) => {
+  
+  getMatches(leagueId: number) {
+    this.matchesService.getMatches(leagueId).subscribe({
+      next: (res: any[]) => {
         res.forEach(match => {
-          // Parse match_time string into a Date object
-          const matchTime = new Date(`2000-01-01T${match.match_time}`);
-          match.match_time = this.datePipe.transform(matchTime, 'h:mm a') || '';
+          match.matchTime = new Date(`2000-01-01T${match.match_time}`);
         });
         this.dataSource = new MatTableDataSource(res);
         console.log(res)
@@ -71,20 +70,21 @@ export class LeagueTeamMatchComponent {
     });
   }
 
-  updateScore(element: any, index: number, id: number, team_id: number) {
+  updateScore(element: any, index: number, id: number, team_id: number, points: number) {
     console.log(`Update team for match ID ${element.id} at index ${index}`);
     const dialogRef = this.dialog.open(TeamScoreComponent, {
         data: { 
           score_id: id,
           team_id: team_id,
           leagueId: this.leagueId, 
-          matchId: element.id 
+          matchId: element.id,
+          points: points
         }
     });
     dialogRef.afterClosed().subscribe({
       next: (val) => {
-        if (val) {
-          this.getMatches()
+        if (val && this.leagueId) {
+          this.getMatches(this.leagueId)
         }
       },
       error: (err) => {
@@ -105,8 +105,8 @@ export class LeagueTeamMatchComponent {
     });
     dialogRef.afterClosed().subscribe({
       next: (val) => {
-        if (val) {
-          this.getMatches()
+        if (val && this.leagueId) {
+          this.getMatches(this.leagueId)
         }
       },
       error: (err) => {
@@ -125,8 +125,8 @@ export class LeagueTeamMatchComponent {
     });
     dialogRef.afterClosed().subscribe({
       next: (val) => {
-        if (val) {
-          this.getMatches()
+        if (val && this.leagueId) {
+          this.getMatches(this.leagueId)
         }
       },
       error: (err) => {
@@ -142,8 +142,8 @@ export class LeagueTeamMatchComponent {
       });
       dialogRef.afterClosed().subscribe({
         next: (val) => {
-          if (val) {
-            this.getMatches()
+          if (val && this.leagueId) {
+            this.getMatches(this.leagueId)
           }
         },
         error: (err) => {
@@ -159,8 +159,8 @@ export class LeagueTeamMatchComponent {
 
     dialogRef.afterClosed().subscribe({
         next: (val) => {
-          if (val) {
-            this.getMatches()
+          if (val && this.leagueId) {
+            this.getMatches(this.leagueId)
           }
         },
         error: (err) => {

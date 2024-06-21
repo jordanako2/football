@@ -5,9 +5,6 @@
                 <mat-icon>keyboard_arrow_left</mat-icon>
                 Back
             </button>
-            <button mat-flat-button color="primary" (click)="openDialog()">
-                ADD LEAGUE TEAMS
-            </button>
         </div>
         <h1>{{ title }}</h1>
         <div class="body">
@@ -19,6 +16,11 @@
                 </mat-tab>
                 <mat-tab label="Standings">
                     <div class="tab-content">
+                        <div class="header-league-teams">
+                            <button mat-flat-button color="primary" (click)="openDialog()">
+                                ADD LEAGUE TEAMS
+                            </button>
+                        </div>
                         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
                             <ng-container matColumnDef="position">
                                 <th mat-header-cell *matHeaderCellDef> Position </th>

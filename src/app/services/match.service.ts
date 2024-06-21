@@ -18,8 +18,8 @@ export class MatchService {
     return this._http.patch(environment.apiUrl+`/football/matches/${id}`, data);
   }
 
-  getMatches(): Observable<any> {
-    return this._http.get(environment.apiUrl+`/football/matches`);
+  getMatches(id: number): Observable<any> {
+    return this._http.get(environment.apiUrl+`/football/matches/${id}`);
   }
 
 //   deleteTeam(id: number): Observable<any> {

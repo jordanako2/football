@@ -13,6 +13,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatchService } from '../../../../../../services/match.service';
+import { MatSelectModule } from '@angular/material/select';
 
 
 
@@ -28,6 +29,7 @@ import { MatchService } from '../../../../../../services/match.service';
     CommonModule, 
     MatDatepickerModule, 
     MatNativeDateModule,
+    MatSelectModule,
   ],
   providers: [provideNativeDateAdapter()],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -54,6 +56,7 @@ export class TeamMatchAddEditComponent {
       match_date: '',
       match_time: '',
       location: '',
+      status: '',
     })
   }
 
@@ -62,8 +65,10 @@ export class TeamMatchAddEditComponent {
       match_date: ['', [Validators.required]],
       match_time: ['', [Validators.required]],
       location: ['', [Validators.required]],
+      status: ['', [Validators.required]],
     });
     this.teamForm.patchValue(this.data);
+    console.log(this.data)
   }
 
   onSubmit() {
@@ -74,15 +79,19 @@ export class TeamMatchAddEditComponent {
         league_id: this.leagueId
       };
       if (this.data.id) {
-        this.matchService.updateMatch(this.data.id, formData).subscribe({
-          next: (val: any) => {
-            this._coreService.openSnackBar('Match schedule updated successfully')
-            this._dialogRef.close(true);
-          },
-          error: (err: any) => {
-            console.error(err);
-          }
-        })
+        if (this.data.scores.length === 2) {
+          this.matchService.updateMatch(this.data.id, formData).subscribe({
+            next: (val: any) => {
+              this._coreService.openSnackBar('Match schedule updated successfully');
+              this._dialogRef.close(true);
+            },
+            error: (err: any) => {
+              console.error(err);
+            }
+          });
+        } else {
+          this._coreService.openSnackBar('Add team for this match first.');
+        }
       } else {
         this.teamForm.markAllAsTouched();
         this.matchService.addMatch(formData).subscribe({

@@ -34,32 +34,37 @@
                             </div> 
                         </ng-container>
                         <ng-container *ngIf="!element.scores?.[0]">
-                            <button mat-icon-button (click)="addTeam(element, 0)" color="warn" matTooltip="Select team for this match"
-                                [matTooltipPosition]="'after'">
-                                <mat-icon>add</mat-icon>
-                            </button>
+                            <div class="team-content">
+                                <button mat-icon-button (click)="addTeam(element, 0)" color="warn" matTooltip="Select team for this match"
+                                    [matTooltipPosition]="'after'">
+                                    <mat-icon>add</mat-icon>
+                                </button>
+                                <div class="waiting-text">Waiting Team</div>
+                            </div>
                         </ng-container>
                     </td>
                 </ng-container>
                 <ng-container matColumnDef="result">
                     <th mat-header-cell *matHeaderCellDef class="th-result-content"> Result </th>
-                    <td mat-cell *matCellDef="let element" class="result-content">
-                        <ng-container *ngIf="element.scores?.[0]">
-                            <button mat-icon-button color="primary" matTooltip="Update score for this team" [matTooltipPosition]="'after'"
-                                (click)="updateScore(element, 0, element.scores[0].id, element.scores[0].team_id)">
-                                <mat-icon>add_circle</mat-icon>
-                            </button>
-                            {{ element.scores[0].points }} :
-                        </ng-container>
-                        <ng-container *ngIf="!element.scores?.[0]"></ng-container>
-                        <ng-container *ngIf="element.scores?.[1]">
-                            {{ element.scores[1].points }} 
-                            <button mat-icon-button color="primary" matTooltip="Update score for this team" [matTooltipPosition]="'after'"
-                                (click)="updateScore(element, 1, element.scores[1].id, element.scores[1].team_id)">
-                                <mat-icon>add_circle</mat-icon>
-                            </button>
-                        </ng-container>
-                        <ng-container *ngIf="!element.scores?.[1]"></ng-container>
+                    <td mat-cell *matCellDef="let element">
+                        <div class="result-content">
+                            <ng-container *ngIf="element.scores?.[0]">
+                                <button mat-icon-button color="primary" matTooltip="Update score for this team" [matTooltipPosition]="'after'"
+                                    (click)="updateScore(element, 0, element.scores[0].id, element.scores[0].team_id)">
+                                    <mat-icon>add_circle</mat-icon>
+                                </button>
+                                {{ element.scores[0].points }} :
+                            </ng-container>
+                            <ng-container *ngIf="!element.scores?.[0]"></ng-container>
+                            <ng-container *ngIf="element.scores?.[1]">
+                                {{ element.scores[1].points }} 
+                                <button mat-icon-button color="primary" matTooltip="Update score for this team" [matTooltipPosition]="'after'"
+                                    (click)="updateScore(element, 1, element.scores[1].id, element.scores[1].team_id)">
+                                    <mat-icon>add_circle</mat-icon>
+                                </button>
+                            </ng-container>
+                            <ng-container *ngIf="!element.scores?.[1]"></ng-container>
+                        </div>
                     </td>
                 </ng-container>
                 <ng-container matColumnDef="against">
@@ -77,10 +82,13 @@
                             </div>
                         </ng-container>
                         <ng-container *ngIf="!element.scores?.[1]">
-                            <button mat-icon-button (click)="addTeam(element, 1)" color="warn" matTooltip="Select team for this match"
-                                [matTooltipPosition]="'after'">
-                                <mat-icon>add</mat-icon>
-                            </button>
+                            <div class="team-content">
+                                <button mat-icon-button (click)="addTeam(element, 1)" color="warn" matTooltip="Select team for this match"
+                                    [matTooltipPosition]="'after'">
+                                    <mat-icon>add</mat-icon>
+                                </button>
+                                <div class="waiting-text">Waiting Team</div>
+                            </div>
                         </ng-container>
                     </td>
                 </ng-container>
@@ -91,9 +99,9 @@
                 <ng-container matColumnDef="action">
                     <th mat-header-cell *matHeaderCellDef> Actions </th>
                     <td mat-cell *matCellDef="let element">
-                        <!-- <button mat-flat-button color="primary" (click)="openEditForm(element)">
+                        <button mat-flat-button color="primary" (click)="openEditFormMatch(element)">
                             Update
-                        </button> -->
+                        </button>
                     </td>
                 </ng-container>
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

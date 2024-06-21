@@ -152,4 +152,21 @@ export class LeagueTeamMatchComponent {
       })
   }
 
+  openEditFormMatch(data: any) {
+    const dialogRef = this.dialog.open(TeamMatchAddEditComponent, {
+      data,
+    });
+
+    dialogRef.afterClosed().subscribe({
+        next: (val) => {
+          if (val) {
+            this.getMatches()
+          }
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      })
+  }
+
 }

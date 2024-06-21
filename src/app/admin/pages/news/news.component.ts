@@ -13,6 +13,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ContentAddEditComponent } from './content-add-edit/content-add-edit.component';
 import { ContentsService } from '../../../services/contents.service';
 import { CoreService } from '../../../core/core.service';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-news',
   standalone: true,
@@ -28,9 +29,8 @@ import { CoreService } from '../../../core/core.service';
     MatSortModule,
     MatPaginatorModule,
     MatIconModule,
-    MatSnackBarModule
-
-
+    MatSnackBarModule,
+    CommonModule
   ],
   templateUrl: './news.component.html',
   styleUrl: './news.component.sass'
@@ -102,5 +102,16 @@ openEditContent(data: any) {
         console.log(err);
       }
     })
+}
+deleteContent(id: number) {
+  this._contentService.deleteContent(id).subscribe({
+    next: (res) => {
+      this._core.openSnackBar('Content deleted successfully', 'DONE')
+      this.getContent();
+    },
+    error: (err) => {
+      console.log(err);
+    }
+  })
 }
 }

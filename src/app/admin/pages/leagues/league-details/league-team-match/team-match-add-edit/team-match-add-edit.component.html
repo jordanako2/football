@@ -1,4 +1,4 @@
-<div mat-dialog-title class="title">Schudule Match</div>
+<div mat-dialog-title class="title">Schedule Match</div>
 <form [formGroup]="teamForm" (ngSubmit)="onSubmit()">
     <div mat-dialog-content class="content">
         <div class="row">
@@ -11,11 +11,29 @@
                     Match date is required
                 </mat-error>
             </mat-form-field>
+            <div class="time-container">
+                <input class="time-content" type="time" placeholder="Match Time" formControlName="match_time">
+                <mat-error class="time-error" *ngIf="teamForm.get('match_time')?.hasError('required') && teamForm.get('match_time')?.touched">
+                    Match time is required
+                </mat-error>
+            </div>
             <mat-form-field appearance="outline">
                 <mat-label>Location</mat-label>
                 <input matInput placeholder="Location" formControlName="location">
                 <mat-error *ngIf="teamForm.get('location')?.hasError('required') && teamForm.get('location')?.touched">
                     Location is required
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Status</mat-label>
+                <mat-select formControlName="status">
+                    <mat-option value="Draft">Draft</mat-option>
+                    <mat-option value="Posted">Posted</mat-option>
+                    <mat-option value="Cancelled">Cancelled</mat-option>
+                    <mat-option value="Completed">Completed</mat-option>
+                </mat-select>
+                <mat-error *ngIf="teamForm.get('status')?.hasError('required') && teamForm.get('status')?.touched">
+                    League status is required
                 </mat-error>
             </mat-form-field>
         </div>

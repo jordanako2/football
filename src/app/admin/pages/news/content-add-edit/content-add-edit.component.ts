@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
 import { ContentsService } from '../../../../services/contents.service';
 import { CoreService } from '../../../../core/core.service';
-import { QuillModule } from 'ngx-quill';
+import { EditorChangeContent, EditorChangeSelection, QuillModule } from 'ngx-quill';
 
 @Component({
   selector: 'app-content-add-edit',
@@ -29,6 +29,7 @@ import { QuillModule } from 'ngx-quill';
 })
 export class ContentAddEditComponent {
   contentForm: FormGroup;
+  editorText = '';
 
   constructor(
     private _fb: FormBuilder, 
@@ -47,6 +48,12 @@ export class ContentAddEditComponent {
   ngOnInit(): void {
       this.contentForm.patchValue(this.data);
     
+  }
+
+  changedEditor(event: EditorChangeContent | EditorChangeSelection){
+    console.log(' editor got changed ', event);
+    this.editorText = event['editor']['root']['innerHTML'];
+
   }
 
   onSubmit() 

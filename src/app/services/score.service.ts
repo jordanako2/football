@@ -6,21 +6,21 @@ import { environment } from '../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class MatchService {
+export class ScoreService {
 
   constructor(private _http: HttpClient) { }
 
-  addMatch(data: any): Observable<any> {
-    return this._http.post(environment.apiUrl+`/football/matches`, data);
+  addScore(data: any): Observable<any> {
+    return this._http.post(environment.apiUrl+`/football/scores`, data);
   }
 
-  updateMatch(id: number, data: any): Observable<any> {
-    return this._http.patch(environment.apiUrl+`/football/matches/${id}`, data);
+  updateScore(id: number, data: any): Observable<any> {
+    return this._http.patch(environment.apiUrl+`/football/scores/${id}`, data);
   }
 
-  getMatches(id: number): Observable<any> {
-    return this._http.get(environment.apiUrl+`/football/matches/${id}`);
-  }
+//   getTeams(): Observable<any> {
+//     return this._http.get(environment.apiUrl+`/football/teams`);
+//   }
 
 //   deleteTeam(id: number): Observable<any> {
 //     return this._http.delete(environment.apiUrl+`/football/teams/${id}`)

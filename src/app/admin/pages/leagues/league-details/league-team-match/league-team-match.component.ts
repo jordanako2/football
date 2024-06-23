@@ -25,7 +25,7 @@ interface Match {
   standalone: true,
   imports: [MatButtonModule, MatTableModule, CommonModule, MatIconModule, MatTooltipModule],
   providers: [
-    DatePipe 
+    DatePipe,
   ],
   templateUrl: './league-team-match.component.html',
   styleUrl: './league-team-match.component.sass'
@@ -70,7 +70,7 @@ export class LeagueTeamMatchComponent {
     });
   }
 
-  updateScore(element: any, index: number, id: number, team_id: number, points: number) {
+  updateScore(element: any, index: number, id: number, team_id: number, points: number, result: string) {
     console.log(`Update team for match ID ${element.id} at index ${index}`);
     const dialogRef = this.dialog.open(TeamScoreComponent, {
         data: { 
@@ -78,7 +78,8 @@ export class LeagueTeamMatchComponent {
           team_id: team_id,
           leagueId: this.leagueId, 
           matchId: element.id,
-          points: points
+          points: points,
+          result: result
         }
     });
     dialogRef.afterClosed().subscribe({

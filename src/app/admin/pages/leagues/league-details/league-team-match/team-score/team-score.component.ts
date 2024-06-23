@@ -55,7 +55,8 @@ export class TeamScoreComponent {
     this.matchId = data.matchId;
     this.leagueId = data.leagueId;
     this.teamForm = this._fb.group({
-      points: 0
+      points: 0,
+      result: ''
     })
   }
 

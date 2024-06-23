@@ -1,0 +1,53 @@
+<div *ngFor="let leagues of leagueMatches">
+    
+        <div class="header">
+            <div class="title-container">
+                <h2>{{ leagues.title }} Matches</h2>
+            </div>
+            <div *ngIf="leagues.matches.length > 0; else NoLeagueMatches">
+                <div *ngFor="let date of leagues.matches" class="date-container">
+                    <p>{{ date.match_date | date:'EEEE dd MMMM, YYYY' }}</p>
+                    <div *ngFor="let matches of date.matches" class="match-container">
+                        <div class="location-content">{{ matches.location }} {{ '@' }} {{ '2000-01-01T' + matches.match_time | date:'h:mm a' }}</div>
+                        <div class="match-content">
+                            <div class="team-container">
+                                <div class="team-content">
+                                    {{ matches.scores[0].team.team }}
+                                </div>
+                                <img *ngIf="matches.scores[0].team.file_name" [src]="imagePath + matches.scores[0].team.file_name"
+                                    alt={{matches.scores[0].team.file_name}}>
+                            </div>
+                            <div class="score-container">
+                                {{ matches.scores[0].points }}
+                                :
+                                {{ matches.scores[1].points }}
+                            </div>
+                            <div class="team-container">
+                                <img *ngIf="matches.scores[1].team.file_name" [src]="imagePath + matches.scores[1].team.file_name"
+                                    alt={{matches.scores[1].team.file_name}}>
+                                <div class="team-content">
+                                    {{ matches.scores[1].team.team }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ng-template #NoLeagueMatches>
+                <div class="error-container">
+                    <div class="error-content">
+                        <h2>No Match Posted Yet</h2>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+        <div class="footer">
+            <div class="matches">
+                <span>View More</span>
+                <mat-icon>arrow_right_alt</mat-icon>
+            </div>
+        </div>
+    
+</div>
+
+

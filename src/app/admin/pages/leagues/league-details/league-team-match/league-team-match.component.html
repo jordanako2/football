@@ -36,11 +36,11 @@
                                         W
                                     </div>
                                     <ng-template #notWin>
-                                        <div *ngIf="element.scores[0].result === 'Loss'; else drawContent" class="loss-content">
+                                        <div *ngIf="element.scores[0].result === 'Loss'" class="loss-content">
                                             L
                                         </div>
                                     </ng-template>
-                                    <ng-template #drawContent>
+                                    <ng-template *ngIf="element.scores[0].result === 'Draw'">
                                         <div class="draw-content">
                                             D
                                         </div>
@@ -92,11 +92,11 @@
                                         W
                                     </div>
                                     <ng-template #notWin>
-                                        <div *ngIf="element.scores[1].result === 'Loss'; else drawContent" class="loss-content">
+                                        <div *ngIf="element.scores[1].result === 'Loss'" class="loss-content">
                                             L
                                         </div>
                                     </ng-template>
-                                    <ng-template #drawContent>
+                                    <ng-template *ngIf="element.scores[1].result === 'Draw'">
                                         <div class="draw-content">
                                             D
                                         </div>

@@ -26,8 +26,12 @@ export class LeagueService {
     return this._http.get(environment.apiUrl+`/football/leagues`);
   }
 
+  getPostedLeagues(): Observable<any> {
+    return this._http.get(environment.apiUrl+`/football/leagues/website/leagues`);
+  }
+
   getLeagueTeams(): Observable<any> {
-    return this._http.get<any>(`${environment.apiUrl}/football/leagues/league-teams`).pipe(
+    return this._http.get<any>(`${environment.apiUrl}/football/leagues/website/league-teams`).pipe(
       map((leagues) => {
         return leagues.map((league: any) => ({
           id: league.id,
@@ -35,6 +39,7 @@ export class LeagueService {
           teams: league.teams
             .map((team: any) => ({
               team: team.team.team,
+              file_name: team.team.file_name,
               played: team.played,
               gd: team.goals_difference,
               points: team.points,
@@ -44,6 +49,10 @@ export class LeagueService {
         }));
       })
     );
+  }
+
+  getLeagueMatches(): Observable<any> {
+    return this._http.get(environment.apiUrl+`/football/leagues/website/league-match`);
   }
 
   deleteLeague(id: number): Observable<any> {

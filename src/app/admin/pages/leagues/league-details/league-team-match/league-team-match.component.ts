@@ -14,12 +14,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { TeamScoreComponent } from './team-score/team-score.component';
 
-interface Match {
-  id: number;
-  match_time: string;
-  
-}
-
 @Component({
   selector: 'app-league-team-match',
   standalone: true,
@@ -42,8 +36,6 @@ export class LeagueTeamMatchComponent {
     private route: ActivatedRoute,
     private matchesService: MatchService,
     private _configService: ApiService,
-    private _fb: FormBuilder, 
-    private datePipe: DatePipe
   ) {}
 
   ngOnInit(): void {
@@ -62,7 +54,6 @@ export class LeagueTeamMatchComponent {
           match.matchTime = new Date(`2000-01-01T${match.match_time}`);
         });
         this.dataSource = new MatTableDataSource(res);
-        console.log(res)
       },
       error: (err) => {
         console.log(err);
@@ -71,7 +62,6 @@ export class LeagueTeamMatchComponent {
   }
 
   updateScore(element: any, index: number, id: number, team_id: number, points: number, result: string) {
-    console.log(`Update team for match ID ${element.id} at index ${index}`);
     const dialogRef = this.dialog.open(TeamScoreComponent, {
         data: { 
           score_id: id,
@@ -95,7 +85,6 @@ export class LeagueTeamMatchComponent {
   }
 
   updateTeam(element: any, index: number, id: number, team_id: number) {
-    console.log(`Update team for match ID ${element.id} at index ${index}`);
     const dialogRef = this.dialog.open(TeamSelectComponent, {
         data: { 
           score_id: id,
@@ -117,7 +106,6 @@ export class LeagueTeamMatchComponent {
   }
 
   addTeam(element: any, index: number) {
-    console.log(`Add team for match ID ${element.id} at index ${index}`);
     const dialogRef = this.dialog.open(TeamSelectComponent, {
         data: { 
           leagueId: this.leagueId, 

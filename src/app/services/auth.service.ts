@@ -33,7 +33,6 @@ export class AuthService {
           this.userSubject.next(decodedToken); 
           this.isAuthenticatedSubject.next(true); 
           this.router.navigate(['/']);
-          console.log(decodedToken);
         })
       );
   }
@@ -46,7 +45,6 @@ export class AuthService {
     const token = this.cookieService.get('key');
     if (token) {
       const decodedToken = jwtDecode(token) as { [key: string]: any };
-      console.log(decodedToken)
       return decodedToken;
     } else {
       return null;

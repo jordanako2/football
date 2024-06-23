@@ -65,7 +65,6 @@ export class TeamSelectComponent {
     this.teamForm.patchValue(this.data);
     this.imagePath =`${this._configService.URL_IMAGE}`;
     this.getTeams()
-    console.log(this.data)
   }
 
   getTeams() {

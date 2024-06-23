@@ -19,9 +19,7 @@ export class MatchesComponent {
   constructor(
     private leagueService: LeagueService,
     private configService: ApiService,
-  ) {
-
-  }
+  ) {}
 
   ngOnInit(): void {
     this.imagePath = `${this.configService.URL_IMAGE}`;
@@ -33,7 +31,6 @@ export class MatchesComponent {
     this.leagueService.getLeagueMatches().subscribe({
       next: (res) => {
         this.leagueMatches = res;
-        console.log(res)
       },
       error: (err) => {
         console.log(err);

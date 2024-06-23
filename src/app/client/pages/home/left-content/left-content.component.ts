@@ -30,9 +30,7 @@ export class LeftContentComponent {
 
   constructor (
     private leagueService: LeagueService
-  ) {
-
-  }
+  ) {}
 
   ngOnInit(): void {
     this.getLeagueTeams();
@@ -42,7 +40,6 @@ export class LeftContentComponent {
     this.leagueService.getPostedLeagues().subscribe({
       next: (res) => {
         this.leagues = res;
-        console.log(res)
       },
       error: (err) => {
         console.log(err);

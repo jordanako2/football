@@ -65,7 +65,6 @@ export class TeamScoreComponent {
     this.imagePath =`${this._configService.URL_IMAGE}`;
     this.getTeams()
     this.getTeambyId()
-    console.log(this.data)
   }
 
   getTeams() {
@@ -83,7 +82,6 @@ export class TeamScoreComponent {
     this.teamService.getTeamById(this.data.team_id).subscribe({
       next: (res: any) => {
         this.teamId = res
-        console.log(res)
       },
       error: (err: any) => {
         console.log(err)

@@ -24,18 +24,17 @@
                     Location is required
                 </mat-error>
             </mat-form-field>
-            <mat-form-field appearance="outline">
-                <mat-label>Status</mat-label>
-                <mat-select formControlName="status">
-                    <mat-option value="Draft">Draft</mat-option>
-                    <mat-option value="Posted">Posted</mat-option>
-                    <mat-option value="Cancelled">Cancelled</mat-option>
-                    <mat-option value="Completed">Completed</mat-option>
-                </mat-select>
-                <mat-error *ngIf="teamForm.get('status')?.hasError('required') && teamForm.get('status')?.touched">
-                    League status is required
-                </mat-error>
-            </mat-form-field>
+            <div *ngIf="data.id" class="status-content">
+                <mat-form-field appearance="outline">
+                    <mat-label>Status</mat-label>
+                    <mat-select formControlName="status">
+                        <mat-option value="Draft">Draft</mat-option>
+                        <mat-option value="Posted">Posted</mat-option>
+                        <mat-option value="Cancelled">Cancelled</mat-option>
+                        <mat-option value="Completed">Completed</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
         </div>
     </div>
     <div mat-dialog-actions class="actions">

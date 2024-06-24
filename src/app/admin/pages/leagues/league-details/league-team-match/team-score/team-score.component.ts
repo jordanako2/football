@@ -14,11 +14,10 @@ import { ChangeDetectionStrategy } from '@angular/core';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatchService } from '../../../../../../services/match.service';
 import { MatSelectModule } from '@angular/material/select';
-
-
+import { ScoreService } from '../../../../../../services/score.service';
 
 @Component({
-  selector: 'app-team-add-edit',
+  selector: 'app-team-score',
   standalone: true,
   imports: [
     MatButtonModule, 
@@ -27,48 +26,69 @@ import { MatSelectModule } from '@angular/material/select';
     MatInputModule, 
     ReactiveFormsModule, 
     CommonModule, 
-    MatDatepickerModule, 
-    MatNativeDateModule,
-    MatSelectModule,
+    MatSelectModule
   ],
-  providers: [provideNativeDateAdapter()],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './team-match-add-edit.component.html',
-  styleUrl: './team-match-add-edit.component.sass'
+  templateUrl: './team-score.component.html',
+  styleUrl: './team-score.component.sass'
 })
-export class TeamMatchAddEditComponent {
+export class TeamScoreComponent {
 
+  teams: any[] = [];
   selectedImage: File | null = null;
   imagePath: string | null = null;
   teamForm: FormGroup;
   leagueId: number | null = null;
+  matchId: number | null = null;
+  teamName: string | null = null;
+  teamId: any;
 
   constructor(
     private _fb: FormBuilder, 
     private matchService: MatchService, 
-    private _dialogRef: MatDialogRef<TeamMatchAddEditComponent>,
+    private _dialogRef: MatDialogRef<TeamScoreComponent>,
     private _coreService: CoreService,
     private _configService: ApiService,
+    private teamService: TeamService,
+    private scoreService: ScoreService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
+    this.matchId = data.matchId;
     this.leagueId = data.leagueId;
     this.teamForm = this._fb.group({
-      match_date: '',
-      match_time: '',
-      location: '',
-      status: '',
+      points: 0
     })
   }
 
   ngOnInit(): void {
-    this.teamForm = this._fb.group({
-      match_date: ['', [Validators.required]],
-      match_time: ['', [Validators.required]],
-      location: ['', [Validators.required]],
-      status: ['', [Validators.required]],
-    });
     this.teamForm.patchValue(this.data);
+    this.imagePath =`${this._configService.URL_IMAGE}`;
+    this.getTeams()
+    this.getTeambyId()
     console.log(this.data)
+  }
+
+  getTeams() {
+    this.teamService.getTeams().subscribe({
+      next: (res) => {
+        this.teams = res;
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+  }
+
+  getTeambyId() {
+    this.teamService.getTeamById(this.data.team_id).subscribe({
+      next: (res: any) => {
+        this.teamId = res
+        console.log(res)
+      },
+      error: (err: any) => {
+        console.log(err)
+      }
+    }
+    );
   }
 
   onSubmit() {
@@ -76,35 +96,21 @@ export class TeamMatchAddEditComponent {
       this.teamForm.markAllAsTouched();
       const formData = {
         ...this.teamForm.value,
-        league_id: this.leagueId
+        league_id: this.leagueId,
+        match_id: this.matchId
       };
-      if (this.data.id) {
-        if (this.data.scores.length === 2) {
-          this.matchService.updateMatch(this.data.id, formData).subscribe({
-            next: (val: any) => {
-              this._coreService.openSnackBar('Match schedule updated successfully');
-              this._dialogRef.close(true);
-            },
-            error: (err: any) => {
-              console.error(err);
-            }
-          });
-        } else {
-          this._coreService.openSnackBar('Add team for this match first.');
-        }
-      } else {
-        this.teamForm.markAllAsTouched();
-        this.matchService.addMatch(formData).subscribe({
+      if (this.data.score_id) {
+        this.scoreService.updateScore(this.data.score_id, formData).subscribe({
           next: (val: any) => {
-            this._coreService.openSnackBar('Match schedule added successfully')
+            this._coreService.openSnackBar('Team score updated successfully');
             this._dialogRef.close(true);
           },
           error: (err: any) => {
-            console.error(err);
+            const errorMessage = err?.error?.message || 'Error updating team score';
+            this._coreService.openSnackBar(errorMessage);
           }
-        })
-      }
-      
+        });
+      } 
     }
   }
 

@@ -14,6 +14,7 @@ import { ContentAddEditComponent } from './content-add-edit/content-add-edit.com
 import { ContentsService } from '../../../services/contents.service';
 import { CoreService } from '../../../core/core.service';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-news',
   standalone: true,
@@ -30,7 +31,8 @@ import { CommonModule } from '@angular/common';
     MatPaginatorModule,
     MatIconModule,
     MatSnackBarModule,
-    CommonModule
+    CommonModule,
+    RouterLink
   ],
   templateUrl: './news.component.html',
   styleUrl: './news.component.sass'

@@ -8,6 +8,7 @@ import { PostsComponent } from './pages/posts/posts.component';
 import { UsersComponent } from './pages/users/users.component';
 import { LeaguesComponent } from './pages/leagues/leagues.component';
 import { LeagueDetailsComponent } from './pages/leagues/league-details/league-details.component';
+import { AddContentComponent } from './pages/news/add-content/add-content.component';
 
 const routes: Routes = [
     {
@@ -22,6 +23,7 @@ const routes: Routes = [
           { path: 'leagues/:id', component: LeagueDetailsComponent },
           { path: 'posts', component: PostsComponent },
           { path: 'users', component: UsersComponent },
+          { path: 'content/create', component: AddContentComponent },
         ]
     }
 ];

@@ -14,7 +14,7 @@ import { ContentAddEditComponent } from './content-add-edit/content-add-edit.com
 import { ContentsService } from '../../../services/contents.service';
 import { CoreService } from '../../../core/core.service';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 @Component({
   selector: 'app-news',
   standalone: true,
@@ -38,7 +38,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './news.component.sass'
 })
 export class NewsComponent implements OnInit{
-  displayedColumns: string[] = ['title', 'created_on', 'status', 'action'];
+  displayedColumns: string[] = ['block', 'title', 'created_on', 'status', 'action'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -47,7 +47,8 @@ export class NewsComponent implements OnInit{
   constructor(
     private _dialog: MatDialog, 
     private _contentService: ContentsService,
-    private _core: CoreService
+    private _core: CoreService,
+    private _router: Router
   ) {}
 
   ngOnInit(): void {
@@ -86,25 +87,15 @@ export class NewsComponent implements OnInit{
       }
       
     })
-}
+  }
 
 
-openEditContent(data: any) {
-  const dialogRef = this._dialog.open(ContentAddEditComponent, {
-    data,
-  });
+  openEditContent(data: any) {
+    this._router.navigate(['/admin/content/edit', data.id]);
+  }
 
-  dialogRef.afterClosed().subscribe({
-      next: (val) => {
-        if (val) {
-          this.getContent();
-        }
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    })
-}
+
+
 deleteContent(id: number) {
   this._contentService.deleteContent(id).subscribe({
     next: (res) => {

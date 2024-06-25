@@ -8,6 +8,7 @@ import { LoginGuard } from '../guards/login.guard';
 import { AuthGuard } from '../guards/auth.guard';
 import { RegisterComponent } from '../components/register/register.component';
 import { TeamComponent } from './pages/team/team.component';
+import { NewsComponent } from './pages/news/news.component';
 
 
 const routes: Routes = [
@@ -33,6 +34,10 @@ const routes: Routes = [
           {
             path: 'team',
             component: TeamComponent,
+          },
+          {
+            path:'news',
+            component: NewsComponent,
           }
         ]
     },

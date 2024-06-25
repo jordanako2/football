@@ -7,34 +7,33 @@ import { Features } from '../client/pages/home/right-content/right-content.compo
 @Injectable({
   providedIn: 'root'
 })
-export class ContentsService {
-
+export class FeaturesService {
   constructor(private _http: HttpClient) { }
 
   addContent(data: any): Observable<any> {
-    return this._http.post(environment.apiUrl+`/football/content`, data);
+    return this._http.post(environment.apiUrl+`/football/content/website/features`, data);
   }
 
   uploadImage(image: File) {
     const formData = new FormData();
     formData.append('image', image);
 
-    return this._http.post<any>(environment.apiUrl+`/football/content/upload`, formData);
+    return this._http.post<any>(environment.apiUrl+`/football/content/website/features/upload`, formData);
   }
 
   getContentById(id: number): Observable<any> {
-    return this._http.get(environment.apiUrl + `/football/content/${id}`);
+    return this._http.get(environment.apiUrl + `/football/content/website/features${id}`);
   }
   
   updateContent(id: number, data: any): Observable<any> {
-    return this._http.patch(environment.apiUrl+`/football/content/${id}`, data);
+    return this._http.patch(environment.apiUrl+`/football/content/website/features${id}`, data);
   }
 
   getContent(): Observable<any> {
-    return this._http.get<Features[]>(environment.apiUrl+`/football/content`);
+    return this._http.get<Features[]>(environment.apiUrl+`/football/content/website/features`);
   }
 
   deleteContent(id: number): Observable<any> {
-    return this._http.delete(environment.apiUrl+`/football/content/${id}`)
+    return this._http.delete(environment.apiUrl+`/football/content/website/features${id}`)
   }
 }

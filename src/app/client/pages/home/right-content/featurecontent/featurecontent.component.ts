@@ -1,12 +1,10 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { MatGridListModule } from '@angular/material/grid-list';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
-import { ContentsService } from '../../../../services/contents.service';
-import { ApiService } from '../../../../services/api.service';
-import { RouterOutlet } from '@angular/router';
-import { NewscontentComponent } from './newscontent/newscontent.component';
-import { FeaturecontentComponent } from './featurecontent/featurecontent.component';
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { ApiService } from '../../../../../services/api.service';
+import { FeaturesService } from '../../../../../services/features.service';
+
 
 export interface Tile {
   cols: number;
@@ -26,21 +24,21 @@ export interface Features {
 }
 
 
-
 @Component({
-    selector: 'app-right-content',
-    standalone: true,
-    templateUrl: './right-content.component.html',
-    styleUrl: './right-content.component.sass',
-    imports: [MatGridListModule, CommonModule,RouterOutlet,NewscontentComponent,FeaturecontentComponent]
+  selector: 'app-featurecontent',
+  standalone: true,
+  imports: [MatGridListModule, CommonModule],
+  templateUrl: './featurecontent.component.html',
+  styleUrl: './featurecontent.component.sass'
 })
-export class RightContentComponent implements OnInit {
+export class FeaturecontentComponent {
+
   dataSource: Tile[] = [];
   imagePath: string | null = null;
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private _contentService: ContentsService,
+    private _contentService: FeaturesService,
     private _configService: ApiService,
   ) {}
 
@@ -74,7 +72,7 @@ updateTiles(featureData: Features[]): void {
         description: item.description,
         file_name: item.file_name,
         height: 300,
-        cols: 1,
+        cols: 3,
         rows: 1
       }));
     } else {
@@ -103,17 +101,9 @@ updateTiles(featureData: Features[]): void {
           cols: 1,
           rows: 1
         }
-        ,
-        {
-          title: featureData[3].title,
-          description:featureData[3].description,
-          file_name: featureData[3].file_name,
-          height: 300,
-          cols: 1,
-          rows: 1
-        }
       ];
     }
   });
 }
+
 }

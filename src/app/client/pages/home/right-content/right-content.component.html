@@ -1,6 +1,22 @@
-<!--<mat-grid-list cols="4" rowHeight="450px" class="grid-content">
+<div class="news">
+  <app-newscontent></app-newscontent>
+</div>
+<div class="features">
+  <app-featurecontent></app-featurecontent>
+</div>
+
+
+
+
+
+
+
+
+<!-- <div class="news">
+  <h2 class="header">Latest News</h2>
+<mat-grid-list cols="2" rowHeight="400px" class="grid-content">
   <mat-grid-tile
-    *ngFor="let tile of tiles"
+    *ngFor="let tile of dataSource"
     [colspan]="tile.cols"
     [rowspan]="tile.rows"
   >
@@ -8,40 +24,46 @@
     <div class="box">
       <div class="image">
         <img
-          [src]="tile.img"
-          alt="feature"
+          [src]="imagePath + tile.file_name"
+          alt={{tile.file_name}}
           width="100%"
           [height]="tile.height"
         />
       </div>
       <h1>{{ tile.title }}</h1>
-      <p>{{ tile.paragraph }}</p>
+      <p>{{ tile.description }}</p>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>
+</div>
+
+
+
+
+
+<mat-grid-list cols="4" rowHeight="300px" class="grid-content-mobile">
+  <mat-grid-tile
+    *ngFor="let tile of dataSource"
+    [colspan]="tile.cols"
+    [rowspan]="tile.rows"
+  >
+  
+    <div class="box">
+      <div class="image">
+        <img
+          [src]="imagePath + tile.file_name"
+          alt={{tile.file_name}}
+          width="100%"
+          [height]="tile.height"
+        />
+      </div>
+      <h1>{{ tile.title }}</h1>
+      <p>{{ tile.description }}</p>
     </div>
   </mat-grid-tile>
 </mat-grid-list>
 
-<mat-grid-list cols="4" rowHeight="300px" class="grid-content-mobile">
-  <mat-grid-tile
-    *ngFor="let tile of tiles"
-    [colspan]="tile.cols"
-    [rowspan]="tile.rows"
-  >
-    <div class="box">
-      <div class="image">
-        <img
-          [src]="tile.img"
-          alt="feature"
-          width="100%"
-          [height]="tile.height"
-        />
-      </div>
-      <h1>{{ tile.title }}</h1>
-      <p>{{ tile.paragraph }}</p>
-    </div>
-  </mat-grid-tile>
-</mat-grid-list>-->
-
-
+<!-- 
 
 <mat-grid-list cols="4" rowHeight="300px" class="grid-content-mobile">
     <mat-grid-tile
@@ -68,4 +90,5 @@
     <p [innerHTML]="item.content"></p>
 </div>
     </mat-grid-tile>
-  </mat-grid-list>
+  </mat-grid-list> -->
+-->

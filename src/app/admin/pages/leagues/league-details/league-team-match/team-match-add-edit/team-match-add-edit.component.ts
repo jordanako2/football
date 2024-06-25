@@ -40,7 +40,7 @@ export class TeamMatchAddEditComponent {
 
   selectedImage: File | null = null;
   imagePath: string | null = null;
-  teamForm: FormGroup;
+  teamForm: FormGroup
   leagueId: number | null = null;
 
   constructor(
@@ -65,10 +65,9 @@ export class TeamMatchAddEditComponent {
       match_date: ['', [Validators.required]],
       match_time: ['', [Validators.required]],
       location: ['', [Validators.required]],
-      status: ['', [Validators.required]],
+      status: '',
     });
     this.teamForm.patchValue(this.data);
-    console.log(this.data)
   }
 
   onSubmit() {

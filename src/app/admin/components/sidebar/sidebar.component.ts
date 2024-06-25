@@ -41,9 +41,9 @@ export class SidebarComponent {
       routerLink: '/admin/leagues'
     },
     {
-      label: 'News',
+      label: 'Contents',
       icon: 'store',
-      routerLink: '/admin/news'
+      routerLink: '/admin/contents'
     },
     {
       label: 'Users',

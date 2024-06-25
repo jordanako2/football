@@ -1,40 +1,21 @@
 <div class="wrapper">
-    <div class="container">
-        <mat-card class="card">
-            <!-- <div class="header">
-                
-            </div> -->
-            <div class="body">
-                <h3>SUN 19 MAY 2024</h3>
-                <p>PREMIER LEAGUE</p>
-                <div class="score-container">
-                    <div class="team">
-                        <img [src]="'https://florify.online/uploads/website/logo.png'" alt="team" width="50px">
-                        <p>HUSKIES</p>
-                    </div>
-                    <div class="score">
-                        <p>2</p>
-                        <span>:</span>
-                        <p>2</p>
-                    </div>
-                    <div class="team">
-                        <img [src]="'https://florify.online/uploads/website/logo.png'" alt="team" width="50px">
-                        <p>CLARIN</p>
-                    </div>
+    <div *ngIf="leagues.length > 0; else NoLeagueMatches">
+        <div class="container">
+            <mat-card class="matches">
+                <app-matches></app-matches>
+            </mat-card>
+            <mat-card class="leagues">
+                <div class="body">
+                    <app-leagues></app-leagues>
                 </div>
-            </div>
-            <div class="footer">
-                <div class="matches">
-                    <span>View All Matches</span>
-                    <mat-icon>arrow_right_alt</mat-icon>
-                </div>
-            </div>
-        </mat-card>
-
-        <mat-card class="leagues">
-            <div class="body">
-                <app-leagues></app-leagues>
-            </div>
-        </mat-card>
+            </mat-card>
+        </div>
     </div>
+    <ng-template #NoLeagueMatches>
+        <div class="header">
+            <div class="title-container">
+                <h2>No League Posted Yet</h2>
+            </div>
+        </div>
+    </ng-template>
 </div>

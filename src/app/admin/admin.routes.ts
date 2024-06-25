@@ -17,13 +17,14 @@ const routes: Routes = [
         children: [
           { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
           { path: 'dashboard', component: DashboardComponent },
-          { path: 'news', component: NewsComponent },
           { path: 'teams', component: TeamsComponent },
           { path: 'leagues', component: LeaguesComponent },
           { path: 'leagues/:id', component: LeagueDetailsComponent },
           { path: 'posts', component: PostsComponent },
           { path: 'users', component: UsersComponent },
+          { path: 'contents', component: NewsComponent },
           { path: 'content/create', component: AddContentComponent },
+          { path: 'content/edit/:id', component: AddContentComponent },
         ]
     }
 ];

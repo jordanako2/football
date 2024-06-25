@@ -34,7 +34,6 @@ export class LeaguesComponent {
     this.leagueService.getLeagueTeams().subscribe({
       next: (res) => {
         this.leagues = res;
-        console.log(res)
       },
       error: (err) => {
         console.log(err);

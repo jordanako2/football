@@ -40,6 +40,11 @@ export class AuthService {
   loginfb(): void {
     window.location.href = environment.apiUrl+'/auth/facebook';
   }
+
+  getToken(): string {
+    const token = this.cookieService.get('key');
+    return token
+  }
   
   getUser(): any {
     const token = this.cookieService.get('key');

@@ -9,6 +9,7 @@ import { UsersComponent } from './pages/users/users.component';
 import { LeaguesComponent } from './pages/leagues/leagues.component';
 import { LeagueDetailsComponent } from './pages/leagues/league-details/league-details.component';
 import { AddContentComponent } from './pages/news/add-content/add-content.component';
+import { AdminGuard } from '../guards/admin.guard';
 
 const routes: Routes = [
     {
@@ -17,7 +18,7 @@ const routes: Routes = [
         children: [
           { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
           { path: 'dashboard', component: DashboardComponent },
-          { path: 'teams', component: TeamsComponent },
+          { path: 'teams', component: TeamsComponent, canActivate: [AdminGuard] },
           { path: 'leagues', component: LeaguesComponent },
           { path: 'leagues/:id', component: LeagueDetailsComponent },
           { path: 'posts', component: PostsComponent },

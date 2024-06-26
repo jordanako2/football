@@ -10,11 +10,18 @@ export const AdminGuard: CanActivateFn = (
   const router = inject(Router);
 
   const user = authService.getUser();
-  console.log(user['role'])
-  if (user['role'] !== 'Admin' && user['role'] !== 'Super Admin') {
-    
-    router.navigate(['forbidden']);
+
+  if (!user) {
+    console.error('User not found');
     return false;
   }
+
+  console.log('User role:', user['role']);
+
+  if (user['role'] !== 'Admin' && user['role'] !== 'Super Admin') {
+    console.warn('Unauthorized role:', user['role']);
+    return false;
+  }
+
   return true;
 };

@@ -73,7 +73,7 @@ updateTiles(featureData: Features[]): void {
         title: item.title,
         description: item.description,
         file_name: item.file_name,
-        height: 300,
+        height: 200,
         cols: 6,
         rows: 2
       }));
@@ -83,7 +83,7 @@ updateTiles(featureData: Features[]): void {
           title:featureData[0].title,
           description:featureData[0].description,
           file_name: featureData[0].file_name,
-          height: 300,
+          height: 400,
           cols: 4,
           rows: 2
         },

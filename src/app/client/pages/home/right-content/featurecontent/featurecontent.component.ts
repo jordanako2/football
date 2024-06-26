@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { ApiService } from '../../../../../services/api.service';
 import { FeaturesService } from '../../../../../services/features.service';
+import { MatIconModule } from '@angular/material/icon';
 
 
 export interface Tile {
@@ -27,7 +28,7 @@ export interface Features {
 @Component({
   selector: 'app-featurecontent',
   standalone: true,
-  imports: [MatGridListModule, CommonModule],
+  imports: [MatGridListModule, CommonModule, MatIconModule],
   templateUrl: './featurecontent.component.html',
   styleUrl: './featurecontent.component.sass'
 })

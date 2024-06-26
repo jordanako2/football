@@ -24,11 +24,11 @@ export class NewsService {
   }
 
   getContentById(id: number): Observable<any> {
-    return this._http.get(environment.apiUrl + `/football/content/website/news/${id}`);
+    return this._http.get(environment.apiUrl + `/football/content/${id}`);
   }
   
   updateContent(id: number, data: any): Observable<any> {
-    return this._http.patch(environment.apiUrl+`/football/content//website/news/${id}`, data);
+    return this._http.patch(environment.apiUrl+`/football/content/website/news/${id}`, data);
   }
 
   getContent(): Observable<any> {
@@ -38,4 +38,5 @@ export class NewsService {
   deleteContent(id: number): Observable<any> {
     return this._http.delete(environment.apiUrl+`/football/content//website/news${id}`)
   }
+
 }

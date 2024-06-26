@@ -4,9 +4,10 @@
       *ngFor="let tile of dataSource"
       [colspan]="tile.cols"
       [rowspan]="tile.rows"
+      
     >
     
-      <div class="box">
+      <div class="box" [routerLink]="'/news/' + tile.id">
         <div class="image">
           <img
             [src]="imagePath + tile.file_name"
@@ -24,7 +25,7 @@
   
   
   
-  <mat-grid-list cols="6" rowHeight="300px" class="grid-content-mobile">
+  <mat-grid-list cols="6" rowHeight="250px" class="grid-content-mobile">
     <mat-grid-tile
       *ngFor="let tile of dataSource"
       [colspan]="tile.cols"

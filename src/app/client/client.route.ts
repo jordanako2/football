@@ -9,6 +9,7 @@ import { AuthGuard } from '../guards/auth.guard';
 import { RegisterComponent } from '../components/register/register.component';
 import { TeamComponent } from './pages/team/team.component';
 import { NewsComponent } from './pages/news/news.component';
+import { NewsDetailsComponent } from './pages/home/right-content/newscontent/news-details/news-details.component';
 
 
 const routes: Routes = [
@@ -38,6 +39,10 @@ const routes: Routes = [
           {
             path:'news',
             component: NewsComponent,
+          },
+          {
+            path:'news/:id',
+            component: NewsDetailsComponent
           }
         ]
     },

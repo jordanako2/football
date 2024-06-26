@@ -6,8 +6,8 @@
     <div class="content">
         <mat-nav-list>
             <ng-container *ngFor="let item of menuItems">
-                <mat-list-item [routerLink]="item.routerLink" routerLinkActive="active"
-                    [routerLinkActiveOptions]="{ exact: true }">
+                <mat-list-item *ngIf="role && item.roles.includes(role)" [routerLink]="item.routerLink"
+                    routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                     <mat-icon matListItemIcon [style.color]="'#FFFFFF'">{{ item.icon }}</mat-icon>
                     <a matListItemTitle>{{ item.label }}</a>
                 </mat-list-item>

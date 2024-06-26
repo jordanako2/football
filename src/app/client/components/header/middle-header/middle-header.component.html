@@ -36,7 +36,7 @@
             <div class="right-items">
                 <div *ngIf="!isAuthenticated" class="login" [routerLink]="'/login'">SIGN IN</div>
                 <div *ngIf="user" class="auth">
-                    <!-- <button mat-flat-button class="team-button" [routerLink]="'/team'">Create team</button> -->
+                    <button mat-flat-button class="team-button" [routerLink]="'/admin'">Dashboard</button>
                     <div>
                         <button mat-button (click)="toggleDropdown()">Welcome, {{ user.given_name }} <mat-icon>keyboard_arrow_down</mat-icon></button>
                         <mat-card *ngIf="showDropdown">

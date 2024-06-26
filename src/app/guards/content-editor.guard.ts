@@ -2,7 +2,7 @@ import { inject } from '@angular/core';
 import { CanActivateFn, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
-export const AdminGuard: CanActivateFn = (
+export const ContentEditorGuard: CanActivateFn = (
   next: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
 ) => {
@@ -18,7 +18,7 @@ export const AdminGuard: CanActivateFn = (
 
   console.log('User role:', user['role']);
 
-  if (user['role'] !== 'Admin' && user['role'] !== 'Super Admin') {
+  if (user['role'] !== 'Content Editor' && user['role'] !== 'Admin' && user['role'] !== 'Super Admin') {
     console.warn('Unauthorized role:', user['role']);
     return false;
   }

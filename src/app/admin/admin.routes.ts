@@ -10,15 +10,17 @@ import { LeaguesComponent } from './pages/leagues/leagues.component';
 import { LeagueDetailsComponent } from './pages/leagues/league-details/league-details.component';
 import { AddContentComponent } from './pages/news/add-content/add-content.component';
 import { AdminGuard } from '../guards/admin.guard';
+import { AuthGuard } from '../guards/auth.guard';
 
 const routes: Routes = [
     {
         path: '',
         component: AdminComponent,
+        canActivate: [AuthGuard],
         children: [
           { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
           { path: 'dashboard', component: DashboardComponent },
-          { path: 'teams', component: TeamsComponent, canActivate: [AdminGuard] },
+          { path: 'teams', component: TeamsComponent },
           { path: 'leagues', component: LeaguesComponent },
           { path: 'leagues/:id', component: LeagueDetailsComponent },
           { path: 'posts', component: PostsComponent },

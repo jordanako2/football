@@ -19,7 +19,7 @@
             <div class="menu-container">
                 <div *ngIf="!isAuthenticated" class="signin" [routerLink]="'/login'">SIGN IN</div>
                 <div *ngIf="user" class="login">
-                    <button mat-flat-button class="team-button" [routerLink]="'/team'">CREATE TEAM</button>
+                    <button mat-flat-button class="team-button" [routerLink]="'/admin'">Dashboard</button>
                 </div>
                 <button (click)="toggleMobileMenu()" class="menu-button">
                     <mat-icon class="menuIcon">{{ isMobileMenuOpen ? 'close' : 'menu' }}</mat-icon>

@@ -65,7 +65,7 @@ export class AuthService {
   }
   
   logout(): void {
-    this.http.get(environment.apiUrl + '/auth/logout', { withCredentials: true })
+    this.http.get(environment.apiUrl + '/auth/logout')
       .subscribe({
         next: () => {
           this.cookieService.delete('key');

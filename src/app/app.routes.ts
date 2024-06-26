@@ -6,7 +6,7 @@ import { ClientRoutingModule } from './client/client.route';
 export const routes: Routes = [
     {
         path: 'admin',
-        loadChildren: () => AdminRoutingModule
+        loadChildren: () => AdminRoutingModule,
     },
     {
         path: '',

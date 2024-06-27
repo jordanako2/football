@@ -10,6 +10,7 @@ import { RegisterComponent } from '../components/register/register.component';
 import { TeamComponent } from './pages/team/team.component';
 import { NewsComponent } from './pages/news/news.component';
 import { NewsDetailsComponent } from './pages/home/right-content/newscontent/news-details/news-details.component';
+import { FeatureDetailsComponent } from './pages/home/right-content/featurecontent/feature-details/feature-details.component';
 
 
 const routes: Routes = [
@@ -43,6 +44,10 @@ const routes: Routes = [
           {
             path:'news/:id',
             component: NewsDetailsComponent
+          },
+          {
+            path:'news/:id',
+            component: FeatureDetailsComponent
           }
         ]
     },

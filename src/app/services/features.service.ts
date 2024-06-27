@@ -22,7 +22,7 @@ export class FeaturesService {
   }
 
   getContentById(id: number): Observable<any> {
-    return this._http.get(environment.apiUrl + `/football/content/website/features${id}`);
+    return this._http.get(environment.apiUrl + `/football/content/${id}`);
   }
   
   updateContent(id: number, data: any): Observable<any> {

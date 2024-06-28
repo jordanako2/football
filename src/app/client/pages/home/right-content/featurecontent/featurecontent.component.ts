@@ -4,6 +4,8 @@ import { Component } from '@angular/core';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { ApiService } from '../../../../../services/api.service';
 import { FeaturesService } from '../../../../../services/features.service';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterLink } from '@angular/router';
 
 
 export interface Tile {
@@ -13,7 +15,7 @@ export interface Tile {
   description: string;
   file_name: string;
   height: number;
-  
+  id: any;
 }
 
 
@@ -21,13 +23,14 @@ export interface Features {
   title: string;
   description: string;
   file_name: string;
+  id: number
 }
 
 
 @Component({
   selector: 'app-featurecontent',
   standalone: true,
-  imports: [MatGridListModule, CommonModule],
+  imports: [MatGridListModule, CommonModule, MatIconModule, RouterLink],
   templateUrl: './featurecontent.component.html',
   styleUrl: './featurecontent.component.sass'
 })
@@ -73,7 +76,8 @@ updateTiles(featureData: Features[]): void {
         file_name: item.file_name,
         height: 300,
         cols: 3,
-        rows: 1
+        rows: 1,
+        id:''
       }));
     } else {
       this.dataSource = [
@@ -81,14 +85,17 @@ updateTiles(featureData: Features[]): void {
           title:featureData[0].title,
           description:featureData[0].description,
           file_name: featureData[0].file_name,
+          id: featureData[0].id,
           height: 300,
           cols: 1,
-          rows: 1
+          rows: 1,
+          
         },
         {
           title: featureData[1].title,
           description: featureData[1].description,
           file_name: featureData[1].file_name,
+          id: featureData[1].id,
           height: 300,
           cols: 1,
           rows: 1
@@ -97,6 +104,7 @@ updateTiles(featureData: Features[]): void {
           title: featureData[2].title,
           description:featureData[2].description,
           file_name: featureData[2].file_name,
+          id: featureData[2].id,
           height: 300,
           cols: 1,
           rows: 1

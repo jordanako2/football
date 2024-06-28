@@ -4,11 +4,13 @@ import { ApiService } from '../../../../../services/api.service';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { CommonModule } from '@angular/common';
 import { NewsService } from '../../../../../services/news.service';
+import { RouterLink } from '@angular/router';
 
 
 
 
 export interface Tile {
+id: any;
   cols: number;
   rows: number;
   title: string;
@@ -23,6 +25,7 @@ export interface Features {
   title: string;
   description: string;
   file_name: string;
+  id: number;
 }
 
 
@@ -30,7 +33,7 @@ export interface Features {
 @Component({
   selector: 'app-newscontent',
   standalone: true,
-  imports: [MatGridListModule, CommonModule],
+  imports: [MatGridListModule, CommonModule, RouterLink],
   templateUrl: './newscontent.component.html',
   styleUrl: './newscontent.component.sass'
 })
@@ -73,9 +76,10 @@ updateTiles(featureData: Features[]): void {
         title: item.title,
         description: item.description,
         file_name: item.file_name,
-        height: 300,
+        height: 200,
         cols: 6,
-        rows: 2
+        rows: 2,
+        id:''
       }));
     } else {
       this.dataSource = [
@@ -83,7 +87,8 @@ updateTiles(featureData: Features[]): void {
           title:featureData[0].title,
           description:featureData[0].description,
           file_name: featureData[0].file_name,
-          height: 300,
+          id: featureData[0].id,
+          height: 400,
           cols: 4,
           rows: 2
         },
@@ -91,6 +96,7 @@ updateTiles(featureData: Features[]): void {
           title: featureData[1].title,
           description: featureData[1].description,
           file_name: featureData[1].file_name,
+          id: featureData[1].id,
           height: 200,
           cols: 2,
           rows: 1
@@ -99,6 +105,7 @@ updateTiles(featureData: Features[]): void {
           title: featureData[2].title,
           description:featureData[2].description,
           file_name: featureData[2].file_name,
+          id: featureData[2].id,
           height: 200,
           cols: 2,
           rows: 1

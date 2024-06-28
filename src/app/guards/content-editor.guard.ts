@@ -23,5 +23,9 @@ export const ContentEditorGuard: CanActivateFn = (
     return false;
   }
 
+  if (user['role'] !== 'Content Editor') {
+    return true;
+  }
+
   return true;
 };

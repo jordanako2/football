@@ -22,6 +22,8 @@ interface MenuItem {
 export class SidebarComponent {
 
   role: string | null = null
+  isAuthenticated: boolean = false;
+  user: any;
 
   constructor(
     private authService: AuthService,
@@ -30,9 +32,17 @@ export class SidebarComponent {
 
 
   ngOnInit(): void {
-    const user = this.authService.getUser()
-    if (user) {
-      this.role = user.role;
+    this.authService.user$.subscribe(user => {
+      this.user = user;
+    });
+    this.authService.isAuthenticated$.subscribe(isAuthenticated => {
+      this.isAuthenticated = isAuthenticated;
+    });
+    this.user = this.authService.getUser();
+
+    const userData = this.authService.getUser()
+    if (userData) {
+      this.role = userData.role;
       console.log(this.role);
     }
   }
@@ -42,38 +52,43 @@ export class SidebarComponent {
     label: 'Dashboard',
     icon: 'dashboard',
     routerLink: '/admin/dashboard',
-    roles: ['Admin', 'Content Editor']
+    roles: ['Super Admin', 'Admin', 'Content Editor']
   },
   {
     label: 'Post',
     icon: 'store',
     routerLink: '/admin/posts',
-    roles: ['Admin', 'Content Editor']
+    roles: ['Super Admin', 'Admin', 'Content Editor']
   },
   {
     label: 'Teams',
     icon: 'store',
     routerLink: '/admin/teams',
-    roles: ['Admin']
+    roles: ['Super Admin', 'Admin']
   },
   {
     label: 'Leagues',
     icon: 'store',
     routerLink: '/admin/leagues',
-    roles: ['Admin']
+    roles: ['Super Admin', 'Admin']
   },
   {
     label: 'Contents',
     icon: 'store',
     routerLink: '/admin/contents',
-    roles: ['Admin', 'Content Editor']
+    roles: ['Super Admin', 'Admin', 'Content Editor']
   },
   {
     label: 'Users',
     icon: 'group',
     routerLink: '/admin/users',
-    roles: ['Admin']
+    roles: ['Super Admin', 'Admin']
   }
   ];
+
+  logout(event: Event) {
+    event.preventDefault();
+    this.authService.logout();
+  }
 
 }

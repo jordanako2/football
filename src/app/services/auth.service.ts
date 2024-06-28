@@ -71,7 +71,7 @@ export class AuthService {
           this.cookieService.delete('key');
           this.userSubject.next(null);
           this.isAuthenticatedSubject.next(false); 
-          this.router.navigate(['/']);
+          this.router.navigate(['/login']);
         },
         error: (error) => {
           console.error('Error during logout:', error);

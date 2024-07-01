@@ -32,14 +32,6 @@ export class SidebarComponent {
 
 
   ngOnInit(): void {
-    this.authService.user$.subscribe(user => {
-      this.user = user;
-    });
-    this.authService.isAuthenticated$.subscribe(isAuthenticated => {
-      this.isAuthenticated = isAuthenticated;
-    });
-    this.user = this.authService.getUser();
-
     const userData = this.authService.getUser()
     if (userData) {
       this.role = userData.role;
@@ -85,10 +77,4 @@ export class SidebarComponent {
     roles: ['Super Admin', 'Admin']
   }
   ];
-
-  logout(event: Event) {
-    event.preventDefault();
-    this.authService.logout();
-  }
-
 }

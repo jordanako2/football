@@ -38,7 +38,6 @@ export class SidebarComponent {
     if (userData) {
       this.role = userData.role;
       this.user = userData
-      console.log(userData);
     }
   }
 

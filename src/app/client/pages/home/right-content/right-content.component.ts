@@ -45,25 +45,25 @@ export class RightContentComponent implements OnInit {
   ) {}
 
   ngOnInit() :void{
-    this.getContent();
+    // this.getContent();
     
   }
 
 
 
 
-  getContent():void {
-    this._contentService.getContent().subscribe(
-      (data: Features[]) => {
-      // Update tiles based on fetched data
-      this.updateTiles(data);
-      this.imagePath =`${this._configService.URL_CONTENT_IMAGE}`;
-    },
-    (error) => {
-      console.error('Error fetching feature data:', error);
-    }
-  );
-  }
+  // getContent():void {
+  //   this._contentService.getContent().subscribe(
+  //     (data: Features[]) => {
+  //     // Update tiles based on fetched data
+  //     this.updateTiles(data);
+  //     this.imagePath =`${this._configService.URL_CONTENT_IMAGE}`;
+  //   },
+  //   (error) => {
+  //     console.error('Error fetching feature data:', error);
+  //   }
+  // );
+  // }
 
 
 updateTiles(featureData: Features[]): void {

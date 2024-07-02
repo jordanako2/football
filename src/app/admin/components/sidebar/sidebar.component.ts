@@ -4,6 +4,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../services/auth.service';
+import { UserService } from '../../../services/user.service';
 
 interface MenuItem {
   label: string;
@@ -27,6 +28,7 @@ export class SidebarComponent {
 
   constructor(
     private authService: AuthService,
+    private userService: UserService
   ) {}
 
 
@@ -35,7 +37,8 @@ export class SidebarComponent {
     const userData = this.authService.getUser()
     if (userData) {
       this.role = userData.role;
-      console.log(this.role);
+      this.user = userData
+      console.log(userData);
     }
   }
 

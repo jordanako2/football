@@ -6,20 +6,24 @@
                 <mat-form-field appearance="outline">
                     <mat-label>First Name</mat-label>
                     <input matInput placeholder="First Name" formControlName="given_name">
-                    <mat-error *ngIf="userForm.get('given_name')?.hasError('required') && userForm.get('given_name')?.touched">
+                    <mat-error
+                        *ngIf="userForm.get('given_name')?.hasError('required') && userForm.get('given_name')?.touched">
                         First Name is required
                     </mat-error>
-                    <mat-error *ngIf="userForm.get('given_name')?.hasError('minlength') && userForm.get('given_name')?.touched">
+                    <mat-error
+                        *ngIf="userForm.get('given_name')?.hasError('minlength') && userForm.get('given_name')?.touched">
                         First Name must be at least 3 characters long
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                     <mat-label>Last Name</mat-label>
                     <input matInput placeholder="Last Name" formControlName="family_name">
-                    <mat-error *ngIf="userForm.get('family_name')?.hasError('required') && userForm.get('family_name')?.touched">
+                    <mat-error
+                        *ngIf="userForm.get('family_name')?.hasError('required') && userForm.get('family_name')?.touched">
                         Last Name is required
                     </mat-error>
-                    <mat-error *ngIf="userForm.get('family_name')?.hasError('minlength') && userForm.get('family_name')?.touched">
+                    <mat-error
+                        *ngIf="userForm.get('family_name')?.hasError('minlength') && userForm.get('family_name')?.touched">
                         Last Name must be at least 3 characters long
                     </mat-error>
                 </mat-form-field>
@@ -34,16 +38,6 @@
                     </mat-error>
                     <mat-error *ngIf="userForm.get('email')?.hasError('emailExists') && userForm.get('email')?.touched">
                         Email already exists
-                    </mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <mat-label>Password</mat-label>
-                    <input matInput placeholder="Password" type="password" formControlName="password">
-                    <mat-error *ngIf="userForm.get('password')?.hasError('required') && userForm.get('password')?.touched">
-                        Password is required
-                    </mat-error>
-                    <mat-error *ngIf="userForm.get('password')?.hasError('minlength') && userForm.get('password')?.touched">
-                        Password must be at least 3 characters long
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline" *ngIf="data">

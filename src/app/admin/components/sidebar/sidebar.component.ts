@@ -41,24 +41,29 @@ export class SidebarComponent {
     }
   }
 
+  logout(event: Event) {
+    event.preventDefault();
+    this.authService.logout();
+  }
+
   menuItems: MenuItem[] = [
   {
     label: 'Dashboard',
     icon: 'dashboard',
     routerLink: '/admin/dashboard',
-    roles: ['Super Admin', 'Admin', 'Content Editor']
+    roles: ['Super Admin', 'Admin', 'Content Editor', 'Team']
   },
-  {
-    label: 'Post',
-    icon: 'store',
-    routerLink: '/admin/posts',
-    roles: ['Super Admin', 'Admin', 'Content Editor']
-  },
+  // {
+  //   label: 'Post',
+  //   icon: 'store',
+  //   routerLink: '/admin/posts',
+  //   roles: ['Super Admin', 'Admin', 'Content Editor']
+  // },
   {
     label: 'Teams',
     icon: 'store',
     routerLink: '/admin/teams',
-    roles: ['Super Admin', 'Admin']
+    roles: ['Super Admin', 'Admin', 'Team']
   },
   {
     label: 'Leagues',

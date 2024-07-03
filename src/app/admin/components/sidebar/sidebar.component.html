@@ -12,6 +12,10 @@
                     <a matListItemTitle>{{ item.label }}</a>
                 </mat-list-item>
             </ng-container>
+            <mat-list-item (click)="logout($event)">
+                <mat-icon matListItemIcon [style.color]="'#FFFFFF'">logout</mat-icon>
+                <a matListItemTitle>Logout</a>
+            </mat-list-item>
         </mat-nav-list>
     </div>
 </div>

@@ -28,7 +28,7 @@ export class AuthService {
       .pipe(
         map(response => {
           const token = response.accessToken;
-          this.cookieService.set('key', token, { secure: true, sameSite: 'Strict' });
+          this.cookieService.set('key', token, { secure: true, sameSite: 'Strict', path: '/' });
           const decodedToken = jwtDecode(token);
           this.userSubject.next(decodedToken); 
           this.isAuthenticatedSubject.next(true); 

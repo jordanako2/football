@@ -14,6 +14,7 @@ import { CoreService } from '../../../core/core.service';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../../../services/api.service';
 import { UserService } from '../../../services/user.service';
+import { UserEditComponent } from './user-edit/user-edit.component';
 
 @Component({
   selector: 'app-users',
@@ -100,7 +101,7 @@ export class UsersComponent {
   }
 
   openEditForm(data: any) {
-    const dialogRef = this._dialog.open(UserAddEditComponent, {
+    const dialogRef = this._dialog.open(UserEditComponent, {
       data,
     });
     dialogRef.afterClosed().subscribe({

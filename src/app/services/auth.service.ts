@@ -68,9 +68,17 @@ export class AuthService {
     this.http.get(environment.apiUrl + '/auth/logout')
       .subscribe({
         next: () => {
-          this.cookieService.delete('key');
+          console.log('Logout successful, deleting cookies...');
+          
+          // Ensure all relevant cookies are deleted
+          this.cookieService.delete('key', '/'); // Adjust the domain if needed
+          console.log('Cookie deleted:', this.cookieService.get('key') === '');
+
+          // Reset user and authentication state
           this.userSubject.next(null);
-          this.isAuthenticatedSubject.next(false); 
+          this.isAuthenticatedSubject.next(false);
+
+          console.log('User and authentication state reset.');
           this.router.navigate(['/login']);
         },
         error: (error) => {

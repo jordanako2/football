@@ -32,6 +32,38 @@ export class MiddleHeaderComponent {
   isAuthenticated: boolean = false;
   user: any;
 
+  // ngOnInit() {
+  //   console.log('Initializing component state...');
+  //   this.authService.user$.subscribe(user => {
+  //     this.user = user;
+  //     console.log('User set from authService:', user);
+  //     this.showDropdown = false;
+  //   });
+    
+  //   this.authService.isAuthenticated$.subscribe(isAuthenticated => {
+  //     this.isAuthenticated = isAuthenticated;
+  //     console.log('isAuthenticated set from authService:', isAuthenticated);
+  //     this.showDropdown = false;
+  //   });
+
+  //   // this.googleService.user$.subscribe(user => {
+  //   //   this.user = user;
+  //   //   this.showDropdown = false;
+  //   // });
+    
+  //   // this.googleService.isAuthenticated$.subscribe(isAuthenticated => {
+  //   //   this.isAuthenticated = isAuthenticated;
+  //   //   this.showDropdown = false;
+  //   // });
+  
+  //   // Initialize the user and isAuthenticated state correctly
+  //   this.user = this.authService.getUser();
+  //   this.isAuthenticated = this.authService.isAuthenticated();
+  //   console.log('Initial user:', this.user);
+  //   console.log('Initial isAuthenticated:', this.isAuthenticated);
+  // }
+  
+
   ngOnInit() {
     this.authService.user$.subscribe(user => {
       this.user = user;
@@ -50,6 +82,7 @@ export class MiddleHeaderComponent {
       this.showDropdown = false;
     });
     this.user = this.authService.getUser();
+    this.isAuthenticated = this.authService.isAuthenticated();
   }
 
   toggleMenu(index: number) {
@@ -59,10 +92,8 @@ export class MiddleHeaderComponent {
   logout(event: Event) {
     event.preventDefault();
     this.authService.logout();
-
   }
-
-  }
+}
   
 
 

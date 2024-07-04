@@ -9,8 +9,8 @@ import { AuthGuard } from '../guards/auth.guard';
 import { RegisterComponent } from '../components/register/register.component';
 import { TeamComponent } from './pages/team/team.component';
 import { NewsComponent } from './pages/news/news.component';
-import { FeatureDetailsComponent } from './pages/contents/feature-details/feature-details.component';
 import { NewsDetailsComponent } from './pages/contents/news-details/news-details.component';
+import { FeatureDetailsComponent } from './pages/contents/feature-details/feature-details.component';
 
 
 const routes: Routes = [

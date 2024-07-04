@@ -14,18 +14,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { TeamScoreComponent } from './team-score/team-score.component';
 
-interface Match {
-  id: number;
-  match_time: string;
-  
-}
-
 @Component({
   selector: 'app-league-team-match',
   standalone: true,
   imports: [MatButtonModule, MatTableModule, CommonModule, MatIconModule, MatTooltipModule],
   providers: [
-    DatePipe 
+    DatePipe,
   ],
   templateUrl: './league-team-match.component.html',
   styleUrl: './league-team-match.component.sass'
@@ -42,8 +36,6 @@ export class LeagueTeamMatchComponent {
     private route: ActivatedRoute,
     private matchesService: MatchService,
     private _configService: ApiService,
-    private _fb: FormBuilder, 
-    private datePipe: DatePipe
   ) {}
 
   ngOnInit(): void {
@@ -62,7 +54,6 @@ export class LeagueTeamMatchComponent {
           match.matchTime = new Date(`2000-01-01T${match.match_time}`);
         });
         this.dataSource = new MatTableDataSource(res);
-        console.log(res)
       },
       error: (err) => {
         console.log(err);
@@ -70,15 +61,15 @@ export class LeagueTeamMatchComponent {
     });
   }
 
-  updateScore(element: any, index: number, id: number, team_id: number, points: number) {
-    console.log(`Update team for match ID ${element.id} at index ${index}`);
+  updateScore(element: any, index: number, id: number, team_id: number, points: number, result: string) {
     const dialogRef = this.dialog.open(TeamScoreComponent, {
         data: { 
           score_id: id,
           team_id: team_id,
           leagueId: this.leagueId, 
           matchId: element.id,
-          points: points
+          points: points,
+          result: result
         }
     });
     dialogRef.afterClosed().subscribe({
@@ -94,7 +85,6 @@ export class LeagueTeamMatchComponent {
   }
 
   updateTeam(element: any, index: number, id: number, team_id: number) {
-    console.log(`Update team for match ID ${element.id} at index ${index}`);
     const dialogRef = this.dialog.open(TeamSelectComponent, {
         data: { 
           score_id: id,
@@ -116,7 +106,6 @@ export class LeagueTeamMatchComponent {
   }
 
   addTeam(element: any, index: number) {
-    console.log(`Add team for match ID ${element.id} at index ${index}`);
     const dialogRef = this.dialog.open(TeamSelectComponent, {
         data: { 
           leagueId: this.leagueId, 

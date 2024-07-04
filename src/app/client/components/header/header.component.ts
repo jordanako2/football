@@ -61,7 +61,6 @@ export class HeaderComponent {
   logout(event: Event) {
     event.preventDefault();
     this.authService.logout();
-    window.location.reload();
   }
 
   toggleMenu(index: number) {

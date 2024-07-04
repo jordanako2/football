@@ -1,0 +1,48 @@
+
+  <mat-grid-list cols="6" rowHeight="350px" class="grid-content">
+    <mat-grid-tile
+      *ngFor="let tile of dataSource"
+      [colspan]="tile.cols"
+      [rowspan]="tile.rows"
+      
+    >
+    
+      <div class="box" [routerLink]="'/news/' + tile.id">
+        <div class="image">
+          <img
+            [src]="imagePath + tile.file_name"
+            alt={{tile.file_name}}
+            width="100%"
+            [height]="tile.height"
+          />
+        </div>
+        <h1>{{ tile.title }}</h1>
+        <p>{{ tile.description }}</p>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+  
+  
+  
+  
+  <mat-grid-list cols="6" rowHeight="200px" class="grid-content-mobile">
+    <mat-grid-tile
+      *ngFor="let tile of dataSource"
+      [colspan]="tile.cols"
+      [rowspan]="tile.rows"
+    >
+    
+      <div class="box" [routerLink]="'/news/' + tile.id">
+        <div class="image">
+          <img
+            [src]="imagePath + tile.file_name"
+            alt={{tile.file_name}}
+            width="100%"
+            [height]="tile.height"
+          />
+        </div>
+        <h1>{{ tile.title }}</h1>
+        <p>{{ tile.description }}</p>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>

@@ -50,6 +50,7 @@ export class MiddleHeaderComponent {
       this.showDropdown = false;
     });
     this.user = this.authService.getUser();
+    this.isAuthenticated = this.authService.isAuthenticated();
   }
 
   toggleMenu(index: number) {
@@ -59,10 +60,8 @@ export class MiddleHeaderComponent {
   logout(event: Event) {
     event.preventDefault();
     this.authService.logout();
-
   }
-
-  }
+}
   
 
 

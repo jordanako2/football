@@ -10,6 +10,14 @@
                     <mat-label>Points</mat-label>
                     <input matInput formControlName="points" type="number">
                 </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Result</mat-label>
+                    <mat-select formControlName="result">
+                        <mat-option value="Win">Win</mat-option>
+                        <mat-option value="Loss">Loss</mat-option>
+                        <mat-option value="Draw">Draw</mat-option>
+                    </mat-select>
+                </mat-form-field>
             </div>
         </div>
         <div mat-dialog-actions class="actions">

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LeftContentComponent } from './left-content.component';
+import { UserAddEditComponent } from './user-add-edit.component';
 
-describe('LeftContentComponent', () => {
-  let component: LeftContentComponent;
-  let fixture: ComponentFixture<LeftContentComponent>;
+describe('UserAddEditComponent', () => {
+  let component: UserAddEditComponent;
+  let fixture: ComponentFixture<UserAddEditComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LeftContentComponent]
+      imports: [UserAddEditComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(LeftContentComponent);
+    fixture = TestBed.createComponent(UserAddEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

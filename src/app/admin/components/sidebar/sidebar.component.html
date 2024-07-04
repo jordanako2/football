@@ -1,17 +1,21 @@
 <div class="wrapper">
     <div class="header">
-        <h3 class="title">Dominic Anuta Vega</h3>
-        <p class="email">doms12.vegs&#64;gmail.com</p>
+        <h3 class="title">Hello, {{ user.given_name }}</h3>
+        <p class="email">{{ user.email }}</p>
     </div>
     <div class="content">
         <mat-nav-list>
             <ng-container *ngFor="let item of menuItems">
-                <mat-list-item [routerLink]="item.routerLink" routerLinkActive="active"
-                    [routerLinkActiveOptions]="{ exact: true }">
+                <mat-list-item *ngIf="role && item.roles.includes(role)" [routerLink]="item.routerLink"
+                    routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                     <mat-icon matListItemIcon [style.color]="'#FFFFFF'">{{ item.icon }}</mat-icon>
                     <a matListItemTitle>{{ item.label }}</a>
                 </mat-list-item>
             </ng-container>
+            <mat-list-item (click)="logout($event)">
+                <mat-icon matListItemIcon [style.color]="'#FFFFFF'">logout</mat-icon>
+                <a matListItemTitle>Logout</a>
+            </mat-list-item>
         </mat-nav-list>
     </div>
 </div>

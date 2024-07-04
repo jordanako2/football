@@ -1,0 +1,108 @@
+<div class="wrapper">
+  <div class="container">
+    <div class="header">
+      <button
+        mat-flat-button
+        extended
+        color="primary"
+        [routerLink]="'/admin/contents'"
+      >
+        <mat-icon>keyboard_arrow_left</mat-icon>
+        Back
+      </button>
+    </div>
+    <h1>Content Information</h1>
+    <div class="body">
+      <form [formGroup]="contentForm" (ngSubmit)="onSubmit()">
+        <div class="content">
+          <div class="row">
+            <mat-form-field appearance="outline">
+              <mat-label>Status</mat-label>
+              <mat-select formControlName="status">
+                <mat-option value="Draft">Draft</mat-option>
+                <mat-option value="Published">Published</mat-option>
+                <mat-option value="Cancelled">Cancelled</mat-option>
+              </mat-select>
+              <mat-error *ngIf="contentForm.get('status')?.hasError('required') && contentForm.get('status')?.touched">
+                Content status is required
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Blocks</mat-label>
+              <mat-select formControlName="block">
+                <mat-option value="News">News</mat-option>
+                <mat-option value="Feature">Feature</mat-option>
+                <mat-option value="Club">Club</mat-option>
+              </mat-select>
+              <mat-error *ngIf="contentForm.get('block')?.hasError('required') && contentForm.get('block')?.touched">
+                Content block is required
+              </mat-error>
+            </mat-form-field>
+
+            <mat-label>Thumbnail Image</mat-label>
+            <div class="img_thumbnail">
+              <img *ngIf="imagePath" [src]="imagePath" alt="Uploaded Image" width="300px" />
+              <input type="file" (change)="onFileSelected($event)" />
+            </div>
+
+
+            <mat-form-field appearance="outline">
+              <mat-label>Title</mat-label>
+              <input matInput placeholder="Title" formControlName="title" />
+              <mat-error
+                *ngIf="
+                  contentForm.get('title')?.hasError('required') &&
+                  contentForm.get('title')?.touched
+                "
+              >
+                Content title is required
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  contentForm.get('title')?.hasError('minlength') &&
+                  contentForm.get('title')?.touched
+                "
+              >
+                Content title must be at least 6 characters long
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Description</mat-label>
+              <textarea matInput formControlName="description">
+
+              </textarea>
+              <mat-error
+                *ngIf="
+                  contentForm.get('description')?.hasError('required') &&
+                  contentForm.get('description')?.touched
+                "
+              >
+                Content description is required
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  contentForm.get('description')?.hasError('minlength') &&
+                  contentForm.get('description')?.touched
+                "
+              >
+                title must be at least 6 characters long
+              </mat-error>
+            </mat-form-field>
+
+            <div class="news-content">
+              <quill-editor
+                [modules]="modules"
+                [style]="{ height: '300px' , width: '100%'}"
+                [placeholder]="'Enter full content here...'"
+                formControlName="content"
+                
+              ></quill-editor>
+            </div>
+          </div>
+        </div>
+        <button mat-raised-button color="primary" type="submit">Save</button>
+      </form>
+    </div>
+  </div>
+</div>

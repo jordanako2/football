@@ -37,33 +37,21 @@ export class RegisterComponent {
 
   get f() { return this.registerForm.controls; }
 
-  // src/app/register/register.component.ts
   onSubmit() {
     this.submitted = true;
-  
-    console.log('Form submitted');  // Add this line
-  
-    if (this.registerForm.invalid) {
-      console.log('Form is invalid');  // Add this line
-      return;
-    }
-  
     const user: User = this.registerForm.value;
-    console.log('User data:', user);  // Add this line
-  
-    this.userService.registerUser(user).subscribe(
-      response => {
-        console.log('User registered successfully:', response);
+    this.userService.registerUser(user).subscribe({
+      next: (res: any) => {
         this.router.navigate(['/login']);
       },
-      error => {
-        console.error('Registration error:', error);
+      error: (err: any) => {
+        console.error('Registration error:', err);
 
-        if (error.status === 400 && error.error.message === 'Email already exists') {
+        if (err.status === 400 && err.error.message === 'Email already exists') {
           this.registerForm.controls['email'].setErrors({ emailExists: true });
         }
       }
-    );
+    });
   }
   
 

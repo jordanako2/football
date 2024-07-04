@@ -105,7 +105,6 @@ export class TeamAddEditComponent implements OnInit {
           }
         })
       }
-      
     }
   }
 }

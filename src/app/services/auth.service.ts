@@ -28,7 +28,7 @@ export class AuthService {
       .pipe(
         map(response => {
           const token = response.accessToken;
-          this.cookieService.set('key', token, { secure: true, sameSite: 'Strict' });
+          this.cookieService.set('key', token, { secure: true, sameSite: 'Strict', path: '/' });
           const decodedToken = jwtDecode(token);
           this.userSubject.next(decodedToken); 
           this.isAuthenticatedSubject.next(true); 
@@ -39,6 +39,11 @@ export class AuthService {
 
   loginfb(): void {
     window.location.href = environment.apiUrl+'/auth/facebook';
+  }
+
+  getToken(): string {
+    const token = this.cookieService.get('key');
+    return token
   }
   
   getUser(): any {
@@ -60,13 +65,21 @@ export class AuthService {
   }
   
   logout(): void {
-    this.http.get(environment.apiUrl + '/auth/logout', { withCredentials: true })
+    this.http.get(environment.apiUrl + '/auth/logout')
       .subscribe({
         next: () => {
-          this.cookieService.delete('key');
+          console.log('Logout successful, deleting cookies...');
+          
+          // Ensure all relevant cookies are deleted
+          this.cookieService.delete('key', '/'); // Adjust the domain if needed
+          console.log('Cookie deleted:', this.cookieService.get('key') === '');
+
+          // Reset user and authentication state
           this.userSubject.next(null);
-          this.isAuthenticatedSubject.next(false); 
-          this.router.navigate(['/']);
+          this.isAuthenticatedSubject.next(false);
+
+          console.log('User and authentication state reset.');
+          this.router.navigate(['/login']);
         },
         error: (error) => {
           console.error('Error during logout:', error);

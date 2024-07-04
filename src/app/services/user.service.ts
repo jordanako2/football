@@ -21,4 +21,24 @@ export class UserService {
   registerFacebookUser(user: User): Observable<User> {
     return this.http.post<User>(environment.apiUrl+`/users/facebook/register`, user);
   }
+
+  addUser(data: any): Observable<any> {
+    return this.http.post(environment.apiUrl+`/users`, data);
+  }
+
+  updateUser(id: number, data: any): Observable<any> {
+    return this.http.patch(environment.apiUrl+`/users/${id}`, data);
+  }
+
+  getUserById(id: number): Observable<any> {
+    return this.http.get(environment.apiUrl + `/users/${id}`);
+  }
+
+  getUsers(): Observable<any> {
+    return this.http.get(environment.apiUrl+`/users`, { withCredentials: true });
+  }
+
+  deleteUser(id: number): Observable<any> {
+    return this.http.delete(environment.apiUrl+`/users/${id}`)
+  }
 }

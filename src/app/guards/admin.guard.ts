@@ -2,17 +2,27 @@ import { inject } from '@angular/core';
 import { CanActivateFn, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
-export const AuthGuard: CanActivateFn = (
+export const AdminGuard: CanActivateFn = (
   next: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
 ) => {
   const authService = inject(AuthService);
   const router = inject(Router);
 
-  if (authService.isAuthenticated()) {
-    return true;
-  } else {
+  const user = authService.getUser();
+
+  if (!user) {
     router.navigate(['/login']);
     return false;
   }
+
+  console.log('User role:', user['role']);
+
+  if (user['role'] !== 'Admin' && user['role'] !== 'Super Admin') {
+    console.warn('Unauthorized role:', user['role']);
+    router.navigate(['/admin']);
+    return false;
+  }
+
+  return true;
 };

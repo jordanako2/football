@@ -10,7 +10,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
   standalone: true,
   imports: [DashboardComponent, RouterOutlet, MatSidenavModule, NavbarComponent, SidebarComponent],
   templateUrl: './admin.component.html',
-  styleUrl: './admin.component.sass'
+  styleUrl: './admin.component.sass',
 })
 export class AdminComponent {
 

@@ -6,8 +6,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
-import { ContentsService } from '../../../services/contents.service';
 import { RouterLink } from '@angular/router';
+import { NewsService } from '../../../services/news.service';
 
 @Component({
   selector: 'app-news',
@@ -22,7 +22,7 @@ export class NewsComponent {
   dataSource: any[] = [];
 
   constructor(
-    private _contentService: ContentsService,
+    private _contentService: NewsService,
     private _configService: ApiService,
   ) {}
 

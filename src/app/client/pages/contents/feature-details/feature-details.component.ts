@@ -28,7 +28,7 @@ export class FeatureDetailsComponent {
 
   ngOnInit(): void {
     this.imagePath = `${this._configService.URL_IMAGE}`;
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe(params => { 
       this.newsId = +params['id'];  
       if (this.newsId){
         this.getContentById(this.newsId);

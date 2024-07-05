@@ -61,19 +61,19 @@ export class SidebarComponent {
   // },
   {
     label: 'Teams',
-    icon: 'store',
+    icon: 'flag',
     routerLink: '/admin/teams',
     roles: ['Super Admin', 'Admin', 'Team']
   },
   {
     label: 'Leagues',
-    icon: 'store',
+    icon: 'golf_course',
     routerLink: '/admin/leagues',
     roles: ['Super Admin', 'Admin']
   },
   {
     label: 'Contents',
-    icon: 'store',
+    icon: 'new_releases',
     routerLink: '/admin/contents',
     roles: ['Super Admin', 'Admin', 'Content Editor']
   },

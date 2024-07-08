@@ -2,7 +2,7 @@
     <div class="container">
         <div class="menu">
             <div class="items">
-                <div class="item" [routerLink]="'/'">FOOTBALL LEAGUE</div>
+                <div class="item" [routerLink]="'/'">LEAGUES</div>
                 <div class="item" (mouseover)="toggleMenu(1)">LATEST</div>
                 <div *ngIf="isMenuOpen[1]" class="menu-list">
                     <div class="menu-item-content">
@@ -10,28 +10,28 @@
                     </div>
                 </div>
             
-                <div class="item" (mouseover)="toggleMenu(2)">TEAMS</div>
+                <div class="item" (mouseover)="toggleMenu(2)" [routerLink]="'/teams'">CLUBS</div>
                 <div *ngIf="isMenuOpen[2]" class="menu-list">
                     <div class="menu-item-content">
                         CONTENT TEAMS
                     </div>
                 </div>
-            
-                <div class="item" (mouseover)="toggleMenu(3)">THE CLUB</div>
-                <div *ngIf="isMenuOpen[3]" class="menu-list">
-                    <div class="menu-item-content">
-                        CONTENT THE CLUB
-                    </div>
-                </div>
-            
-                <div class="item" (mouseover)="toggleMenu(4)">BRACKETS</div>
+
+                <div class="item" (mouseover)="toggleMenu(4)">FIXTURES</div>
                 <div *ngIf="isMenuOpen[4]" class="menu-list">
                     <div class="menu-item-content">
-                        CONTENT BRACKETS
+                        CONTENT SCHEDULE
                     </div>
                 </div>
             
-                <div class="item">CONTACT</div>
+                <div class="item" (mouseover)="toggleMenu(5)">ABOUT US </div>
+                <div *ngIf="isMenuOpen[5]" class="menu-list">
+                    <div class="menu-item-content">
+                        <div class="d-item">WHO ARE WE</div>
+                        <div class="d-item">WHAT DO WE DO</div>
+                        <div class="d-item">PARTNERS</div>
+                    </div>
+                </div>
             </div>
             <div class="right-items">
                 <div *ngIf="!isAuthenticated" class="login" [routerLink]="'/login'">SIGN IN</div>
@@ -58,12 +58,11 @@
                     </div>
                 </div>
                 <div class="items">
-                    <div class="item" [routerLink]="'/'">FOOTBALL LEAGUE</div>
+                    <div class="item" [routerLink]="'/'">LEAGUES</div>
                     <div class="item" [routerLink]="'/'">LATEST</div>
-                    <div class="item" (mouseover)="toggleMenu(2)" [routerLink]="'/'">TEAMS</div>
-                    <div class="item" [routerLink]="'/'">THE CLUB</div>
-                    <div class="item" [routerLink]="'/'">BRACKETS</div>
-                    <div class="item" [routerLink]="'/'">CONTACT</div>
+                    <div class="item" (mouseover)="toggleMenu(2)" [routerLink]="'/teams'">CLUBS</div>
+                    <div class="item" [routerLink]="'/'">FIXTURES</div>
+                    <div class="item" [routerLink]="'/'">ABOUT US</div>
                 </div>
                 <div class="logout">
                     <div *ngIf="user" class="auth">

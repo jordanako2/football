@@ -19,7 +19,6 @@ export class TeamsComponent {
 
   constructor(
     private _teamService: TeamService,
-    private _coreService: CoreService,
     private _configService: ApiService,
   ) {}
 

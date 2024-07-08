@@ -1,6 +1,5 @@
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { UserAddEditComponent } from './user-add-edit/user-add-edit.component';
 import { TeamService } from '../../../services/team.service';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
@@ -14,7 +13,6 @@ import { CoreService } from '../../../core/core.service';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../../../services/api.service';
 import { UserService } from '../../../services/user.service';
-import { UserEditComponent } from './user-edit/user-edit.component';
 
 @Component({
   selector: 'app-users',
@@ -53,7 +51,7 @@ export class UsersComponent {
   }
   
   openAddEditUserForm() {
-      const dialogRef = this._dialog.open(UserAddEditComponent);
+      const dialogRef = this._dialog.open(UsersComponent);
       dialogRef.afterClosed().subscribe({
         next: (val) => {
           if (val) {
@@ -101,7 +99,7 @@ export class UsersComponent {
   }
 
   openEditForm(data: any) {
-    const dialogRef = this._dialog.open(UserEditComponent, {
+    const dialogRef = this._dialog.open(UsersComponent, {
       data,
     });
     dialogRef.afterClosed().subscribe({

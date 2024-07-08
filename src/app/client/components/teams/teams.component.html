@@ -1,6 +1,11 @@
 <div class="wrapper">
-    <h1>All Teams</h1>
+    
     <div class="container">
+        <div class="desktop">
+        <div class="header">
+           <h1>CLUBS</h1>
+        </div>
+        <div class="teams">
         <mat-card class="card" *ngFor="let item of dataSource">
             <mat-card-content class="card-content">
                 <img mat-card-image [src]="imagePath + item.file_name" alt={{item.file_name}} width="50px">
@@ -11,5 +16,24 @@
                 </div>
             </mat-card-content>
         </mat-card>
+        </div>
+    </div>
+        <div class="mobile-device">
+            <div class="header">
+                <h1>CLUBS</h1>
+             </div>
+             <div class="teams">
+             <mat-card class="card" *ngFor="let item of dataSource">
+                 <mat-card-content class="card-content">
+                     <img mat-card-image [src]="imagePath + item.file_name" alt={{item.file_name}} width="50px">
+                     <div class="card-body">
+                         <mat-card-title class="title">{{ item.team }}</mat-card-title>
+                         <mat-card-subtitle class="subtitle">{{ item.coach }}</mat-card-subtitle>
+                         <mat-card-subtitle class="subtitle">{{ item.place }}</mat-card-subtitle>
+                     </div>
+                 </mat-card-content>
+             </mat-card>
+             </div>
+        </div>
     </div>
 </div>

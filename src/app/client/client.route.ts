@@ -50,8 +50,6 @@ const routes: Routes = [
           {
             path:'news/:id',
             component: FeatureDetailsComponent
-<<<<<<< Updated upstream
-=======
           },
           {
             path: 'clubs',
@@ -60,7 +58,6 @@ const routes: Routes = [
           {
             path: 'clubs/:id',
             component: ClubsComponent
->>>>>>> Stashed changes
           }
         ]
     },

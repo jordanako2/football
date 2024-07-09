@@ -8,8 +8,8 @@
             display: flex
             padding-right: 20px
             justify-content: space-between
+            align-items: baseline
             width: 100%
-            align-items: center
             .right-items
                 display: flex
                 margin-right: 20px
@@ -40,7 +40,7 @@
                         background-color: #0F0E6A
                         color: #FFFFFF
                     button
-                        font-size: 14px
+                        font-size: 16px
             .items
                 display: flex
                 flex-wrap: wrap
@@ -66,6 +66,10 @@
                 display: none
             .mobileMenu
                 display: block
+                .content
+                    overflow-y: auto
+                    max-height: calc(100vh - 50px)
+                    padding-right: 15px
                 .login
                     font-size: 18px
                     padding: 10px
@@ -102,6 +106,10 @@
                 display: none
             .mobileMenu
                 display: block
+                .content
+                    overflow-y: auto
+                    max-height: calc(100vh - 50px)
+                    padding-right: 15px
                 .login
                     font-size: 18px
                     padding: 10px

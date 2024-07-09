@@ -30,13 +30,13 @@ import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
 export class MiddleHeaderComponent {
 
   showDropdown = false;
-  isSubmenuOpen: { [key: string]: boolean } = {
+  isSubmenuOpen: any  = {
     leagues: false,
     footballcommunity: false,
     about: false
   };
   isDashboardSelected = false;
-
+  
   toggleDropdown() {
     this.showDropdown = !this.showDropdown;
   }
@@ -48,8 +48,13 @@ export class MiddleHeaderComponent {
   ) {}
 
   toggleSubmenu(menuName: string) {
-    // Toggle the submenu for the clicked menuName
+    Object.keys(this.isSubmenuOpen).forEach(key => {
+      if (key !== menuName) {
+        this.isSubmenuOpen[key] = false;
+      }
+    });
     this.isSubmenuOpen[menuName] = !this.isSubmenuOpen[menuName];
+  
   }
 
 
@@ -57,7 +62,6 @@ export class MiddleHeaderComponent {
     this.isDashboardSelected = true;
   }
 
-  // isMenuOpen: boolean[] = [false, false, false, false]; 
   isAuthenticated: boolean = false;
   user: any;
 
@@ -81,10 +85,6 @@ export class MiddleHeaderComponent {
     this.user = this.authService.getUser();
     this.isAuthenticated = this.authService.isAuthenticated();
   }
-
-  // toggleMenu(index: number) {
-  //   this.isMenuOpen[index] = true;
-  // }
 
   logout(event: Event) {
     event.preventDefault();

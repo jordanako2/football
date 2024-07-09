@@ -3,11 +3,13 @@ import { TeamService } from '../../../services/team.service';
 import { ApiService } from '../../../services/api.service';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-clubs',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatTableModule, MatTabsModule],
   templateUrl: './clubs.component.html',
   styleUrl: './clubs.component.sass'
 })
@@ -34,7 +36,6 @@ export class ClubsComponent {
     this._teamService.getTeamById(teamId).subscribe({
       next: (res) => {
         this.data = res;
-        console.log(res)
         this.imagePath =`${this._configService.URL_IMAGE}`;
       },
       error: (err) => {

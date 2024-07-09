@@ -30,17 +30,34 @@ import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
 export class MiddleHeaderComponent {
 
   showDropdown = false;
+  isSubmenuOpen: { [key: string]: boolean } = {
+    leagues: false,
+    footballcommunity: false,
+    about: false
+  };
+  isDashboardSelected = false;
 
   toggleDropdown() {
     this.showDropdown = !this.showDropdown;
   }
+
 
   constructor(
     private authService: AuthService,
     private googleService: GoogleService
   ) {}
 
-  isMenuOpen: boolean[] = [false, false, false, false]; 
+  toggleSubmenu(menuName: string) {
+    // Toggle the submenu for the clicked menuName
+    this.isSubmenuOpen[menuName] = !this.isSubmenuOpen[menuName];
+  }
+
+
+  selectDashboard() {
+    this.isDashboardSelected = true;
+  }
+
+  // isMenuOpen: boolean[] = [false, false, false, false]; 
   isAuthenticated: boolean = false;
   user: any;
 
@@ -65,9 +82,9 @@ export class MiddleHeaderComponent {
     this.isAuthenticated = this.authService.isAuthenticated();
   }
 
-  toggleMenu(index: number) {
-    this.isMenuOpen[index] = true;
-  }
+  // toggleMenu(index: number) {
+  //   this.isMenuOpen[index] = true;
+  // }
 
   logout(event: Event) {
     event.preventDefault();

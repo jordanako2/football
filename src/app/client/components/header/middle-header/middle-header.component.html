@@ -6,12 +6,12 @@
                 <div class="item" [matMenuTriggerFor]="leagues" [routerLink]="'/'"><span>LEAGUES</span>
                     <i class="material-icons">arrow_drop_down</i>
                 </div>
-                <mat-menu #leagues="matMenu">
-                    <button mat-menu-item style="color: #0F0E6A !important" [routerLink]="'/'">HOME</button>
-                    <button mat-menu-item style="color: #0F0E6A !important" [routerLink]="'/news'">NEWS</button>
-                    <button mat-menu-item style="color: #0F0E6A !important" >FIXTURES</button>
-                    <button mat-menu-item style="color: #0F0E6A !important" >RESULTS</button>
-                    <button mat-menu-item style="color: #0F0E6A !important" >STATS</button>
+                <mat-menu #leagues="matMenu" xPosition="after">
+                    <button mat-menu-item style="color: #0F0E6A !important ;font-size: 14px ;" [routerLink]="'/'">HOME</button>
+                    <button mat-menu-item style="color: #0F0E6A !important ;font-size: 14px ;" [routerLink]="'/news'">NEWS</button>
+                    <button mat-menu-item style="color: #0F0E6A !important ;font-size: 14px ;" >FIXTURES</button>
+                    <button mat-menu-item style="color: #0F0E6A !important ;font-size: 14px ;" >RESULTS</button>
+                    <button mat-menu-item style="color: #0F0E6A !important ;font-size: 14px ;" >STATS</button>
                 </mat-menu>
 
                 <div class="item" [routerLink]="'/clubs'"><span>CLUBS</span></div>
@@ -21,19 +21,19 @@
                 <div class="item" [matMenuTriggerFor]="footballcommunity"><span>FOOTBALL & COMMUNITY</span> 
                     <i class="material-icons">arrow_drop_down</i> </div>
 
-                    <mat-menu #footballcommunity="matMenu">
-                        <button mat-menu-item style="color: #0F0E6A !important ; " >WIDER FOOTBALL</button>
-                        <button mat-menu-item style="color: #0F0E6A !important" >COMMUNITY</button>
+                    <mat-menu #footballcommunity="matMenu" xPosition="after">
+                        <button mat-menu-item style="color: #0F0E6A !important ;font-size: 14px" >WIDER FOOTBALL</button>
+                        <button mat-menu-item style="color: #0F0E6A !important ;font-size: 14px" >COMMUNITY</button>
                     </mat-menu>
 
 
                 <div class="item" [matMenuTriggerFor]="about"><span>ABOUT US</span> 
                     <i class="material-icons">arrow_drop_down</i> </div>
 
-                <mat-menu #about="matMenu">
-                    <button mat-menu-item style="color: #0F0E6A !important">WHO ARE WE</button>
-                    <button mat-menu-item style="color: #0F0E6A !important">WHAT DO WE DO</button>
-                    <button mat-menu-item style="color: #0F0E6A !important">PARTNERS</button>
+                <mat-menu #about="matMenu" xPosition="after">
+                    <button mat-menu-item style="color: #0F0E6A !important ;font-size: 14px">WHO ARE WE</button>
+                    <button mat-menu-item style="color: #0F0E6A !important ;font-size: 14px">WHAT DO WE DO</button>
+                    <button mat-menu-item style="color: #0F0E6A !important ;font-size: 14px">PARTNERS</button>
                 </mat-menu>
             </div>
         
@@ -41,7 +41,7 @@
                 <div *ngIf="!isAuthenticated" class="login" [routerLink]="'/login'">SIGN IN</div>
                 <div *ngIf="user" class="auth">
                     <div *ngIf="user.role != 'User'">
-                        <button mat-flat-button class="team-button" [routerLink]="'/admin'">Dashboard</button>
+                        <!-- <button mat-flat-button class="team-button" [routerLink]="'/admin'">Dashboard</button> -->
                     </div>
                     <div>
                         <button mat-button (click)="toggleDropdown()">Welcome, {{ user.given_name }} <mat-icon>keyboard_arrow_down</mat-icon></button>
@@ -64,11 +64,48 @@
                     </div>
                 </div>
                 <div class="items">
-                    <div class="item" [routerLink]="'/'">LEAGUES</div>
-                    <div class="item" [routerLink]="'/'">LATEST</div>
-                    <div class="item" (mouseover)="toggleMenu(2)" [routerLink]="'/clubs'">CLUBS</div>
-                    <div class="item" [routerLink]="'/'">FIXTURES</div>
-                    <div class="item" [routerLink]="'/'">ABOUT US</div>
+                    
+                    <div class="item" (click)="toggleSubmenu('leagues')" [routerLink]="'/'">
+                        <span [ngClass]="{ 'sub-menu-open': isSubmenuOpen ['leagues']}">LEAGUES</span>
+                        <mat-icon>{{ isSubmenuOpen ['leagues'] ? 'keyboard_arrow_down' : 'keyboard_arrow_right' }}</mat-icon>
+                    </div>
+                    
+                    <ul *ngIf="isSubmenuOpen ['leagues']" class="sub-menu">
+                        <li><a [routerLink]="'/'" ><span class="menu-text">HOME</span></a></li>
+                        <li><a [routerLink]="'/news'" routerLinkActive="active"><span class="menu-text">NEWS</span></a></li>
+                        <li><a><span class="menu-text">FIXTURES</span></a></li>
+                        <li><a><span class="menu-text">RESULTS</span></a></li>
+                        <li><a><span class="menu-text">STATS</span></a></li>
+                      </ul>
+
+                    
+                    <div class="item" [routerLink]="'/clubs'"><span>CLUBS</span></div>
+    
+                    <div class="item" ><span>FIXTURES</span></div>
+                    
+
+                    <div class="item" (click)="toggleSubmenu('footballcommunity')">
+                        <span [ngClass]="{ 'sub-menu-open': isSubmenuOpen ['footballcommunity']}">FOOTBALL & COMMUNITY</span>
+                        <mat-icon>{{ isSubmenuOpen ['footballcommunity'] ? 'keyboard_arrow_down' : 'keyboard_arrow_right' }}</mat-icon>
+                    </div>
+                    
+                    <ul *ngIf="isSubmenuOpen ['footballcommunity']" class="sub-menu">
+                        <li><a  ><span class="menu-text">WIDER FOOTBALL</span></a></li>
+                        <li><a  routerLinkActive="active"><span class="menu-text">COMMUNITY</span></a></li>
+                      </ul>
+
+    
+                      <div class="item" (click)="toggleSubmenu('about')">
+                        <span [ngClass]="{ 'sub-menu-open': isSubmenuOpen ['about'] }">ABOUT US</span>
+                        <mat-icon>{{ isSubmenuOpen ['about'] ? 'keyboard_arrow_down' : 'keyboard_arrow_right' }}</mat-icon>
+                    </div>
+
+                    <ul *ngIf="isSubmenuOpen ['about']" class="sub-menu">
+                        <li><a><span class="menu-text">WHO ARE WE</span></a></li>
+                        <li><a><span class="menu-text">WHAT DO WE DO</span></a></li>
+                        <li><a><span class="menu-text">PARTNERS</span></a></li>
+                      </ul>
+
                 </div>
                 <div class="logout">
                     <div *ngIf="user" class="auth">

@@ -29,16 +29,18 @@
                 align-content: center
                 align-items: center
                 cursor: pointer
+                width: 80%
                 .card-content
                     display: flex
                     align-items: center
+                    width: 100%
                     gap: 30px
                     img
                         border-radius: 10px
                 &:hover
                     img
                         transition: transform 0.3s
-                        transform: scale(1.1)
+                        transform: scale(0.0.5)
                         border-radius: 10px
                     .card-body   
                         .title
@@ -48,8 +50,6 @@
                             font-size: 12px
                             line-height: 1.5
                 &:hover
-                    h2
-                        text-decoration: underline      
                     h1
                         text-decoration: underline          
 @media (max-width: 1200)

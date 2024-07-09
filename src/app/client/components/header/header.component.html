@@ -18,7 +18,7 @@
                 <div *ngIf="!isAuthenticated" class="signin" [routerLink]="'/login'">SIGN IN</div>
                 <div *ngIf="user" class="login">
                     <div *ngIf="user.role !='User'">
-                        <button mat-flat-button class="team-button" [routerLink]="'/admin'">Dashboard</button>
+                        <!-- <button mat-flat-button class="team-button" [routerLink]="'/admin'">Dashboard</button> -->
                     </div>
                 </div>
                 <button (click)="toggleMobileMenu()" class="menu-button">

@@ -3,10 +3,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
-import { LeaguesComponent } from '../../../components/leagues/leagues.component';
-import { MatchesComponent } from '../../../components/matches/matches.component';
 import { CommonModule } from '@angular/common';
 import { LeagueService } from '../../../../services/league.service';
+import { MatchesComponent } from "../../../components/matches/matches.component";
+import { LeaguesComponent } from "../../../components/leagues/leagues.component";
 
 export interface PeriodicElement {
   team: string;
@@ -17,11 +17,11 @@ export interface PeriodicElement {
 }
 
 @Component({
-  selector: 'app-left-content',
-  standalone: true,
-  imports: [MatCardModule, MatButtonModule, MatIconModule, MatTableModule, LeaguesComponent, MatchesComponent, CommonModule],
-  templateUrl: './left-content.component.html',
-  styleUrl: './left-content.component.sass'
+    selector: 'app-left-content',
+    standalone: true,
+    templateUrl: './left-content.component.html',
+    styleUrl: './left-content.component.sass',
+    imports: [MatCardModule, MatButtonModule, MatIconModule, MatTableModule, CommonModule, MatchesComponent, LeaguesComponent]
 })
 
 export class LeftContentComponent {

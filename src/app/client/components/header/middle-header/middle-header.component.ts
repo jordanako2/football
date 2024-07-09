@@ -7,11 +7,23 @@ import { GoogleService } from '../../../../services/google.service';
 import { MatCardModule } from '@angular/material/card';
 import { MatListItemIcon, MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
 
 @Component({
   selector: 'app-middle-header',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, RouterLink, MatListModule, MatCardModule, MatIconModule, MatListItemIcon],
+  imports: [
+    CommonModule, 
+    MatButtonModule, 
+    RouterLink, 
+    MatListModule, 
+    MatCardModule, 
+    MatIconModule, 
+    MatListItemIcon, 
+    MatMenuModule, 
+    MatMenuTrigger, 
+    MatButtonModule,
+  ],
   templateUrl: './middle-header.component.html',
   styleUrl: './middle-header.component.sass'
 })

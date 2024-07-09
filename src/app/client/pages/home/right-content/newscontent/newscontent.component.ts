@@ -79,7 +79,7 @@ updateTiles(featureData: Features[]): void {
         height: 200,
         cols: 6,
         rows: 2,
-        id:''
+        id: item.id
       }));
     } else {
       this.dataSource = [

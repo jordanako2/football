@@ -26,10 +26,10 @@ const routes: Routes = [
             component: LoginComponent,
             canActivate: [LoginGuard]
           },
-          {
-            path: 'register',
-            component: RegisterComponent,
-          },
+          // {
+          //   path: 'register',
+          //   component: RegisterComponent,
+          // },
           {
             path: 'profile',
             component: ProfileComponent,
@@ -51,7 +51,7 @@ const routes: Routes = [
             component: FeatureDetailsComponent
           },
           {
-            path: 'teams',
+            path: 'clubs',
             component: TeamsComponent
           }
         ]

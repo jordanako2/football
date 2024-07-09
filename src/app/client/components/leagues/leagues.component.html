@@ -12,7 +12,7 @@
             </ng-container>
 
             <ng-container matColumnDef="team">
-                <th mat-header-cell *matHeaderCellDef class="custom-width-columm-team"> Team </th>
+                <th mat-header-cell *matHeaderCellDef class="custom-width-columm-team"> Club </th>
                 <td mat-cell *matCellDef="let element" class="custom-width-columm-team"> 
                     <div class="team-container">
                         <img *ngIf="element.file_name" [src]="imagePath + element.file_name" alt={{element.file_name}} width="20px">

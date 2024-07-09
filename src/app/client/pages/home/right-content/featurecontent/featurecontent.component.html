@@ -5,7 +5,7 @@
    
   </div>
   
-  <mat-grid-list cols="3" rowHeight="350px" class="grid-content">
+  <mat-grid-list cols="3" rowHeight="400px" class="grid-content">
     <mat-grid-tile
       *ngFor="let tile of dataSource"
       [colspan]="tile.cols"
@@ -16,7 +16,6 @@
           <img
             [src]="imagePath + tile.file_name"
             alt="{{ tile.file_name }}"
-            width="100%"
             [height]="tile.height"
           />
         </div>
@@ -27,7 +26,7 @@
   </mat-grid-list>
 </div>
 
-<mat-grid-list cols="3" rowHeight="400px" class="grid-content-mobile">
+<mat-grid-list cols="3" rowHeight="500px" class="grid-content-mobile">
   <mat-grid-tile
     *ngFor="let tile of dataSource"
     [colspan]="tile.cols"

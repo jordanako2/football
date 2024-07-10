@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { TeamService } from '../../../../services/team.service';
 import { ApiService } from '../../../../services/api.service';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-top-header',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './top-header.component.html',
   styleUrl: './top-header.component.sass'
 })

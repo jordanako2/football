@@ -16,7 +16,11 @@
         height: 100%
         .image
             overflow: hidden
+            height: auto
             img
+                object-fit: cover
+                height: auto
+                width: 100%
                 transition: transform 0.2s
                 border-radius: 10px
                 &:hover
@@ -46,11 +50,17 @@
         display: none
     .grid-content-mobile
         display: block
+        width: 100%
         .box
+            display: flex
+            flex-direction: column
+            height: 100%
             .image
                 overflow: hidden
                 height: auto
                 img
+                    object-fit: cover
+                    height: auto
                     width: 100%
                     transition: transform 0.2s
                     border-radius: 10px
@@ -83,7 +93,10 @@
             padding: 10px
             .image
                 overflow: hidden
+                height: auto
                 img
+                    object-fit: cover
+                    height: auto
                     width: 100%
                     transition: transform 0.2s
                     &:hover

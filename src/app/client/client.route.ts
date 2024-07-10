@@ -12,6 +12,7 @@ import { NewsComponent } from './pages/news/news.component';
 import { NewsDetailsComponent } from './pages/contents/news-details/news-details.component';
 import { FeatureDetailsComponent } from './pages/contents/feature-details/feature-details.component';
 import { TeamsComponent } from './components/teams/teams.component';
+import { ClubsComponent } from './pages/clubs/clubs.component';
 
 
 const routes: Routes = [
@@ -53,6 +54,10 @@ const routes: Routes = [
           {
             path: 'clubs',
             component: TeamsComponent
+          },
+          {
+            path: 'clubs/:id',
+            component: ClubsComponent
           }
         ]
     },

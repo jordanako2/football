@@ -69,6 +69,7 @@ export class HeaderComponent {
 
   isMenuVisible = false;
 
+  
   // toggleMobileMenu() {
   //   this.isMobileMenuOpen = !this.isMobileMenuOpen;
   // }

@@ -40,51 +40,22 @@
                         background-color: #0F0E6A
                         color: #FFFFFF
                     button
-                        font-size: 18px
+                        font-size: 16px
             .items
                 display: flex
                 flex-wrap: wrap
+
                 .item 
-                    font-size: 18px
+                    display: inline-flex
+                    align-items: center
+                    font-size: 16px
                     cursor: pointer
                     line-height: 3.33
-                    padding: 10px 20px
+                    padding: 15px 15px
                     cursor: pointer
                     color: #0F0E6A
                     font-weight: 500
-                    
-                    &:hover
-                        border-bottom: solid 6px #0F0E6A
-                
 
-                .menu-list 
-                    position: absolute
-                    top: calc(100%)
-                    left: 0
-                    background-color: #0F0E6A
-                    color: white
-                    opacity: 10
-                    list-style: none
-                    display: none
-                    width: 100%
-                    opacity: 0
-                    transition: opacity 0.3s ease
-                    height: 200px
-                    
-                    .menu-item-content
-                        padding: 5% 10%
-                        .item
-                            cursor: pointer
-                            color: white
-                    
-                
-
-                .item:hover + .menu-list,
-                .menu-list:hover 
-                    display: block
-                    opacity: 1
-                    transition-delay: 0s
-        
         .mobileMenu
             display: none
 
@@ -95,6 +66,10 @@
                 display: none
             .mobileMenu
                 display: block
+                .content
+                    overflow-y: auto
+                    max-height: calc(100vh - 50px)
+                    padding-right: 15px
                 .login
                     font-size: 18px
                     padding: 10px
@@ -112,17 +87,15 @@
                     display: flex
                     flex-direction: column
                     .item 
-                        font-size: 18px
+                        display: inline-flex
+                        align-items: center
+                        font-size: 14px
                         cursor: pointer
                         line-height: 3.33
-                        padding: 10px 20px
+                        padding: 5px 5px
                         cursor: pointer
                         color: #0F0E6A
                         font-weight: 500
-                        border-bottom: 1px solid #d3d3d3
-                        
-                        &:hover
-                            border-bottom: solid 2px #0F0E6A
 
     
 
@@ -133,6 +106,10 @@
                 display: none
             .mobileMenu
                 display: block
+                .content
+                    overflow-y: auto
+                    max-height: calc(100vh - 50px)
+                    padding-right: 15px
                 .login
                     font-size: 18px
                     padding: 10px
@@ -150,17 +127,21 @@
                     display: flex
                     flex-direction: column
                     .item 
-                        font-size: 18px
+                        display: inline-flex
+                        align-items: center
+                        font-size: 14px
                         cursor: pointer
                         line-height: 3.33
-                        padding: 10px 20px
+                        padding: 5px 5px
                         cursor: pointer
                         color: #0F0E6A
                         font-weight: 500
-                        border-bottom: 1px solid #d3d3d3
-                        
-                        &:hover
-                            border-bottom: solid 2px #0F0E6A
+                    a
+                        text-decoration: none
+                    .sub-menu
+                        gap: 5px
+                    .menu-text
+                        color: #0F0E6A
 
 
 @media screen and (min-width: 900px) and (max-width: 1200px)
@@ -206,7 +187,7 @@
                             background-color: #0F0E6A
                             color: #FFFFFF
                         button
-                            font-size: 18px
+                            font-size: 14px
                 .items
                     display: flex
                     flex-wrap: wrap
@@ -220,30 +201,30 @@
                         font-weight: 500
                     
 
-                    .menu-list 
-                        position: absolute
-                        top: calc(100%)
-                        left: 0
-                        background-color: #0F0E6A
-                        color: white
-                        opacity: 10
-                        list-style: none
-                        display: none
-                        width: 100%
-                        opacity: 0
-                        transition: opacity 0.3s ease
-                        height: 200px
+                    // .menu-list 
+                    //     position: absolute
+                    //     top: calc(100%)
+                    //     left: 0
+                    //     background-color: #0F0E6A
+                    //     color: white
+                    //     opacity: 10
+                    //     list-style: none
+                    //     display: none
+                    //     width: 100%
+                    //     opacity: 0
+                    //     transition: opacity 0.3s ease
+                    //     height: 200px
                         
-                        .menu-item-content
-                            padding: 5% 10%
+                    //     .menu-item-content
+                    //         padding: 5% 10%
                         
                     
 
-                    .item:hover + .menu-list,
-                    .menu-list:hover 
-                        display: block
-                        opacity: 1
-                        transition-delay: 0s
+                    // .item:hover + .menu-list,
+                    // .menu-list:hover 
+                    //     display: block
+                    //     opacity: 1
+                    //     transition-delay: 0s
             
             .mobileMenu
                 display: none

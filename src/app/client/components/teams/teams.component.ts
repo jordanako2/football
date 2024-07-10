@@ -5,11 +5,12 @@ import { TeamService } from '../../../services/team.service';
 import { CoreService } from '../../../core/core.service';
 import { ApiService } from '../../../services/api.service';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-teams',
   standalone: true,
-  imports: [MatButtonModule, MatCardModule, CommonModule],
+  imports: [MatButtonModule, MatCardModule, CommonModule, RouterLink],
   templateUrl: './teams.component.html',
   styleUrl: './teams.component.sass'
 })
@@ -19,9 +20,12 @@ export class TeamsComponent {
 
   constructor(
     private _teamService: TeamService,
-    private _coreService: CoreService,
     private _configService: ApiService,
   ) {}
+
+  ngOnInit(): void {
+    this.getTeams();
+  }
 
   getTeams() {
     this._teamService.getTeams().subscribe({
@@ -34,9 +38,4 @@ export class TeamsComponent {
       }
     })
   }
-
-  ngOnInit(): void {
-    this.getTeams();
-  }
-
 }

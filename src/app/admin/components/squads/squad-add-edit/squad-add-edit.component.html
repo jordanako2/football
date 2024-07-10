@@ -1,0 +1,79 @@
+<div class="wrapper">
+    <div mat-dialog-title class="title">Squad Information</div>
+    <form [formGroup]="squadForm" (ngSubmit)="onSubmit()">
+        <div mat-dialog-content class="content">
+            <div class="row">
+                <mat-label>Squad Image</mat-label>
+                <div class="img_thumbnail">
+                    <img *ngIf="imagePath" [src]="imagePath" alt="Uploaded Image" width="300px" />
+                    <input type="file" (change)="onFileSelected($event)" />
+                </div>
+                <div class="fields">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>First Name</mat-label>
+                        <input matInput placeholder="First Name" formControlName="first_name">
+                        <mat-error *ngIf="squadForm.get('first_name')?.hasError('required') && squadForm.get('first_name')?.touched">
+                            First Name is required
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Middle Name</mat-label>
+                        <input matInput placeholder="Middle Name" formControlName="middle_name">
+                    </mat-form-field>
+                </div>
+                <div class="fields">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Last Name</mat-label>
+                        <input matInput placeholder="Last Name" formControlName="last_name">
+                        <mat-error *ngIf="squadForm.get('last_name')?.hasError('required') && squadForm.get('last_name')?.touched">
+                            Last Name is required
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Position</mat-label>
+                        <mat-select formControlName="position">
+                            <mat-option [value]="'Goalkeepers'">Goalkeepers</mat-option>
+                            <mat-option [value]="'Defenders'">Defenders</mat-option>
+                            <mat-option [value]="'Midfielders'">Midfielders</mat-option>
+                            <mat-option [value]="'Forwards'">Forwards</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="squadForm.get('position')?.hasError('required') && squadForm.get('position')?.touched">
+                            Position is required
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="fields">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Birth Place</mat-label>
+                        <input matInput placeholder="Birth Place" formControlName="birth_place">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Birth Date</mat-label>
+                        <input matInput [matDatepicker]="picker" placeholder="Birth Date" formControlName="birth_date">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="fields">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Height (cm)</mat-label>
+                        <input matInput placeholder="Height (cm)" formControlName="height">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Status</mat-label>
+                        <mat-select formControlName="stat">
+                            <mat-option [value]="1">Active</mat-option>
+                            <mat-option [value]="0">Inactive</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                
+            </div>
+        </div>
+        <div mat-dialog-actions class="actions">
+            <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+            <button mat-raised-button color="primary" type="submit">{{!teamId ? 'Update' : 'Save'}}</button>
+        </div>
+    </form>
+</div>

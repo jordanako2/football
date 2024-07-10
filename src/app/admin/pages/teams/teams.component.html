@@ -37,9 +37,12 @@
                             <button mat-icon-button color="primary" (click)="openEditForm(row)">
                                 <mat-icon>edit</mat-icon>
                             </button>
-                            <button mat-icon-button color="warn" (click)="deleteTeam(row.id)">
-                                <mat-icon>delete</mat-icon>
+                            <button mat-fab extended color="primary" [routerLink]="'/admin/teams/' + row.id">
+                                <mat-icon>remove_red_eye</mat-icon> View
                             </button>
+                            <!-- <button mat-icon-button color="warn" (click)="deleteTeam(row.id)">
+                                <mat-icon>delete</mat-icon>
+                            </button> -->
                         </td>
                     </ng-container>
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

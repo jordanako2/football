@@ -36,4 +36,8 @@ export class TeamService {
 
     return this._http.post<any>(environment.apiUrl+`/upload/image`, formData);
   }
+
+  getSquadByTeamId(id: number): Observable<any> {
+    return this._http.get(environment.apiUrl + `/football/teams/${id}/squad`);
+  }
 }

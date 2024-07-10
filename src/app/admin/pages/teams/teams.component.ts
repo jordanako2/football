@@ -13,11 +13,12 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CoreService } from '../../../core/core.service';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../../../services/api.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule, MatIconModule, MatSnackBarModule],
+  imports: [RouterLink, CommonModule, MatButtonModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule, MatIconModule, MatSnackBarModule],
   templateUrl: './teams.component.html',
   styleUrl: './teams.component.sass'
 })

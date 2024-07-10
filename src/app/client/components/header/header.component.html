@@ -14,7 +14,7 @@
     </div>
     <div class="mobileContainer">
         <div class="content">
-            <div class="menu-container">
+            <div class="menu-container" >
                 <div *ngIf="!isAuthenticated" class="signin" [routerLink]="'/login'">SIGN IN</div>
                 <div *ngIf="user" class="login">
                     <div *ngIf="user.role !='User'">
@@ -25,7 +25,7 @@
                     <mat-icon class="menuIcon">{{ isMobileMenuOpen ? 'close' : 'menu' }}</mat-icon>
                 </button>
                 <div class="menu" [ngClass]="{'open': isMobileMenuOpen}">
-                    <app-middle-header></app-middle-header>
+                    <app-middle-header ></app-middle-header>
                 </div>
             </div>
         </div>

@@ -67,8 +67,6 @@ export class HeaderComponent {
     this.isMenuOpen[index] = true;
   }
 
-  isMenuVisible = false;
-
   
   // toggleMobileMenu() {
   //   this.isMobileMenuOpen = !this.isMobileMenuOpen;

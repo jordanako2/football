@@ -13,6 +13,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatListItem, MatSelectionList } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
 import { GoogleService } from '../../../services/google.service';
+import { ApiService } from '../../../services/api.service';
 
 @Component({
   selector: 'client-header',
@@ -23,6 +24,7 @@ import { GoogleService } from '../../../services/google.service';
 })
 export class HeaderComponent {
 
+  imagePath: string | null = null;
   showDropdown = false;
   isAuthenticated: boolean = false;
   user: any;
@@ -31,7 +33,8 @@ export class HeaderComponent {
   
   constructor(
     private authService: AuthService,
-    private googleService: GoogleService
+    private googleService: GoogleService,
+    private apiService: ApiService,
   ) {}
 
   toggleDropdown() {
@@ -39,6 +42,7 @@ export class HeaderComponent {
   }
 
   ngOnInit() {
+    this.imagePath = `${this.apiService.URL_LOGO_IMAGE}`;
     this.authService.user$.subscribe(user => {
       this.user = user;
       this.showDropdown = false;

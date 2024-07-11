@@ -34,6 +34,7 @@ export class SquadsComponent {
 
   teamId: number | null = null;
   imagePath: string | null = null;
+  imageLogoPath: string | null = null;
   squadData: Player[] = [];
   playersByPosition: { [key: string]: Player[] } = {};  // Property to hold grouped data
   
@@ -45,6 +46,7 @@ export class SquadsComponent {
 
   ngOnInit(): void {
     this.imagePath = `${this._configService.URL_SQUAD_IMAGE}`;
+    this.imageLogoPath = `${this._configService.URL_LOGO_IMAGE}`;
     this.route.params.subscribe(params => {
       this.teamId = +params['id'];  
       this.getSquadByTeamId(this.teamId);
@@ -54,7 +56,7 @@ export class SquadsComponent {
   getSquadByTeamId(teamId: number) {
     this.teamService.getSquadByTeamId(teamId).subscribe({
       next: (res: any) => {
-        this.squadData = res.squad;
+        this.squadData = res.squad.filter((player: Player) => player.stat === 1);
         this.playersByPosition = this.squadData.reduce((acc: any, player) => {
           if (!acc[player.position]) {
             acc[player.position] = [];
@@ -62,7 +64,6 @@ export class SquadsComponent {
           acc[player.position].push(player);
           return acc;
         }, {});
-        console.log(this.playersByPosition);
       },
       error: (err: any) => {
         console.log(err);

@@ -121,10 +121,10 @@ export class SquadAddEditComponent {
       if (this.data.file_name) {
         this.imagePath =`${this._configService.URL_SQUAD_IMAGE}${this.data.file_name}`;
       } else {
-        this.imagePath = `${this._configService.URL_IMAGE}no_image.jpg`;
+        this.imagePath = `${this._configService.URL_IMAGE}squad_no_image.jpg`;
       }
     } else {
-      this.imagePath = `${this._configService.URL_IMAGE}no_image.jpg`;
+      this.imagePath = `${this._configService.URL_IMAGE}squad_no_image.jpg`;
     }
   }
 

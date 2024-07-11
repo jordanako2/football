@@ -24,7 +24,7 @@ import { SquadService } from '../../../services/squad.service';
   styleUrl: './squads.component.sass'
 })
 export class SquadsComponent {
-displayedColumns: string[] = ['first_name', 'last_name', 'position', 'stat', 'action'];
+  displayedColumns: string[] = ['first_name', 'last_name', 'position', 'stat', 'action'];
   teamId: number | null = null;
   dataSource!: MatTableDataSource<any>;
   imagePath: string | null = null;

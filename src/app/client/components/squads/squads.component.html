@@ -4,12 +4,22 @@
         <div class="player-cards">
             <mat-card *ngFor="let player of playersByPosition[position]" class="player-card">
                 <mat-card-header>
-                    <mat-card-title>{{ player.first_name }} {{ player.last_name }}</mat-card-title>
+                    <!-- <mat-card-title>{{ player.first_name }} {{ player.last_name }}</mat-card-title> -->
                     <!-- <mat-card-subtitle>{{ player.position }}</mat-card-subtitle> -->
                 </mat-card-header>
                 <mat-card-content>
-                    <div class="player-images">
-                        <img [src]="imagePath + '/' + player.file_name" alt="{{ player.first_name }} {{ player.last_name }}" class="player-image">
+                    <div *ngIf="player.file_name; else noImageTemplate" class="player-images">
+                        <img [src]="imagePath + '/' + player.file_name" alt="{{ player.first_name }} {{ player.last_name }}"
+                            class="player-image">
+                    </div>
+                    <ng-template #noImageTemplate>
+                        <div class="no-image">
+                            <img mat-card-image [src]="imageLogoPath + 'logo.png'" alt='logo' width="150px">
+                        </div>
+                    </ng-template>
+                    <div class="player-name">
+                        <h2 class="first-name">{{ player.first_name }}</h2>
+                        <h1 class="last-name">{{ player.last_name }}</h1>
                     </div>
                     <div class="player-info">
                         <p>Birth Place: {{ player.birth_place }}</p>

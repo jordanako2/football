@@ -1,16 +1,18 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ApiService } from '../../../../services/api.service';
 import { TeamService } from '../../../../services/team.service';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { CommonModule } from '@angular/common';
 import { SquadsComponent } from '../../../components/squads/squads.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-team-details',
   standalone: true,
-  imports: [MatTableModule, MatTabsModule, CommonModule, SquadsComponent],
+  imports: [MatTableModule, MatTabsModule, CommonModule, SquadsComponent, MatIconModule, RouterLink, MatButtonModule],
   templateUrl: './team-details.component.html',
   styleUrl: './team-details.component.sass'
 })

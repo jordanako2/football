@@ -30,9 +30,9 @@ export class TeamService {
     return this._http.delete(environment.apiUrl+`/football/teams/${id}`)
   }
 
-  uploadImage(image: File) {
+  uploadImage(image: File, fileName: string) {
     const formData = new FormData();
-    formData.append('image', image);
+    formData.append('image', image, fileName);
 
     return this._http.post<any>(environment.apiUrl+`/upload/image`, formData);
   }

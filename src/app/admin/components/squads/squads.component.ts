@@ -53,7 +53,6 @@ displayedColumns: string[] = ['first_name', 'last_name', 'position', 'stat', 'ac
   getSquadByTeamId(teamId: number) {
     this.teamService.getSquadByTeamId(teamId).subscribe({
       next: (res) => {
-        console.log(res)
         this.dataSource = new MatTableDataSource(res.squad);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;

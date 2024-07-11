@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -43,7 +43,8 @@ export class AddContentComponent {
     private _contService: ContentsService,
     private _configService: ApiService,
     private _coreService: CoreService,
-    private _router: Router
+    private _router: Router,
+    private cdr: ChangeDetectorRef,
   ) {
     this.contentForm = this._fb.group({
       title: '',
@@ -78,7 +79,6 @@ export class AddContentComponent {
         this.contentForm.patchValue(res);
         if (res.file_name) {
           this.imagePath = `${this._configService.URL_CONTENT_IMAGE}${res.file_name}`;
-          console.log(this.imagePath)
         }
       },
       error: (err: any) => {
@@ -87,30 +87,48 @@ export class AddContentComponent {
     });
   }
 
+  generateRandomString(length: number): string {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      result += characters.charAt(randomIndex);
+    }
+    return result;
+  }
+
   onFileSelected(event: any) {
-    this.selectedImage = <File>event.target.files[0];
-    if (this.selectedImage) {
-      this.contentForm.patchValue({
-        file_name: this.selectedImage.name
-      });
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedImage = file;
+      const randomFileName = this.generateRandomString(10) + this.getFileExtension(file.name);
       const reader = new FileReader();
       reader.onload = (e: any) => {
         this.imagePath = e.target.result;
+        this.contentForm.patchValue({
+          file_name: randomFileName
+        });
+        this.cdr.markForCheck(); 
       };
-      reader.readAsDataURL(this.selectedImage);
+      reader.readAsDataURL(file);
     }
+  }
+
+  getFileExtension(fileName: string): string {
+    return fileName.substring(fileName.lastIndexOf('.'));
   }
 
   onUpload() {
     if (this.selectedImage) {
-      this._contService.uploadImage(this.selectedImage).subscribe({
-        next: (res: any) => {
-          this.imagePath = `${this._configService.URL_CONTENT_IMAGE}${res.imagePath}`;
+      const fileName = this.contentForm.get('file_name')?.value;
+      this._contService.uploadImage(this.selectedImage, fileName).subscribe({
+        next: (res) => {
+          this.imagePath = `${this._configService.URL_IMAGE}${res.imagePath}`;
           this.contentForm.patchValue({
-            file_name: res.imagePath
+            file_name: res.imagePath 
           });
         },
-        error: (err: any) => {
+        error: (err) => {
           console.error(err);
         }
       })

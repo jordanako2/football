@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
@@ -27,6 +27,7 @@ export class TeamAddEditComponent implements OnInit {
     private _dialogRef: MatDialogRef<TeamAddEditComponent>,
     private _coreService: CoreService,
     private _configService: ApiService,
+    private cdr: ChangeDetectorRef,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.teamForm = this._fb.group({
@@ -37,25 +38,51 @@ export class TeamAddEditComponent implements OnInit {
     })
   }
 
-  onFileSelected(event: any) {
-    this.selectedImage = <File>event.target.files[0];
-    if (this.selectedImage) {
-      this.teamForm.patchValue({
-        file_name: this.selectedImage.name 
-      });
+  generateRandomString(length: number): string {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      result += characters.charAt(randomIndex);
     }
+    return result;
+  }
+
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedImage = file;
+      const randomFileName = this.generateRandomString(10) + this.getFileExtension(file.name);
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.imagePath = e.target.result;
+        this.teamForm.patchValue({
+          file_name: randomFileName
+        });
+        this.cdr.markForCheck(); 
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  getFileExtension(fileName: string): string {
+    return fileName.substring(fileName.lastIndexOf('.'));
   }
 
   onUpload() {
     if (this.selectedImage) {
-      this._teamService.uploadImage(this.selectedImage).subscribe(res => {
-        this.imagePath = `${this._configService.URL_IMAGE}${res.imagePath}`;
-        this.teamForm.patchValue({
-          file_name: res.imagePath // Update image name in the form
-        });
-      }, err => {
-        console.error(err);
-      });
+      const fileName = this.teamForm.get('file_name')?.value;
+      this._teamService.uploadImage(this.selectedImage, fileName).subscribe({
+        next: (res) => {
+          this.imagePath = `${this._configService.URL_IMAGE}${res.imagePath}`;
+          this.teamForm.patchValue({
+            file_name: res.imagePath 
+          });
+        },
+        error: (err) => {
+          console.error(err);
+        }
+      })
     }
   }
 

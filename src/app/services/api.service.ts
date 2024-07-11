@@ -8,5 +8,6 @@ export class ApiService {
 
   public readonly URL_IMAGE = environment.imageUrl;
   public readonly URL_CONTENT_IMAGE = environment.imageContentUrl;
+  public readonly URL_SQUAD_IMAGE = environment.imageSquadUrl;
 
 }

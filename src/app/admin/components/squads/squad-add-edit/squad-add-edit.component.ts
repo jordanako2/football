@@ -75,7 +75,7 @@ export class SquadAddEditComponent {
         this.squadForm.patchValue({
           file_name: randomFileName
         });
-        this.cdr.markForCheck(); // Manually trigger change detection
+        this.cdr.markForCheck(); 
       };
       reader.readAsDataURL(file);
     }
@@ -87,21 +87,22 @@ export class SquadAddEditComponent {
 
   onUpload() {
     if (this.selectedImage) {
-      this._teamService.uploadImage(this.selectedImage).subscribe(res => {
-        this.imagePath = `${this._configService.URL_IMAGE}${res.imagePath}`;
-        this.squadForm.patchValue({
-          file_name: res.imagePath // Update image name in the form
-        });
-      }, err => {
-        console.error(err);
-      });
+      const fileName = this.squadForm.get('file_name')?.value;
+      this.squadService.uploadImage(this.selectedImage, fileName).subscribe({
+        next: (res) => {
+          this.imagePath = `${this._configService.URL_IMAGE}${res.imagePath}`;
+          this.squadForm.patchValue({
+            file_name: res.imagePath 
+          });
+        },
+        error: (err) => {
+          console.error(err);
+        }
+      })
     }
   }
 
   ngOnInit(): void {
-    if (this.teamId) {
-      console.log(this.teamId)
-    }
     this.squadForm = this._fb.group({
       file_name: '',
       first_name: ['', [Validators.required]],
@@ -115,10 +116,10 @@ export class SquadAddEditComponent {
       team_id: [this.teamId],
     });
 
-    if (this.data) {
+    if (!this.teamId) {
       this.squadForm.patchValue(this.data);
       if (this.data.file_name) {
-        this.imagePath =`${this._configService.URL_IMAGE}${this.data.file_name}`;
+        this.imagePath =`${this._configService.URL_SQUAD_IMAGE}${this.data.file_name}`;
       } else {
         this.imagePath = `${this._configService.URL_IMAGE}no_image.jpg`;
       }

@@ -2,12 +2,18 @@
     <div class="container">
         <ng-container *ngIf="teamData">
             <div class="header">
+                <div class="header-left">
                 <img mat-card-image [src]="imagePath + teamData.file_name" alt={{teamData.file_name}} width="100px">
-                <div class="title">
-                    <h1>{{ teamData.team }}</h1>
-                    <p>{{ teamData.coach }}</p>
-                    <p>{{ teamData.place }}</p>
+                    <div class="title">
+                        <h1>{{ teamData.team }}</h1>
+                        <p>{{ teamData.coach }}</p>
+                        <p>{{ teamData.place }}</p>
+                    </div>
                 </div>
+                <button mat-flat-button extended color="primary" [routerLink]="'/admin/teams'">
+                    <mat-icon>keyboard_arrow_left</mat-icon>
+                    Back
+                </button>
             </div>
         </ng-container>
         <div class="body">

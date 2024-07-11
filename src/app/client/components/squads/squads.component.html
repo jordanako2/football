@@ -1,0 +1,22 @@
+<div class="squad-container">
+    <div *ngFor="let position of getPositions()">
+        <h1>{{ position }}</h1>
+        <div class="player-cards">
+            <mat-card *ngFor="let player of playersByPosition[position]" class="player-card">
+                <mat-card-header>
+                    <mat-card-title>{{ player.first_name }} {{ player.last_name }}</mat-card-title>
+                    <!-- <mat-card-subtitle>{{ player.position }}</mat-card-subtitle> -->
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="player-images">
+                        <img [src]="imagePath + '/' + player.file_name" alt="{{ player.first_name }} {{ player.last_name }}" class="player-image">
+                    </div>
+                    <div class="player-info">
+                        <p>Birth Place: {{ player.birth_place }}</p>
+                        <p>Height: {{ player.height }} cm</p>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

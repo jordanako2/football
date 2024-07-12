@@ -1,0 +1,14 @@
+<div class="wrapper">
+    <div class="container">
+        <div class="body">
+            <mat-form-field appearance="outline">
+                <mat-label>League</mat-label>
+                <mat-select formControlName="status">
+                    <mat-option *ngFor="let league of leagues" [value]="league.id">
+                        {{ league.title }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+</div>

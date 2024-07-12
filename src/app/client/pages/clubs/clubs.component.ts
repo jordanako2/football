@@ -6,11 +6,12 @@ import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { SquadsComponent } from '../../components/squads/squads.component';
+import { FixuresComponent } from '../../components/fixures/fixures.component';
 
 @Component({
   selector: 'app-clubs',
   standalone: true,
-  imports: [CommonModule, MatTableModule, MatTabsModule, SquadsComponent],
+  imports: [CommonModule, MatTableModule, MatTabsModule, SquadsComponent, FixuresComponent],
   templateUrl: './clubs.component.html',
   styleUrl: './clubs.component.sass'
 })

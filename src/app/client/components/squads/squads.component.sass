@@ -8,6 +8,7 @@
         letter-spacing: 3px
     .player-cards
         display: flex
+        flex-wrap: wrap
         gap: 20px
         .player-card
             width: 300px
@@ -39,3 +40,12 @@
                 p
                     font-size: 16px
                     font-weight: 300
+
+@media (max-width: 600px) 
+    .squad-container
+        .player-cards
+            display: flex
+            flex-wrap: wrap
+            .player-card
+                width: 100%
+        

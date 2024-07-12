@@ -21,7 +21,7 @@ export interface PeriodicElement {
     standalone: true,
     templateUrl: './left-content.component.html',
     styleUrl: './left-content.component.sass',
-    imports: [MatCardModule, MatButtonModule, MatIconModule, MatTableModule, CommonModule, MatchesComponent, LeaguesComponent]
+    imports: [MatCardModule, MatButtonModule, MatIconModule, MatTableModule, CommonModule, MatchesComponent, LeaguesComponent, ]
 })
 
 export class LeftContentComponent {

@@ -29,7 +29,12 @@ export class HeaderComponent {
   isAuthenticated: boolean = false;
   user: any;
   isMenuOpen: boolean[] = [false, false]; // Add more elements if needed
-  // isMobileMenuOpen = false;
+  isSubmenuOpen: any  = {
+    leagues: false,
+    footballcommunity: false,
+    about: false
+  };
+  isMobileMenuOpen = false;
   
   constructor(
     private authService: AuthService,
@@ -37,6 +42,16 @@ export class HeaderComponent {
     private apiService: ApiService,
   ) {}
 
+  toggleSubmenu(menuName: string) {
+    Object.keys(this.isSubmenuOpen).forEach(key => {
+      if (key !== menuName) {
+        this.isSubmenuOpen[key] = false;
+      }
+    });
+    this.isSubmenuOpen[menuName] = !this.isSubmenuOpen[menuName];
+  
+  }
+  
   toggleDropdown() {
     this.showDropdown = !this.showDropdown;
   }
@@ -70,13 +85,16 @@ export class HeaderComponent {
   toggleMenu(index: number) {
     this.isMenuOpen[index] = true;
   }
+  closeMenu(){
+    this.isMobileMenuOpen = false;
+  }
 
   
   // toggleMobileMenu() {
   //   this.isMobileMenuOpen = !this.isMobileMenuOpen;
   // }
 
-  isMobileMenuOpen = false;
+  
 
   toggleMobileMenu() {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;

@@ -6,8 +6,8 @@
                     <img mat-card-image [src]="imagePath + data.file_name" alt={{data.file_name}} width="50px">
                 </div>
                 <div class="header-content">
-                    <h2 class="title">{{ data.team }}</h2>
-                    <p>Coach: {{ data.coach }} | {{ data.place }}</p>
+                    <h2 class="title">About {{ data.team }}</h2>
+                    <!-- <p>Coach: {{ data.coach }} | {{ data.place }}</p> -->
                 </div>
             </div>
             <div class="content">
@@ -20,7 +20,7 @@
                             <app-squads></app-squads>
                         </div>
                     </mat-tab>
-                    <mat-tab label="Fixures">
+                    <mat-tab label="Fixtures">
                         <div class="body">
                             <app-fixures></app-fixures>
                         </div>

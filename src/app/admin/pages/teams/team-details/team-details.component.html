@@ -18,6 +18,11 @@
         </ng-container>
         <div class="body">
             <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="left" [backgroundColor]="'warn'">
+                <mat-tab label="About">
+                    <div class="content">
+                        <app-overview></app-overview>
+                    </div>
+                </mat-tab>
                 <mat-tab label="Squads">
                     <div class="content">
                         <app-squads></app-squads>

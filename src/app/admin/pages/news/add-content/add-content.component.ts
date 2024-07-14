@@ -135,8 +135,7 @@ export class AddContentComponent {
     }
   }
 
-  onSubmit() 
-  {
+  onSubmit() {
     if (this.contentForm.valid) {
       this.contentForm.markAllAsTouched();
       if (this.contentId) {

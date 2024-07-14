@@ -1,0 +1,32 @@
+<div class="wrapper">
+    <div class="container">
+        <div class="body">
+            <form [formGroup]="contentForm" (ngSubmit)="onSubmit()">
+                <div class="content">
+                    <div class="row">
+                        <mat-form-field appearance="outline" class="select-content">
+                            <mat-label>Status</mat-label>
+                            <mat-select formControlName="status">
+                                <mat-option value="Draft">Draft</mat-option>
+                                <mat-option value="Published">Published</mat-option>
+                            </mat-select>
+                            <mat-error
+                                *ngIf="contentForm.get('status')?.hasError('required') && contentForm.get('status')?.touched">
+                                About status is required
+                            </mat-error>
+                        </mat-form-field>
+                        <div class="news-content">
+                            <quill-editor [modules]="modules" [style]="{ height: '300px' , width: '100%'}"
+                                [placeholder]="'Enter full content here...'" formControlName="desktop_content"></quill-editor>
+                        </div>
+                        <!-- <div class="news-content">
+                            <quill-editor [modules]="mobile_modules" [style]="{ height: '300px' , width: '40%'}"
+                                [placeholder]="'Enter full content here...'" formControlName="mobile_content"></quill-editor>
+                        </div> -->
+                    </div>
+                </div>
+                <button mat-raised-button color="primary" type="submit">{{ aboutData ? 'Update' : 'Save' }}</button>
+            </form>
+        </div>
+    </div>
+</div>

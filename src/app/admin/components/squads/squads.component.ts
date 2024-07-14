@@ -90,16 +90,18 @@ export class SquadsComponent {
     }
   }
 
-  deleteTeam(id: number) {
-    // this._teamService.deleteTeam(id).subscribe({
-    //   next: (res) => {
-    //     this._coreService.openSnackBar('Team deleted successfully', 'DONE')
-    //     this.getTeams();
-    //   },
-    //   error: (err) => {
-    //     console.log(err);
-    //   }
-    // })
+  deleteSquad(id: number) {
+    this.squadService.deleteSquad(id).subscribe({
+      next: (res) => {
+        if (this.teamId) {
+          this._coreService.openSnackBar('Team deleted successfully', 'DONE')
+          this.getSquadByTeamId(this.teamId);
+        }
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
   }
 
   openEditForm(data: any) {

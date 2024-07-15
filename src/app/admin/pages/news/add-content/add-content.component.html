@@ -27,9 +27,10 @@
                 Content status is required
               </mat-error>
             </mat-form-field>
+
             <mat-form-field appearance="outline">
               <mat-label>Blocks</mat-label>
-              <mat-select formControlName="block">
+              <mat-select formControlName="block" (selectionChange)="onBlockChange($event.value)">
                 <mat-option value="News">News</mat-option>
                 <mat-option value="Feature">Feature</mat-option>
                 <mat-option value="Club">Club</mat-option>
@@ -39,12 +40,23 @@
               </mat-error>
             </mat-form-field>
 
+            <ng-container *ngIf="showTeamSelect">
+              <mat-form-field appearance="outline">
+                <mat-label>Team</mat-label>
+                <mat-select formControlName="team_id">
+                  <mat-option *ngFor="let team of teamData" [value]="team.id">{{ team.team }}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="contentForm.get('team_id')?.hasError('required') && contentForm.get('team_id')?.touched">
+                  Team is required
+                </mat-error>
+              </mat-form-field>
+            </ng-container>            
+            
             <mat-label>Thumbnail Image</mat-label>
             <div class="img_thumbnail">
               <img *ngIf="imagePath" [src]="imagePath" alt="Uploaded Image" width="300px" />
               <input type="file" (change)="onFileSelected($event)" />
             </div>
-
 
             <mat-form-field appearance="outline">
               <mat-label>Title</mat-label>
@@ -69,9 +81,7 @@
 
             <mat-form-field appearance="outline">
               <mat-label>Description</mat-label>
-              <textarea matInput formControlName="description">
-
-              </textarea>
+              <textarea matInput formControlName="description"></textarea>
               <mat-error
                 *ngIf="
                   contentForm.get('description')?.hasError('required') &&
@@ -86,17 +96,16 @@
                   contentForm.get('description')?.touched
                 "
               >
-                title must be at least 6 characters long
+                Description must be at least 6 characters long
               </mat-error>
             </mat-form-field>
 
             <div class="news-content">
               <quill-editor
                 [modules]="modules"
-                [style]="{ height: '300px' , width: '100%'}"
+                [style]="{ height: '300px', width: '100%' }"
                 [placeholder]="'Enter full content here...'"
                 formControlName="content"
-                
               ></quill-editor>
             </div>
           </div>

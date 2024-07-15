@@ -3,5 +3,18 @@
         <div class="about">
             <div [innerHTML]="content"></div>
         </div>
+        <div class="content-container">
+            <div class="content" *ngFor="let content of contentData">
+                <div class="image">
+                    <img *ngIf="imagePath" [src]="imagePath + content.file_name" alt="Uploaded Image" width="300px">
+                </div>
+                <div class="club-news">
+
+                </div>
+                <div class="title">
+
+                </div>
+            </div>
+        </div>
     </div>
 </div>

@@ -9,11 +9,12 @@ import { SquadsComponent } from '../../../components/squads/squads.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { OverviewComponent } from '../../../components/overview/overview.component';
+import { GalleryComponent } from '../../../components/gallery/gallery.component';
 
 @Component({
   selector: 'app-team-details',
   standalone: true,
-  imports: [MatTableModule, MatTabsModule, CommonModule, SquadsComponent, MatIconModule, RouterLink, MatButtonModule, OverviewComponent],
+  imports: [MatTableModule, MatTabsModule, CommonModule, SquadsComponent, MatIconModule, RouterLink, MatButtonModule, OverviewComponent, GalleryComponent],
   templateUrl: './team-details.component.html',
   styleUrl: './team-details.component.sass'
 })

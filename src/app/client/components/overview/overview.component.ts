@@ -9,6 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ContentsService } from '../../../services/contents.service';
 import { ApiService } from '../../../services/api.service';
+import { TeamService } from '../../../services/team.service';
+import { GalleryService } from '../../../services/gallery.service';
 
 @Component({
   selector: 'app-overview',
@@ -24,22 +26,32 @@ export class OverviewComponent {
   contentData: any[] | null = null;
   content: SafeHtml  | null = null;
   imagePath: string | null = null;
+  imageGalleryPath: string | null = null;
+  imageLogoPath: string | null = null;
+  galleryData: any[] | null = null;
+  teamLogo: string | null = null;
 
   constructor (
     private route: ActivatedRoute,
     private teamAboutService: TeamAboutService,
     private contentService: ContentsService,
+    private galleryService: GalleryService,
+    private teamService: TeamService,
     private _configService: ApiService,
     private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit(): void {
     this.imagePath = `${this._configService.URL_CONTENT_IMAGE}`;
+    this.imageGalleryPath = `${this._configService.URL_IMAGE}`;
+    this.imageLogoPath = `${this._configService.URL_IMAGE}`;
     this.route.params.subscribe(params => {
       this.teamId = +params['id'];
       if (this.teamId) {
         this.getTeamAboutByTeamId(this.teamId);
         this.getContentByTeamId(this.teamId);
+        this.getTeamById(this.teamId);
+        this.getGalleryByTeamId(this.teamId);
       }
     });
   }
@@ -60,6 +72,28 @@ export class OverviewComponent {
     this.contentService.getContentByTeamId(teamId).subscribe({
       next: (res) => {
         this.contentData = res
+      },
+      error: (err) => {
+        console.log(err)
+      }
+    })
+  }
+
+  getTeamById(teamId: number) {
+    this.teamService.getTeamById(teamId).subscribe({
+      next: (res) => {
+        this.teamLogo = res.file_name
+      },
+      error: (err) => {
+        console.log(err)
+      }
+    })
+  }
+
+  getGalleryByTeamId(teamId: number) {
+    this.galleryService.getGalleryByTeamId(teamId).subscribe({
+      next: (res) => {
+        this.galleryData = res
       },
       error: (err) => {
         console.log(err)

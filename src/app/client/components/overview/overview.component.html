@@ -26,10 +26,11 @@
             </div>
         </div>
         <h1>Gallery</h1>
-        <div class="gallery-container">
-            <div class="gallery-content" *ngFor="let image of galleryData">
-                <img mat-card-image [src]="imageGalleryPath + 'gallery/' + image.file_name" alt={{image.file_name}}>
+        <div class="gallery-container" *ngFor="let imageGroup of getImageGroups()">
+            <div class="gallery-content" *ngFor="let image of imageGroup">
+                <img mat-card-image [src]="imageGalleryPath + 'gallery/' + image.file_name" alt="{{image.file_name}}">
             </div> 
         </div>
+        
     </div>
 </div>

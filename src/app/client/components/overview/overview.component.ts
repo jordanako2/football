@@ -56,6 +56,17 @@ export class OverviewComponent {
     });
   }
 
+  getImageGroups(): any[][] {
+    const chunkSize = 15;
+    const result = [];
+    if (this.galleryData) {
+      for (let i = 0; i < this.galleryData.length; i += chunkSize) {
+          result.push(this.galleryData.slice(i, i + chunkSize));
+      }
+    }
+    return result;
+  }
+
   getTeamAboutByTeamId(teamId: number) {
     this.teamAboutService.getTeamAboutByTeamId(teamId).subscribe({
       next: (res) => {

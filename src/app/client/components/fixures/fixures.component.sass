@@ -1,0 +1,92 @@
+.wrapper
+    display: flex
+    justify-content: center
+    .container
+        width: 80%
+        .fixure-content
+            color: #46001A
+            margin-top: 20px
+            h2
+                font-weight: 600
+            .match-contents
+                width: 100%
+                display: flex
+                align-items: baseline
+                .match-team
+                    display: flex
+                    align-items: center
+                    justify-content: center  
+                    width: 100%
+                    max-width: 600px 
+                    gap: 10px
+                    .team 
+                        flex: 1  
+                        text-align: center 
+                        font-size: 20px
+                        font-weight: 300
+                        &:first-child 
+                            margin-right: 10px 
+                        
+                        &:last-child 
+                            margin-left: 10px 
+                        
+                    
+                    .score 
+                        display: flex
+                        flex-direction: row
+                        align-items: center 
+                        justify-content: center  
+                        border: 1px solid #46001A
+                        padding: 10px
+                        border-radius: 5px
+                        gap: 10px 
+                        h2 
+                            margin: 0  
+                            line-height: 1 
+                .location
+                    margin-top: 10px 
+                    font-size: 14px
+                    font-weight: 600
+                    margin-left: 20px
+
+@media (max-width: 600px) 
+    .wrapper
+        .container
+            width: 100%
+            .fixure-content
+                .match-contents
+                    width: 100%
+                    display: flex
+                    flex-direction: column
+                    .match-team
+                        display: flex
+                        gap: 5px
+                        .team 
+                            flex: 1  
+                            font-size: 16px
+                            &:first-child 
+                                margin-right: 0 
+                                text-align: left
+                            
+                            &:last-child 
+                                margin-left: 0
+                                text-align: left
+                            
+                        
+                        .score 
+                            display: flex
+                            flex-direction: row
+                            align-items: center 
+                            justify-content: center  
+                            border: 1px solid #46001A
+                            padding: 10px
+                            border-radius: 5px
+                            gap: 10px 
+                            h2 
+                                margin: 0  
+                                line-height: 1 
+                    .location
+                        margin-top: 10px 
+                        font-size: 14px
+                        font-weight: 600
+                        margin-left: 20px

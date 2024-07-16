@@ -37,4 +37,8 @@ export class ContentsService {
   deleteContent(id: number): Observable<any> {
     return this._http.delete(environment.apiUrl+`/football/content/${id}`)
   }
+
+  getContentByTeamId(teamId: number): Observable<any> {
+    return this._http.get(environment.apiUrl + `/football/content/website/clubs/${teamId}`);
+  }
 }

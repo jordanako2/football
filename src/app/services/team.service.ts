@@ -40,4 +40,8 @@ export class TeamService {
   getSquadByTeamId(id: number): Observable<any> {
     return this._http.get(environment.apiUrl + `/football/teams/${id}/squad`);
   }
+
+  getTeamFixures(leagueId: number, teamId: number): Observable<any> {
+    return this._http.get(environment.apiUrl + `/football/matches/league/${leagueId}/team/${teamId}/scores`);
+  }
 }

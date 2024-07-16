@@ -1,14 +1,40 @@
 <div class="wrapper">
     <div class="container">
         <div class="body">
-            <mat-form-field appearance="outline">
-                <mat-label>League</mat-label>
-                <mat-select formControlName="status">
-                    <mat-option *ngFor="let league of leagues" [value]="league.id">
-                        {{ league.title }}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
+            <form [formGroup]="form">
+                <mat-form-field>
+                    <mat-label>League</mat-label>
+                    <mat-select [(value)]="initialLeagueId" (selectionChange)="onLeagueChange($event.value)">
+                        @for (option of leagues; track option) {
+                        <mat-option [value]="option.id">{{ option.title }}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+            </form>
+            <div *ngIf="fixures.length > 0; else noFixturesTemplate">
+                <div class="fixure-content" *ngFor="let match of fixures">
+                    <h2>{{ match.match_date | date:'EEEE dd MMMM YYYY' }}</h2>
+                    <div class="match-contents">
+                        <div class="match-team">
+                            <div class="team">{{ match.scores[0].team.team }}</div>
+                            <img *ngIf="match.scores[0].team.file_name" [src]="imagePath + match.scores[0].team.file_name"
+                                alt={{match.scores[0].team.file_name}} width="30px">
+                            <div class="score">
+                                <h2>{{ match.scores[0].points }}</h2> : <h2>{{ match.scores[1].points }}</h2>
+                            </div>
+                            <img *ngIf="match.scores[1].team.file_name" [src]="imagePath + match.scores[1].team.file_name"
+                                alt={{match.scores[1].team.file_name}} width="30px">
+                            <div class="team">{{ match.scores[1].team.team }}</div>
+                        </div>
+                        <div class="location">
+                            {{ match.location }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ng-template #noFixturesTemplate>
+                <h2>No fixtures available for this league.</h2>
+            </ng-template>
         </div>
     </div>
 </div>

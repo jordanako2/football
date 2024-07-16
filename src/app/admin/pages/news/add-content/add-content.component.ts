@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, FormsModule, AbstractControl } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -11,6 +11,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CoreService } from '../../../../core/core.service';
 import { ContentsService } from '../../../../services/contents.service';
 import { ApiService } from '../../../../services/api.service';
+import { TeamService } from '../../../../services/team.service';
 
 @Component({
   selector: 'app-add-content',
@@ -34,8 +35,10 @@ import { ApiService } from '../../../../services/api.service';
 export class AddContentComponent {
   selectedImage: File | null = null;
   imagePath: string | null = null;
+  teamData: any[] | null = null;
   contentForm: FormGroup;
   contentId: number | null = null;
+  showTeamSelect = false;
 
   constructor(
     private _fb: FormBuilder,
@@ -44,33 +47,55 @@ export class AddContentComponent {
     private _configService: ApiService,
     private _coreService: CoreService,
     private _router: Router,
+    private teamService: TeamService,
     private cdr: ChangeDetectorRef,
   ) {
     this.contentForm = this._fb.group({
-      title: '',
-      description:'',
-      content: '',
-      status: '',
-      block: '',
-      file_name: '',
-    })
-  }
-
-  ngOnInit(): void {
-    this.contentForm = this._fb.group({
-      file_name: '',
       title: ['', [Validators.required, Validators.minLength(3)]],
       description: ['', [Validators.required, Validators.minLength(3)]],
       content: '',
+      team_id: [0, this.teamIdValidator()],
       status: ['', [Validators.required, Validators.minLength(3)]],
-      block: ['', [Validators.required, Validators.minLength(3)]]
+      block: ['', [Validators.required, Validators.minLength(3)]],
+      file_name: '',
     });
+  }
+
+  ngOnInit(): void {
+    this.getTeams()
     this.route.params.subscribe(params => {
       this.contentId = +params['id'];
       if (this.contentId) {
         this.loadContent(this.contentId);
       }
     });
+  }
+
+  getTeams() {
+    this.teamService.getTeams().subscribe({
+      next: (res) => {
+        this.teamData = res;
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+  }
+
+  onBlockChange(block: string) {
+    this.showTeamSelect = block === 'Club';
+    if (!this.showTeamSelect) {
+      this.contentForm.get('team_id')?.setValue(0);
+    }
+  }
+
+  teamIdValidator() {
+    return (control: AbstractControl) => {
+      if (this.showTeamSelect && !control.value) {
+        return { required: true };
+      }
+      return null;
+    };
   }
 
   loadContent(contentId: number) {
@@ -80,6 +105,8 @@ export class AddContentComponent {
         if (res.file_name) {
           this.imagePath = `${this._configService.URL_CONTENT_IMAGE}${res.file_name}`;
         }
+        this.showTeamSelect = res.block === 'Club';
+        this.contentForm.get('team_id')?.updateValueAndValidity();
       },
       error: (err: any) => {
         console.error(err);
@@ -135,8 +162,7 @@ export class AddContentComponent {
     }
   }
 
-  onSubmit() 
-  {
+  onSubmit() {
     if (this.contentForm.valid) {
       this.contentForm.markAllAsTouched();
       if (this.contentId) {

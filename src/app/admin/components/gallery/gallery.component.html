@@ -1,0 +1,22 @@
+<div class="wrapper">
+    <div class="container">
+        <div class="header">
+            <input type="file" (change)="onFilesSelected($event)" multiple />
+            <button mat-flat-button color="primary" (click)="uploadFiles()" [disabled]="isLoading">
+                Upload
+                <span *ngIf="isLoading" class="spinner"></span> <!-- Loading spinner -->
+            </button>
+        </div>
+        <div class="body">
+            <div *ngFor="let image of galleryTeamData" class="images">
+                <img *ngIf="imagePath" [src]="imagePath + image.file_name" alt="Gallery Image" />
+                <div class="delete-container">
+                    <button mat-icon-button color="warn" (click)="deleteContent(image.id)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </div>
+            
+        </div>  
+    </div>
+</div>

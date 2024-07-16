@@ -1,0 +1,36 @@
+<div class="wrapper">
+    <div class="container">
+        <h1>About</h1>
+        <div class="about">
+            <div [innerHTML]="content"></div>
+        </div>
+        <h1>Latest Club News</h1>
+        <div class="content-container">
+            <div class="content" *ngFor="let content of contentData | slice:0:4">
+                <div class="image" *ngIf="content.file_name; else noImage">
+                    <img *ngIf="imagePath" [src]="imagePath + content.file_name" alt="Club News">
+                </div>
+                <ng-template #noImage>
+                    <div class="image-logo">
+                        <img *ngIf="imageLogoPath" [src]="imageLogoPath + teamLogo" alt="Team Logo">
+                    </div>
+                </ng-template>
+                <div class="club-content">
+                    <div class="club-news">
+                        Club News
+                    </div>
+                    <div class="title">
+                        {{ content.title }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h1>Gallery</h1>
+        <div class="gallery-container" *ngFor="let imageGroup of getImageGroups()">
+            <div class="gallery-content" *ngFor="let image of imageGroup">
+                <img mat-card-image [src]="imageGalleryPath + 'gallery/' + image.file_name" alt="{{image.file_name}}">
+            </div> 
+        </div>
+        
+    </div>
+</div>

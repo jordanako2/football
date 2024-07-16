@@ -43,7 +43,7 @@ export class NewsDetailsComponent{
         this.title = response.title
         this.imagePath =`${this._configService.URL_CONTENT_IMAGE}/${response.file_name}`;
         this.content = response.content
-        
+        console.log(this.content)
       },
       (error) =>{
         console.error('Error fetching news:', error)

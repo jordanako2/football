@@ -1,22 +1,51 @@
 <div class="wrapper">
-    
-  <div class="container">
-      <div class="header">
-          <h1>News</h1>
-      </div>
-      <div class="body" >
-        <mat-card class="card" *ngFor="let item of dataSource" [routerLink]="'/news/' + item.id">
-          <mat-card-content class="card-content">
-              <img mat-card-image [src]="imagePath + item.file_name" alt={{item.file_name}} width="500px">
-              <div class="card-body">
-                  <mat-card-title class="title"><h1>{{ item.title }}</h1></mat-card-title>
-                  <mat-card-subtitle class="subtitle"><h2>{{ item.description }}</h2></mat-card-subtitle>
-              </div>
-          </mat-card-content>
-      </mat-card>
-           
-          
-      </div>
-      
-</div>
+
+    <div class="container">
+        <div class="desktop">
+            <div class="header">
+                <h1>News</h1>
+            </div>
+            <div class="body">
+                <mat-card class="card" *ngFor="let item of dataSource" [routerLink]="'/news/' + item.id">
+                    <mat-card-content class="card-content">
+                        <img mat-card-image [src]="imagePath + item.file_name" alt={{item.file_name}} width="500px">
+                        <div class="card-body">
+                            <mat-card-title class="title">
+                                <h1>{{ item.title }}</h1>
+                            </mat-card-title>
+                            <mat-card-subtitle class="subtitle">
+                                <h2>{{ item.description }}</h2>
+                            </mat-card-subtitle>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+
+
+            </div>
+        </div>
+
+        <div class="mobile-device">
+            <div class="header">
+                <h1>News</h1>
+            </div>
+            <div class="body">
+                <mat-card class="card" *ngFor="let item of dataSource" [routerLink]="'/news/' + item.id">
+                    <mat-card-content class="card-content">
+                        <img mat-card-image [src]="imagePath + item.file_name" alt={{item.file_name}} width="100%">
+                        <div class="card-body">
+                            <mat-card-title class="title">
+                                <h1>{{ item.title }}</h1>
+                            </mat-card-title>
+                            <mat-card-subtitle class="subtitle">
+                                <h2>{{ item.description }}</h2>
+                            </mat-card-subtitle>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+
+
+            </div>
+        </div>
+
+    </div>
 </div>

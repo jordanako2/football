@@ -42,8 +42,7 @@ export class NewsDetailsComponent{
       (response) => {
         this.title = response.title
         this.imagePath =`${this._configService.URL_CONTENT_IMAGE}/${response.file_name}`;
-        this.content = response.content
-        console.log(this.content)
+        this.content = this.sanitizer.bypassSecurityTrustHtml(response.content);
       },
       (error) =>{
         console.error('Error fetching news:', error)
@@ -51,8 +50,5 @@ export class NewsDetailsComponent{
     )
   };
 
-  sanitizeHtml(html: string): void {
-    this.content = this.sanitizer.bypassSecurityTrustHtml(html);
-  }
 
 }

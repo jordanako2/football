@@ -5,7 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { QuillModule } from 'ngx-quill';
 import { TeamAboutService } from '../../../services/team-about.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ContentsService } from '../../../services/contents.service';
 import { ApiService } from '../../../services/api.service';
@@ -15,7 +15,7 @@ import { GalleryService } from '../../../services/gallery.service';
 @Component({
   selector: 'app-overview',
   standalone: true,
-  imports: [QuillModule, CommonModule, MatSelectModule, MatFormFieldModule, MatButtonModule],
+  imports: [QuillModule, CommonModule, MatSelectModule, MatFormFieldModule, MatButtonModule, RouterLink],
   templateUrl: './overview.component.html',
   styleUrl: './overview.component.sass'
 })
@@ -54,17 +54,6 @@ export class OverviewComponent {
         this.getGalleryByTeamId(this.teamId);
       }
     });
-  }
-
-  getImageGroups(): any[][] {
-    const chunkSize = 15;
-    const result = [];
-    if (this.galleryData) {
-      for (let i = 0; i < this.galleryData.length; i += chunkSize) {
-          result.push(this.galleryData.slice(i, i + chunkSize));
-      }
-    }
-    return result;
   }
 
   getTeamAboutByTeamId(teamId: number) {

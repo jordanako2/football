@@ -38,7 +38,7 @@ import { Router, RouterLink } from '@angular/router';
   styleUrl: './news.component.sass'
 })
 export class NewsComponent implements OnInit{
-  displayedColumns: string[] = ['block', 'title', 'created_on', 'status', 'action'];
+  displayedColumns: string[] = ['block', 'title', 'team', 'created_on', 'status', 'action'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

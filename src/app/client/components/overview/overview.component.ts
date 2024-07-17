@@ -71,7 +71,7 @@ export class OverviewComponent {
   getContentByTeamId(teamId: number) {
     this.contentService.getContentByTeamId(teamId).subscribe({
       next: (res) => {
-        this.contentData = res
+        this.contentData = res.filter((content: any) => content.status === 'Published');
       },
       error: (err) => {
         console.log(err)

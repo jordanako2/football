@@ -44,7 +44,6 @@ export class TeamScoreComponent {
 
   constructor(
     private _fb: FormBuilder, 
-    private matchService: MatchService, 
     private _dialogRef: MatDialogRef<TeamScoreComponent>,
     private _coreService: CoreService,
     private _configService: ApiService,

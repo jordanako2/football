@@ -64,14 +64,14 @@ export class LeagueDetailsComponent {
   }
 
   getLeagueById(leagueId: number) {
-    this.leagueService.getLeagueById(leagueId).subscribe(
-      (response) => {
-        this.title = response.title;
+    this.leagueService.getLeagueById(leagueId).subscribe({
+      next: (res) => {
+        this.title = res.title;
       },
-      (error) => {
-        console.error('Error fetching team:', error);
+      error: (err) => {
+        console.error('Error fetching team:', err);
       }
-    );
+    });
   }
 
   getLeagueTeams(leagueId: number) {
@@ -81,9 +81,7 @@ export class LeagueDetailsComponent {
         const inactiveTeams = res.filter((team: PeriodicElement) => team.stat === 0);
 
         activeTeams.sort((a: PeriodicElement, b: PeriodicElement) => b.points - a.points);
-
         const sortedTeams = [...activeTeams, ...inactiveTeams];
-
         sortedTeams.forEach((element: PeriodicElement, index: number) => {
           element.position = index + 1;
         });
@@ -120,14 +118,14 @@ export class LeagueDetailsComponent {
     });
 
     dialogRef.afterClosed().subscribe({
-        next: (val) => {
-          if (val && this.leagueId !== null) {
-            this.getLeagueTeams(this.leagueId);
-          }
-        },
-        error: (err) => {
-          console.log(err);
+      next: (val) => {
+        if (val && this.leagueId !== null) {
+          this.getLeagueTeams(this.leagueId);
         }
-      })
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
   }
 }

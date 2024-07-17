@@ -3,52 +3,39 @@
         <div class="menu">
             <div class="items">
   
-                
-  
-                <div class="item" [matMenuTriggerFor]="leagues" [routerLink]="'/'"><span>LEAGUES</span>
-                    <i class="material-icons">arrow_drop_down</i>
-                </div>
-                <mat-menu #leagues="matMenu" xPosition="after">
-                    <button mat-menu-item style="color: #0F0E6A !important ;font-size: 12px ;" [routerLink]="'/'">HOME</button>
-                    <button mat-menu-item style="color: #0F0E6A !important ;font-size: 12px ;" [routerLink]="'/news'">NEWS</button>
-                    <button mat-menu-item style="color: #0F0E6A !important ;font-size: 12px ;" >FIXTURES</button>
-                    <button mat-menu-item style="color: #0F0E6A !important ;font-size: 12px ;" >RESULTS</button>
-                    <button mat-menu-item style="color: #0F0E6A !important ;font-size: 12px ;" >STATS</button>
-                </mat-menu>
-  
-                <div class="item" [routerLink]="'/clubs'"><span>CLUBS</span></div>
-  
-                <div class="item" ><span>FIXTURES</span></div>
-  
-                
-                <div class="item" [matMenuTriggerFor]="footballcommunity"><span>FOOTBALL & COMMUNITY</span> 
-                    <i class="material-icons">arrow_drop_down</i> </div>
-  
-                    <mat-menu #footballcommunity="matMenu" xPosition="after">
-                        <button mat-menu-item style="color: #0F0E6A !important ;font-size: 12px" >WIDER FOOTBALL</button>
-                        <button mat-menu-item style="color: #0F0E6A !important ;font-size: 12px" >COMMUNITY</button>
-                    </mat-menu>
-  
-  
-                <div class="item" [matMenuTriggerFor]="about"><span>ABOUT US</span> 
-                    <i class="material-icons">arrow_drop_down</i> </div>
-  
-                <mat-menu #about="matMenu" xPosition="after">
-  
-                    <button mat-menu-item style="color: #0F0E6A !important ;font-size: 12px !important;">WHO ARE WE</button>
-                    <button mat-menu-item style="color: #0F0E6A !important ;font-size: 12px !important">WHAT DO WE DO</button>
-                    <button mat-menu-item style="color: #0F0E6A !important ;font-size: 12px !important">PARTNERS</button>
-                </mat-menu>
                 <ul>
-                    <li><a>Leagues</a>
+                    <li>
+                        <a>LEAGUES 
+                            <i class="material-icons">arrow_drop_down</i></a>
                     <ul class="dropdown">
-                        <li><a>Home</a></li>
-                        <li><a>Fixtures</a></li>
-                        <li><a>Results</a></li>
-                        <li><a>Stats</a></li>
+                        <li><a [routerLink]="'/'">HOME</a></li>
+                        <li><a [routerLink]="'/news'">NEWS</a></li>
+                        <li><a>FIXTURES</a></li>
+                        <li><a>RESULTS</a></li>
+                        <li><a>STATS</a></li>
                     </ul>
                 </li>
-                <li><a>Fixtures</a></li>
+                    <li><a [routerLink]="'/clubs'">CLUBS</a></li>
+                    <li><a>FIXTURES</a></li>
+                    <li><a>FOOTBALL & COMMUNITY
+                        <i class="material-icons">arrow_drop_down</i> </a>
+                        <ul class="dropdown">
+                            <li><a>WIDER FOOTBALL</a></li>
+                            <li><a>COMMUNITY</a></li>
+                           
+                        </ul>
+                    </li>
+
+                    <li><a>ABOUT US
+                        <i class="material-icons">arrow_drop_down</i></a>
+                        <ul class="dropdown">
+                            <li><a>WHO ARE WE</a></li>
+                            <li><a>WHAT DO WE DO</a></li>
+                            <li><a>PARTNERS</a></li>
+                        </ul>
+
+                        
+                    </li>
                 </ul>
             </div>
             

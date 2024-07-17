@@ -35,6 +35,10 @@ export class NewsService {
     return this._http.get<Features[]>(environment.apiUrl+`/football/content/website/news`);
   }
 
+  getClubContents(): Observable<any> {
+    return this._http.get<Features[]>(environment.apiUrl+`/football/content/website/clubs`);
+  }
+
   deleteContent(id: number): Observable<any> {
     return this._http.delete(environment.apiUrl+`/football/content//website/news${id}`)
   }

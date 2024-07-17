@@ -1,12 +1,17 @@
 <div class="wrapper">
     <div class="container">
         <h1>About</h1>
-        <div class="about">
+        <div class="about" *ngIf="content; else noContent">
             <div [innerHTML]="content"></div>
         </div>
+        <ng-template #noContent>
+            <div class="about">
+                No about posted yet.
+            </div>
+        </ng-template>
         <h1>Latest Club News</h1>
-        <div class="content-container">
-            <div class="content" *ngFor="let content of contentData | slice:0:4">
+        <div class="content-container" *ngIf="contentData; else noClubNews">
+            <div class="content" *ngFor="let content of contentData | slice:0:4" [routerLink]="'/news/' + content.id">
                 <div class="image" *ngIf="content.file_name; else noImage">
                     <img *ngIf="imagePath" [src]="imagePath + content.file_name" alt="Club News">
                 </div>
@@ -25,12 +30,22 @@
                 </div>
             </div>
         </div>
+        <ng-template #noClubNews>
+            <div class="content-container">
+                No club news posted yet.
+            </div>
+        </ng-template>
         <h1>Gallery</h1>
-        <div class="gallery-container" *ngFor="let imageGroup of getImageGroups()">
-            <div class="gallery-content" *ngFor="let image of imageGroup">
-                <img mat-card-image [src]="imageGalleryPath + 'gallery/' + image.file_name" alt="{{image.file_name}}">
-            </div> 
+        <div class="grid-wrapper" *ngIf="galleryData; else noGallery">
+            <div *ngFor="let image of galleryData">
+                <img mat-card-image [src]="imageGalleryPath + 'gallery/' + image.file_name" alt="{{image.file_name}}" width="220px">
+            </div>
         </div>
-        
+        <ng-template #noGallery>
+            <div class="grid-wrapper">
+                No images posted yet.
+            </div>
+        </ng-template>
     </div>
 </div>
+

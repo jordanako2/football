@@ -7,6 +7,7 @@ import { ApiService } from '../../../../services/api.service';
 import { RouterOutlet } from '@angular/router';
 import { NewscontentComponent } from './newscontent/newscontent.component';
 import { FeaturecontentComponent } from './featurecontent/featurecontent.component';
+import { ClubContentsComponent } from './club-contents/club-contents.component';
 
 export interface Tile {
   cols: number;
@@ -32,7 +33,7 @@ export interface Features {
     standalone: true,
     templateUrl: './right-content.component.html',
     styleUrl: './right-content.component.sass',
-    imports: [MatGridListModule, CommonModule,RouterOutlet,NewscontentComponent,FeaturecontentComponent]
+    imports: [MatGridListModule, CommonModule,RouterOutlet,NewscontentComponent,FeaturecontentComponent, ClubContentsComponent]
 })
 export class RightContentComponent implements OnInit {
   dataSource: Tile[] = [];

@@ -14,7 +14,7 @@
     </div>
     <div class="mobileContainer">
         <div class="content">
-            <div class="menu-container">
+            <div class="menu-container" >
                 <div *ngIf="!isAuthenticated" class="signin" [routerLink]="'/login'">SIGN IN</div>
                 <div *ngIf="user" class="login">
                     <div *ngIf="user.role !='User'">
@@ -25,7 +25,7 @@
                     <mat-icon class="menuIcon">{{ isMobileMenuOpen ? 'close' : 'menu' }}</mat-icon>
                 </button>
                 <div class="menu" [ngClass]="{'open': isMobileMenuOpen}">
-                    <div class="mobileMenu">
+                    <div class="mobileMenu" >
                         <div class="content">
                             <div class="login">
                                 <div *ngIf="user" class="auth">
@@ -35,69 +35,55 @@
 
 
                             <div class="items">
-                                <div class="item" (click)="toggleSubmenu('leagues')" [routerLink]="'/'">
+                                <div class="item" (click)="toggleSubmenu('leagues')" [routerLink]="'/'" >
                                     <span [ngClass]="{ 'sub-menu-open': isSubmenuOpen ['leagues']}">LEAGUES</span>
-                                    <mat-icon>{{ isSubmenuOpen ['leagues'] ? 'keyboard_arrow_down' :
-                                        'keyboard_arrow_right' }}</mat-icon>
+                                    <mat-icon>{{ isSubmenuOpen ['leagues'] ? 'keyboard_arrow_down' : 'keyboard_arrow_right' }}</mat-icon>
                                 </div>
-
-                                <div *ngIf="isSubmenuOpen ['leagues']" class="sub-menu">
-                                    <button mat-menu-item style="color: #0F0E6A !important ;"
-                                        (click)="closeMenu()">HOME</button>
-                                    <button mat-menu-item style="color: #0F0E6A !important ;" [routerLink]="'/news'"
-                                        (click)="closeMenu()">NEWS</button>
-                                    <button mat-menu-item style="color: #0F0E6A !important ;"
-                                        (click)="closeMenu()">FIXTURES</button>
-                                    <button mat-menu-item style="color: #0F0E6A !important ;"
-                                        (click)="closeMenu()">RESULTS</button>
-                                    <button mat-menu-item style="color: #0F0E6A !important ;"
-                                        (click)="closeMenu()">STATS</button>
+                                
+                                  <div *ngIf="isSubmenuOpen ['leagues']" class="sub-menu">
+                                    <button mat-menu-item style="color: #0F0E6A !important ;" (click)="closeMenu()">HOME</button>
+                                    <button mat-menu-item style="color: #0F0E6A !important ;" [routerLink]="'/news'" (click)="closeMenu()">NEWS</button>
+                                    <button mat-menu-item style="color: #0F0E6A !important ;" (click)="closeMenu()">FIXTURES</button>
+                                    <button mat-menu-item style="color: #0F0E6A !important ;" (click)="closeMenu()">RESULTS</button>
+                                    <button mat-menu-item style="color: #0F0E6A !important ;" (click)="closeMenu()">STATS</button>
                                 </div>
-
-
+            
+                                
                                 <div class="item" [routerLink]="'/clubs'" (click)="closeMenu()"><span>CLUBS</span></div>
-
+                
                                 <div class="item" (click)="closeMenu()"><span>FIXTURES</span></div>
-
-
-                                <div class="item" (click)="toggleSubmenu('footballcommunity')">
-                                    <span [ngClass]="{ 'sub-menu-open': isSubmenuOpen ['footballcommunity']}">FOOTBALL &
-                                        COMMUNITY</span>
-                                    <mat-icon>{{ isSubmenuOpen ['footballcommunity'] ? 'keyboard_arrow_down' :
-                                        'keyboard_arrow_right' }}</mat-icon>
+                                
+            
+                                <div class="item" (click)="toggleSubmenu('footballcommunity')" >
+                                    <span [ngClass]="{ 'sub-menu-open': isSubmenuOpen ['footballcommunity']}">FOOTBALL & COMMUNITY</span>
+                                    <mat-icon>{{ isSubmenuOpen ['footballcommunity'] ? 'keyboard_arrow_down' : 'keyboard_arrow_right' }}</mat-icon>
                                 </div>
                                 <div *ngIf="isSubmenuOpen ['footballcommunity']" class="sub-menu">
                                     <button mat-menu-item style="color: #0F0E6A !important ;">WIDER FOOTBALL</button>
                                     <button mat-menu-item style="color: #0F0E6A !important ;">COMMUNITY</button>
                                 </div>
-
-
-                                <div class="item" (click)="toggleSubmenu('about')">
+            
+                
+                                  <div class="item" (click)="toggleSubmenu('about')" >
                                     <span [ngClass]="{ 'sub-menu-open': isSubmenuOpen ['about'] }">ABOUT US</span>
-                                    <mat-icon>{{ isSubmenuOpen ['about'] ? 'keyboard_arrow_down' :
-                                        'keyboard_arrow_right' }}</mat-icon>
+                                    <mat-icon>{{ isSubmenuOpen ['about'] ? 'keyboard_arrow_down' : 'keyboard_arrow_right' }}</mat-icon>
                                 </div>
-
-
+             
+                                
                                 <div *ngIf="isSubmenuOpen ['about']" class="sub-menu">
-                                    <button mat-menu-item style="color: #0F0E6A !important ;" (click)="closeMenu()">WHO
-                                        ARE WE</button>
-                                    <button mat-menu-item style="color: #0F0E6A !important ;" (click)="closeMenu()">WHAT
-                                        DO WE DO</button>
-                                    <button mat-menu-item style="color: #0F0E6A !important ;"
-                                        (click)="closeMenu()">PARTNERS</button>
+                                    <button mat-menu-item style="color: #0F0E6A !important ;" (click)="closeMenu()">WHO ARE WE</button>
+                                    <button mat-menu-item style="color: #0F0E6A !important ;" (click)="closeMenu()">WHAT DO WE DO</button>
+                                    <button mat-menu-item style="color: #0F0E6A !important ;" (click)="closeMenu()">PARTNERS</button>
                                 </div>
-
+            
                             </div>
                             <div class="logout">
                                 <div *ngIf="user" class="auth">
-                                    <button mat-button (click)="logout($event)"><mat-icon
-                                            matListItemIcon>logout</mat-icon>Logout</button>
+                                    <button mat-button (click)="logout($event)"><mat-icon matListItemIcon>logout</mat-icon>Logout</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
     </div>

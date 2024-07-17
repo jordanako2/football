@@ -1,0 +1,131 @@
+.wrapper
+    border-bottom: solid 1px #DDDDDD
+    padding: 2.5rem 0
+    .container
+        .desktop-footer
+            display: flex
+            align-items: flex-start
+            justify-content: space-between
+            gap: 30px
+            margin: 0 20px
+            .items
+                display: flex
+                flex-direction: column
+                align-items: center
+                .header
+                    flex-wrap: wrap
+                    h2
+                        flex-wrap: wrap
+                .item
+                    display: flex
+                    justify-content: space-between
+                    align-items: center
+                    gap: 30px
+                    ul
+                        align-items: center
+                        padding-left: 0
+                        display: flex
+                        flex-direction: column
+                        gap: 15px
+                        li
+                            list-style: none
+                            margin-left: 0
+                            &:hover
+                                cursor: pointer
+                            a
+                                text-decoration: none
+                                color: inherit
+                            .custom-icon
+                                width: 100%
+                                height: 100%
+                                font-size: 45px
+.mobile-footer
+    display: none
+
+
+@media screen and ( max-width: 1040px )
+    .wrapper
+        .container
+            .desktop-footer
+                display: none
+            .mobile-footer
+                display: flex
+                flex-direction: column
+                gap: 20px
+                .row
+                    justify-content: center
+                    display: flex
+                    align-items: flex-start
+                    .items
+                        width: 100%
+                        display: flex
+                        flex-direction: column
+                        align-items: center
+                        .header
+                            flex-wrap: wrap
+                            h2
+                                flex-wrap: wrap
+                        .item
+                            display: flex
+                            justify-content: center
+                            align-items: center
+                            width: 100%
+                            gap: 30px
+                            ul
+                                align-items: center
+                                display: flex
+                                flex-direction: column
+                                padding-left: 0
+                                gap: 15px
+                                li
+                                    list-style: none
+                                    margin-left: 0
+                                    
+                                    a
+                                        text-decoration: none
+                                        color: inherit
+                                    .custom-icon
+                                        width: 100%
+                                        height: 100%
+                                        font-size: 45px
+            
+@media screen and ( max-width: 600px )
+    .wrapper
+        border-bottom: solid 1px #DDDDDD
+        padding: 0.5rem 0
+        .container
+            .desktop-footer
+                display: flex
+                flex-direction: column
+                align-items: center
+                justify-content: space-between
+                .items
+                    display: flex
+                    justify-content: center
+                    .header
+                        flex-wrap: wrap
+                        h2
+                            flex-wrap: wrap
+                    .item
+                        display: flex
+                        justify-content: space-between
+                        align-items: center
+                        ul
+                            align-items: center
+                            padding-left: 0
+                            display: flex
+                            flex-direction: column
+                            gap: 15px
+                            li
+                                list-style: none
+                                margin-left: 0
+                                a
+                                    text-decoration: none
+                                    color: inherit
+                                .custom-icon
+                                    width: 100%
+                                    height: 100%
+                                    font-size: 45px
+            .mobile-footer
+                display: none
+    

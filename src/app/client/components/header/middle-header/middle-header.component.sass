@@ -44,6 +44,35 @@
             .items
                 display: flex
                 flex-wrap: wrap
+                ul
+                    list-style: none
+                    background: #22438C
+                    li
+                        display: inline-block
+                        position: relative
+                        a
+                            display: block
+                            padding: 20px 25px
+                            color: #fff
+                            text-decoration: none
+                            text-align: center
+                            font-size: 20px
+                        ul.dropdown
+                            li
+                                display: block
+                        ul.dropdown
+                            width: 100%
+                            background: #22438c
+                            position: absolute
+                            z-index: 999
+                            display: none
+                        a
+                            &:hover
+                                    background: #112C66
+                        &:hover
+                            ul.dropdown
+                                display: block
+
 
                 .item 
                     display: inline-flex

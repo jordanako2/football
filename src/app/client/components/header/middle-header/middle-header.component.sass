@@ -44,6 +44,51 @@
             .items
                 display: flex
                 flex-wrap: wrap
+                ul
+                    list-style: none
+                    margin: 0
+                    padding: 0
+                    li
+                        display: inline-block
+                        position: relative
+                        a
+                            display: block
+                            text-decoration: none
+                            text-align: center
+                            font-size: 16px
+                            cursor: pointer
+                            line-height: 3.33
+                            padding: 15px 15px
+                            color: #0F0E6A
+                            font-weight: 500
+                            display: inline-flex
+                            align-items: center
+
+                        ul.dropdown
+                            li
+                                display: block
+                        ul.dropdown
+                            width: 100%
+                            position: absolute
+                            z-index: 999
+                            display: none
+                            background: #fff
+                            text-align: center
+                            padding: 10px
+                            a
+                                padding: 0
+                                margin: 0
+                                &:hover
+                                    text-decoration: underline
+                        a
+                            &:hover
+                                cursor: pointer
+                                
+
+                        &:hover
+                            ul.dropdown
+                                display: block
+
 
                 .item 
                     display: inline-flex
@@ -52,7 +97,6 @@
                     cursor: pointer
                     line-height: 3.33
                     padding: 15px 15px
-                    cursor: pointer
                     color: #0F0E6A
                     font-weight: 500
 
@@ -146,7 +190,7 @@
                         color: #0F0E6A
 
 
-@media screen and (min-width: 900px) and (max-width: 1200px)
+@media screen and (max-width: 1200px)
     .wrapper
         .container
             height: 100%
@@ -164,7 +208,7 @@
                     margin-right: 20px
                     align-items: center
                     .login
-                        font-size: 11px
+                        font-size: 14px
                         font-weight: 400
                         line-height: 1.4285714286
                         letter-spacing: 2px
@@ -189,44 +233,61 @@
                             background-color: #0F0E6A
                             color: #FFFFFF
                         button
-                            font-size: 14px
+                            font-size: 16px
                 .items
                     display: flex
                     flex-wrap: wrap
+                    ul
+                        list-style: none
+                        margin: 0
+                        padding: 0
+                        li
+                            display: inline-block
+                            position: relative
+                            a
+                                display: block
+                                text-decoration: none
+                                text-align: center
+                                font-size: 12px
+                                cursor: pointer
+                                line-height: 3.33
+                                padding: 20px 10px
+                                color: #0F0E6A
+                                font-weight: 500
+                                display: inline-flex
+                                align-items: center
+
+                            ul.dropdown
+                                li
+                                    display: block
+                            ul.dropdown
+                                width: 100%
+                                position: absolute
+                                z-index: 999
+                                display: none
+                                background: #fff
+                                text-align: center
+                                padding: 10px
+                                a
+                                    padding: 0
+                                    margin: 0
+                            a
+                                &:hover
+                                    cursor: pointer
+                            &:hover
+                                ul.dropdown
+                                    display: block
+
+
                     .item 
-                        font-size: 11px
+                        display: inline-flex
+                        align-items: center
+                        font-size: 16px
                         cursor: pointer
                         line-height: 3.33
-                        padding: 25px 10px
-                        cursor: pointer
+                        padding: 15px 15px
                         color: #0F0E6A
                         font-weight: 500
-                    
-
-                    // .menu-list 
-                    //     position: absolute
-                    //     top: calc(100%)
-                    //     left: 0
-                    //     background-color: #0F0E6A
-                    //     color: white
-                    //     opacity: 10
-                    //     list-style: none
-                    //     display: none
-                    //     width: 100%
-                    //     opacity: 0
-                    //     transition: opacity 0.3s ease
-                    //     height: 200px
-                        
-                    //     .menu-item-content
-                    //         padding: 5% 10%
-                        
-                    
-
-                    // .item:hover + .menu-list,
-                    // .menu-list:hover 
-                    //     display: block
-                    //     opacity: 1
-                    //     transition-delay: 0s
             
             .mobileMenu
                 display: none

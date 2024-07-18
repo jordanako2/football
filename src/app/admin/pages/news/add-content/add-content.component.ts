@@ -39,6 +39,7 @@ export class AddContentComponent {
   contentForm: FormGroup;
   contentId: number | null = null;
   showTeamSelect = false;
+  quillEditorRef: any;
 
   constructor(
     private _fb: FormBuilder,
@@ -69,6 +70,39 @@ export class AddContentComponent {
         this.loadContent(this.contentId);
       }
     });
+  }
+
+  getEditorInstance(editorInstance: any) {
+    this.quillEditorRef = editorInstance;
+    console.log(editorInstance);
+    const toolbar = this.quillEditorRef.getModule('toolbar');
+    toolbar.addHandler('image', this.uploadImageHandler);
+  }
+
+  uploadImageHandler = () => {
+    const input = document.createElement('input');
+    input.setAttribute('type', 'file');
+    input.setAttribute('accept', 'image/*');
+    input.click();
+    input.onchange = async () => {
+      const files = input.files;
+      if (files && files.length > 0) {
+        Array.from(files).forEach(file => {
+        const range = this.quillEditorRef.getSelection();
+          this._contService.uploadFile(file).subscribe({
+            next: (res) => {
+              console.log(res)
+              if (res?.imagePath) {
+                this.quillEditorRef.insertEmbed(range.index, 'image', 'https://florify.online/'+res?.imagePath);
+              }
+            },
+            error: (err) => {
+              console.error('Upload failed:', err);
+            }
+          });
+        });
+      }
+    };
   }
 
   getTeams() {
@@ -163,6 +197,8 @@ export class AddContentComponent {
   }
 
   onSubmit() {
+    const editorContent = this.quillEditorRef.root.innerHTML;
+    console.log('Editor Content:', editorContent);
     if (this.contentForm.valid) {
       this.contentForm.markAllAsTouched();
       if (this.contentId) {

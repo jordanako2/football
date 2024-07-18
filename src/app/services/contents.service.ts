@@ -15,6 +15,13 @@ export class ContentsService {
     return this._http.post(environment.apiUrl+`/football/content`, data);
   }
 
+  uploadFile(file: File) {
+    const formData = new FormData();
+    formData.append('image', file, file.name);
+
+    return this._http.post<any>(environment.apiUrl+`/football/content/upload`, formData);
+  }
+
   uploadImage(image: File, fileName: string) {
     const formData = new FormData();
     formData.append('image', image, fileName);

@@ -1,5 +1,47 @@
 .wrapper
+    display: flex
+    justify-content: center
+    .right-items
+        display: flex
+        align-items: center
+        .login
+            font-size: 14px
+            font-weight: 400
+            line-height: 1.4285714286
+            letter-spacing: 2px
+            cursor: pointer
+            font-weight: 500
+            margin-left: 10px
+            color: #ebeaea
+            &:hover
+                color: #ffffff
+        .register
+            font-size: 14px
+            font-weight: 400
+            line-height: 1.4285714286
+            letter-spacing: 2px
+            cursor: pointer
+            font-weight: 500
+            margin-left: 10px
+            color: #ebeaea
+            &:hover
+                color: #ffffff
+        .auth
+            display: flex
+            align-items: baseline
+            gap: 20px
+            h1
+                margin: 0
+                padding: 0
+                color: #0F0E6A
+            .team-button
+                background-color: #0F0E6A
+                color: #FFFFFF
+            button
+                font-size: 16px
+                color: #FFFFFF
     .container
+        width: 80%
         height: 100%
         display: flex
         justify-content: space-between
@@ -12,38 +54,11 @@
             width: 100%
             .right-items
                 display: flex
-                margin-right: 20px
                 align-items: center
-                .login
-                    font-size: 14px
-                    font-weight: 400
-                    line-height: 1.4285714286
-                    letter-spacing: 2px
-                    cursor: pointer
-                    margin-left: 10px
-                .register
-                    font-size: 14px
-                    font-weight: 400
-                    line-height: 1.4285714286
-                    letter-spacing: 2px
-                    cursor: pointer
-                    margin-left: 10px
-                .auth
-                    display: flex
-                    align-items: baseline
-                    gap: 20px
-                    h1
-                        margin: 0
-                        padding: 0
-                        color: #0F0E6A
-                    .team-button
-                        background-color: #0F0E6A
-                        color: #FFFFFF
-                    button
-                        font-size: 16px
             .items
                 display: flex
                 flex-wrap: wrap
+                margin-left: 20px
                 ul
                     list-style: none
                     margin: 0
@@ -59,7 +74,7 @@
                             cursor: pointer
                             line-height: 3.33
                             padding: 15px 15px
-                            color: #0F0E6A
+                            color: #ebeaea
                             font-weight: 500
                             display: inline-flex
                             align-items: center
@@ -72,7 +87,7 @@
                             position: absolute
                             z-index: 999
                             display: none
-                            background: #fff
+                            background: #7c32e2
                             text-align: center
                             padding: 10px
                             a
@@ -83,7 +98,7 @@
                         a
                             &:hover
                                 cursor: pointer
-                                
+                                color: #ffffff
 
                         &:hover
                             ul.dropdown
@@ -97,6 +112,7 @@
                     cursor: pointer
                     line-height: 3.33
                     padding: 15px 15px
+                    cursor: pointer
                     color: #0F0E6A
                     font-weight: 500
 
@@ -145,54 +161,41 @@
 
     
 
-@media screen and (max-width: 900px)
-    .wrapper
-        .container
-            .menu
-                display: none
-            .mobileMenu
-                display: block
-                .content
-                    overflow-y: auto
-                    max-height: calc(100vh - 50px)
-                    padding-right: 15px
-                .login
-                    font-size: 18px
-                    padding: 10px
-                    h1
-                        color: #0F0E6A
-                        font-weight: 600
-                        font-size: 18px
-                .logout
-                    padding: 20px
-                    button
-                        background-color: #0F0E6A
-                        color: #FFFFFF
-                        width: 200px
-                .items
-                    display: flex
-                    flex-direction: column
-                    .item 
-                        display: inline-flex
-                        align-items: center
-                        font-size: 14px
-                        cursor: pointer
-                        line-height: 3.33
-                        padding: 5px 5px
-                        cursor: pointer
-                        color: #0F0E6A
-                        font-weight: 500
-                    a
-                        text-decoration: none
-                    .sub-menu
-                        gap: 5px
-                    .menu-text
-                        color: #0F0E6A
-
-
 @media screen and (max-width: 1200px)
     .wrapper
+        display: flex
+        justify-content: center
+        .right-items
+            display: flex
+            align-items: center
+            .login
+                font-size: 14px
+                font-weight: 400
+                line-height: 1.4285714286
+                letter-spacing: 2px
+                cursor: pointer
+                font-weight: 500
+                margin-left: 10px
+                color: #ebeaea
+                &:hover
+                    color: #ffffff
+            .register
+                font-size: 14px
+                font-weight: 400
+                line-height: 1.4285714286
+                letter-spacing: 2px
+                cursor: pointer
+                font-weight: 500
+                margin-left: 10px
+                color: #ebeaea
+                &:hover
+                    color: #ffffff
+            .auth
+                display: flex
+                align-items: baseline
+                gap: 20px
         .container
+            width: 80%
             height: 100%
             display: flex
             justify-content: space-between
@@ -205,10 +208,140 @@
                 width: 100%
                 .right-items
                     display: flex
-                    margin-right: 20px
+                    align-items: center
+                    h1
+                        margin: 0
+                        padding: 0
+                        color: #0F0E6A
+                        .team-button
+                            background-color: #0F0E6A
+                            color: #FFFFFF
+                        button
+                            font-size: 16px
+                .items
+                    display: flex
+                    flex-wrap: wrap
+                    margin-left: 60px
+                    ul
+                        list-style: none
+                        margin: 0
+                        padding: 0
+                        li
+                            display: inline-block
+                            position: relative
+                            a
+                                display: block
+                                text-decoration: none
+                                text-align: center
+                                font-size: 16px
+                                cursor: pointer
+                                line-height: 3.33
+                                padding: 15px 15px
+                                color: #ebeaea
+                                font-weight: 500
+                                display: inline-flex
+                                align-items: center
+
+                            ul.dropdown
+                                li
+                                    display: block
+                            ul.dropdown
+                                width: 100%
+                                position: absolute
+                                z-index: 999
+                                display: none
+                                background: #7c32e2
+                                text-align: center
+                                padding: 10px
+                                a
+                                    padding: 0
+                                    margin: 0
+                                    &:hover
+                                        text-decoration: underline
+                            a
+                                &:hover
+                                    cursor: pointer
+                                    color: #ffffff
+
+                            &:hover
+                                ul.dropdown
+                                    display: block
+
+
+                    .item 
+                        display: inline-flex
+                        align-items: center
+                        font-size: 16px
+                        cursor: pointer
+                        line-height: 3.33
+                        padding: 15px 15px
+                        color: #0F0E6A
+                        font-weight: 500
+
+            .mobileMenu
+                display: none
+
+
+@media screen and (max-width: 1400px)
+@media screen and (min-width: 900px) and (max-width: 1200px)
+    .wrapper
+        display: flex
+        justify-content: center
+        .right-items
+            display: flex
+            align-items: center
+            .login
+                font-size: 14px
+                font-weight: 400
+                line-height: 1.4285714286
+                letter-spacing: 2px
+                cursor: pointer
+                font-weight: 500
+                margin-left: 10px
+                color: #ebeaea
+                &:hover
+                    color: #ffffff
+            .register
+                font-size: 14px
+                font-weight: 400
+                line-height: 1.4285714286
+                letter-spacing: 2px
+                cursor: pointer
+                font-weight: 500
+                margin-left: 10px
+                color: #ebeaea
+                &:hover
+                    color: #ffffff
+            .auth
+                display: flex
+                align-items: baseline
+                gap: 20px
+                h1
+                    margin: 0
+                    padding: 0
+                    color: #0F0E6A
+                .team-button
+                    background-color: #0F0E6A
+                    color: #FFFFFF
+                button
+                    font-size: 16px
+        .container
+            width: 80%
+            height: 100%
+            display: flex
+            justify-content: space-between
+            align-items: center
+            .menu 
+                display: flex
+                padding-right: 20px
+                justify-content: space-between
+                align-items: baseline
+                width: 100%
+                .right-items
+                    display: flex
                     align-items: center
                     .login
-                        font-size: 14px
+                        font-size: 11px
                         font-weight: 400
                         line-height: 1.4285714286
                         letter-spacing: 2px
@@ -233,10 +366,11 @@
                             background-color: #0F0E6A
                             color: #FFFFFF
                         button
-                            font-size: 16px
+                            font-size: 14px
                 .items
                     display: flex
                     flex-wrap: wrap
+                    margin-left: 40px
                     ul
                         list-style: none
                         margin: 0
@@ -248,11 +382,11 @@
                                 display: block
                                 text-decoration: none
                                 text-align: center
-                                font-size: 12px
+                                font-size: 16px
                                 cursor: pointer
                                 line-height: 3.33
-                                padding: 20px 10px
-                                color: #0F0E6A
+                                padding: 15px 15px
+                                color: #ebeaea
                                 font-weight: 500
                                 display: inline-flex
                                 align-items: center
@@ -265,30 +399,32 @@
                                 position: absolute
                                 z-index: 999
                                 display: none
-                                background: #fff
+                                background: #7c32e2
                                 text-align: center
                                 padding: 10px
                                 a
                                     padding: 0
                                     margin: 0
+                                    &:hover
+                                        text-decoration: underline
                             a
                                 &:hover
                                     cursor: pointer
+                                    color: #ffffff
+
                             &:hover
                                 ul.dropdown
                                     display: block
 
 
                     .item 
-                        display: inline-flex
-                        align-items: center
-                        font-size: 16px
+                        font-size: 11px
                         cursor: pointer
                         line-height: 3.33
-                        padding: 15px 15px
+                        padding: 25px 10px
+                        cursor: pointer
                         color: #0F0E6A
                         font-weight: 500
-            
+
             .mobileMenu
                 display: none
-                

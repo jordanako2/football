@@ -12,6 +12,7 @@ import { CoreService } from '../../../../core/core.service';
 import { ContentsService } from '../../../../services/contents.service';
 import { ApiService } from '../../../../services/api.service';
 import { TeamService } from '../../../../services/team.service';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-add-content',
@@ -74,7 +75,6 @@ export class AddContentComponent {
 
   getEditorInstance(editorInstance: any) {
     this.quillEditorRef = editorInstance;
-    console.log(editorInstance);
     const toolbar = this.quillEditorRef.getModule('toolbar');
     toolbar.addHandler('image', this.uploadImageHandler);
   }
@@ -88,12 +88,12 @@ export class AddContentComponent {
       const files = input.files;
       if (files && files.length > 0) {
         Array.from(files).forEach(file => {
-        const range = this.quillEditorRef.getSelection();
-          this._contService.uploadFile(file).subscribe({
+          const range = this.quillEditorRef.getSelection();
+          const randomFileName = this.generateRandomString(10) + this.getFileExtension(file.name);
+          this._contService.uploadFile(file, randomFileName).subscribe({
             next: (res) => {
-              console.log(res)
               if (res?.imagePath) {
-                this.quillEditorRef.insertEmbed(range.index, 'image', 'https://florify.online/'+res?.imagePath);
+                this.quillEditorRef.insertEmbed(range.index, 'image', environment.apiUrl + res?.imagePath);
               }
             },
             error: (err) => {
@@ -198,7 +198,7 @@ export class AddContentComponent {
 
   onSubmit() {
     const editorContent = this.quillEditorRef.root.innerHTML;
-    console.log('Editor Content:', editorContent);
+    this.contentForm.patchValue({ content: editorContent });
     if (this.contentForm.valid) {
       this.contentForm.markAllAsTouched();
       if (this.contentId) {

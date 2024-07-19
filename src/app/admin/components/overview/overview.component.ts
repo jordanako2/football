@@ -8,6 +8,8 @@ import { QuillModule } from 'ngx-quill';
 import { TeamAboutService } from '../../../services/team-about.service';
 import { CoreService } from '../../../core/core.service';
 import { ActivatedRoute } from '@angular/router';
+import { ContentsService } from '../../../services/contents.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-overview',
@@ -21,11 +23,13 @@ export class OverviewComponent {
   contentForm: FormGroup;
   teamId: number | null = null;
   aboutData: any | null = null;
+  quillEditorRef: any;
 
   constructor (
     private _fb: FormBuilder,
     private route: ActivatedRoute,
     private teamAboutService: TeamAboutService,
+    private _contService: ContentsService,
     private _coreService: CoreService,
   ) {
     this.contentForm = this._fb.group({
@@ -63,6 +67,52 @@ export class OverviewComponent {
     })
   }
 
+  generateRandomString(length: number): string {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      result += characters.charAt(randomIndex);
+    }
+    return result;
+  }
+
+  getEditorInstance(editorInstance: any) {
+    this.quillEditorRef = editorInstance;
+    const toolbar = this.quillEditorRef.getModule('toolbar');
+    toolbar.addHandler('image', this.uploadImageHandler);
+  }
+
+  getFileExtension(fileName: string): string {
+    return fileName.substring(fileName.lastIndexOf('.'));
+  }
+
+  uploadImageHandler = () => {
+    const input = document.createElement('input');
+    input.setAttribute('type', 'file');
+    input.setAttribute('accept', 'image/*');
+    input.click();
+    input.onchange = async () => {
+      const files = input.files;
+      if (files && files.length > 0) {
+        Array.from(files).forEach(file => {
+          const range = this.quillEditorRef.getSelection();
+          const randomFileName = this.generateRandomString(10) + this.getFileExtension(file.name);
+          this._contService.uploadFile(file, randomFileName).subscribe({
+            next: (res) => {
+              if (res?.imagePath) {
+                this.quillEditorRef.insertEmbed(range.index, 'image', environment.apiUrl + res?.imagePath);
+              }
+            },
+            error: (err) => {
+              console.error('Upload failed:', err);
+            }
+          });
+        });
+      }
+    };
+  }
+
   modules = {
     toolbar: [
       ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
@@ -83,7 +133,7 @@ export class OverviewComponent {
   
       ['clean'],                                         // remove formatting button
   
-      // ['link', 'image', 'video']                         // link and image, video
+      ['link', 'image', 'video']                         // link and image, video
     ]
   };
 
@@ -107,11 +157,13 @@ export class OverviewComponent {
   
       ['clean'],                                         // remove formatting button
   
-      // ['link', 'image', 'video']                         // link and image, video
+      ['link', 'image', 'video']                         // link and image, video
     ]
   };
 
   onSubmit() {
+    const editorContent = this.quillEditorRef.root.innerHTML;
+    this.contentForm.patchValue({ desktop_content: editorContent });
     if (this.contentForm.valid) {
       this.contentForm.markAllAsTouched();
       console.log(this.contentForm.value)

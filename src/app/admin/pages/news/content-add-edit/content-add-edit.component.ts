@@ -53,7 +53,6 @@ export class ContentAddEditComponent {
   changedEditor(event: EditorChangeContent | EditorChangeSelection){
     console.log(' editor got changed ', event);
     this.editorText = event['editor']['root']['innerHTML'];
-
   }
 
   onSubmit() 

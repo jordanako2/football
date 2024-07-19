@@ -13,8 +13,7 @@
                         title must be at least 6 characters long
                     </mat-error>
                 </mat-form-field>
-                    <quill-editor [modules]="modules" [style]="{height: '300px' }" formControlName="content" (onEditorChanged)="changedEditor($event)"></quill-editor>
-                
+                <quill-editor [modules]="modules" [style]="{height: '300px' }" formControlName="content" (onEditorChanged)="changedEditor($event)"></quill-editor>
             </div>
         </div>
         <div mat-dialog-actions class="actions">

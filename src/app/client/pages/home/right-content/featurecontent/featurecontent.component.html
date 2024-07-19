@@ -1,48 +1,27 @@
-<div class="features">
+<div class="wrapper">
   <div class="header">
     <h2>Features</h2>
-    <div class="right-text" routerLink="/news"> <p>More News</p> 	<mat-icon style="color: #fff">arrow_right_alt</mat-icon></div>
-   
-  </div>
-  
-  <mat-grid-list cols="3" rowHeight="400px" class="grid-content">
-    <mat-grid-tile
-      *ngFor="let tile of dataSource"
-      [colspan]="tile.cols"
-      [rowspan]="tile.rows"
-    >
-      <div class="box" [routerLink]="'/news/' + tile.id">
-        <div class="image">
-          <img
-            [src]="imagePath + tile.file_name"
-            alt="{{ tile.file_name }}"
-            [height]="tile.height"
-          />
-        </div>
-        <h1>{{ tile.title }}</h1>
-        <p>{{ tile.description }}</p>
-      </div>
-    </mat-grid-tile>
-  </mat-grid-list>
-</div>
-
-<mat-grid-list cols="3" rowHeight="500px" class="grid-content-mobile">
-  <mat-grid-tile
-    *ngFor="let tile of dataSource"
-    [colspan]="tile.cols"
-    [rowspan]="tile.rows"
-  >
-    <div class="box" [routerLink]="'/news/' + tile.id">
-      <div class="image">
-        <img
-          [src]="imagePath + tile.file_name"
-          alt="{{ tile.file_name }}"
-          width="100%"
-          [height]="tile.height"
-        />
-      </div>
-      <h1>{{ tile.title }}</h1>
-      <p>{{ tile.description }}</p>
+    <div class="more-news" [routerLink]="'/news'">
+      <p>More News</p>
+      <mat-icon>arrow_right_alt</mat-icon>
     </div>
-  </mat-grid-tile>
-</mat-grid-list>
+  </div>
+  <div class="container">
+    <div class="content-container" *ngFor="let data of featureData | slice:0:3">
+      <div class="content" [routerLink]="'/news/' + data.id">
+        <div class="image" *ngIf="data.file_name; else noImage">
+          <img *ngIf="imagePath" [src]="imagePath + data.file_name" alt="Club News">
+        </div>
+        <ng-template #noImage>
+          <div class="image-logo">
+            <img *ngIf="imageLogoPath" [src]="imageLogoPath + 'logo.png'" alt="Team Logo">
+          </div>
+        </ng-template>
+        <div class="club-content">
+          <h1 class="title">{{ data.title }}</h1>
+          <p class="description">{{ data.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

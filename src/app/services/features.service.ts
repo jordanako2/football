@@ -29,7 +29,7 @@ export class FeaturesService {
     return this._http.patch(environment.apiUrl+`/football/content/website/features${id}`, data);
   }
 
-  getContent(): Observable<any> {
+  getContentFeatures(): Observable<any> {
     return this._http.get<Features[]>(environment.apiUrl+`/football/content/website/features`);
   }
 

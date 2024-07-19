@@ -1,11 +1,10 @@
-$background-image: '../../../../assets/background_image2.jpg'
+
 
 .wrapper 
-  background-image: url(#{$background-image})
+  background-color: #f1f1f1
   width: 100%
   height: 100% 
-  background-size: cover 
-  // background-position: center 
+  background-size: cover
   background-repeat: no-repeat 
   display: flex
   justify-content: center
@@ -17,24 +16,25 @@ $background-image: '../../../../assets/background_image2.jpg'
     margin-top: 150px
     gap: 10px
     .left
-        color: #111074
         width: 30%
         padding: 20px
     .right
-        color: #111074
         width: 70%
         padding: 20px
 .media-screen
   display: none
 
-@media screen and (max-width: 600px)
-  .media-screen
-    display: block
-    width: 100%
-  .left
-    display: none
-  .right
-    display: none
+@media screen and (max-width: 900px)
+  .wrapper
+    .container
+      margin-top: 95px
+      .media-screen
+        display: block
+        width: 100%
+      .left
+        display: none
+      .right
+        display: none
 
 
 @media screen and (max-width: 1200px)

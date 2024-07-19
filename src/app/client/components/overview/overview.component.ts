@@ -64,6 +64,7 @@ export class OverviewComponent {
       },
       error: (err) => {
         console.log(err);
+        this.content = ''
       }
     })
   }

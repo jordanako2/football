@@ -24,6 +24,7 @@ export class FixuresComponent {
   initialLeagueId: number | null = null;
   imagePath: string | null = null;
   teamId: number | null = null;
+  slug: string | null = null;
 
   constructor (
     private fb: FormBuilder,
@@ -41,9 +42,25 @@ export class FixuresComponent {
     this.getLeagues();
     this.imagePath = `${this.configService.URL_IMAGE}`;
     this.route.params.subscribe(params => {
-      this.teamId = +params['id'];  
-      if (this.initialLeagueId && this.teamId) {
+      this.slug = params['params'];  
+      if (this.slug) {
+        this.getTeambySlug(this.slug);
+      } else if (this.initialLeagueId && this.teamId) {
         this.getTeamFixures(this.initialLeagueId, this.teamId);
+      }
+    });
+  }
+
+  getTeambySlug(slug: string) {
+    this.teamService.getTeambySlug(slug).subscribe({
+      next: (res) => {
+        this.teamId = res.id;
+        if (this.teamId && this.initialLeagueId) {
+          this.getTeamFixures(this.initialLeagueId, this.teamId);
+        }
+      },
+      error: (err) => {
+        console.log(err);
       }
     });
   }

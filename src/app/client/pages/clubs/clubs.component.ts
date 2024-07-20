@@ -20,7 +20,7 @@ export class ClubsComponent {
 
   data: any | null = null;
   imagePath: string | null = null;
-  teamId: number | null = null;
+  slug: string | null = null;
 
   constructor(
     private _teamService: TeamService,
@@ -30,13 +30,15 @@ export class ClubsComponent {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.teamId = +params['id'];  
-      this.getTeamById(this.teamId);
+      this.slug = params['params'];  
+      if (this.slug) {
+        this.getTeamBySlug(this.slug);
+      }
     });
   }
 
-  getTeamById(teamId: number) {
-    this._teamService.getTeamById(teamId).subscribe({
+  getTeamBySlug(slug: string) {
+    this._teamService.getTeambySlug(slug).subscribe({
       next: (res) => {
         this.data = res;
         this.imagePath =`${this._configService.URL_IMAGE}`;

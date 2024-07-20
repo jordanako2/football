@@ -124,7 +124,7 @@ export class TeamAddEditComponent implements OnInit {
             this._dialogRef.close(true);
           },
           error: (err: any) => {
-            console.error(err);
+            this._coreService.openSnackBar(err.error.message)
           }
         })
       } else {
@@ -136,7 +136,7 @@ export class TeamAddEditComponent implements OnInit {
             this._dialogRef.close(true);
           },
           error: (err: any) => {
-            console.error(err);
+            this._coreService.openSnackBar(err.error.message)
           }
         })
       }

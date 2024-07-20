@@ -28,7 +28,12 @@
         gap: 10px
 
     .footer
+        display: flex
+        justify-content: center
+        background-color: #FFFFFF
+        padding: 5px
         .matches
+            border: solid 2px #EFEFEF
             width: 100%
             color: white
             display: flex
@@ -38,14 +43,16 @@
             padding: 10px 0
             cursor: pointer
             color: #000
-            background-color: #fff
-    .error-container
-        width: 100%
-        text-align: center
-        padding: 15px 0 1px 0
-        background-color: #6A0FE6
-        color: #FFFFFF
-        .error-content
-            letter-spacing: 5px
-            font-weight: 600
+            &:hover
+                background-color: #EFEFEF
+            
+.error-container
+    width: 100%
+    text-align: center
+    padding: 15px 0 1px 0
+    background-color: #6A0FE6
+    color: #FFFFFF
+    .error-content
+        letter-spacing: 5px
+        font-weight: 600
                 

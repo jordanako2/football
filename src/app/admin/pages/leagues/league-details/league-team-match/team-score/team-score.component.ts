@@ -98,7 +98,7 @@ export class TeamScoreComponent {
         match_id: this.matchId
       };
       if (this.data.score_id) {
-        this.scoreService.updateScore(this.data.score_id, formData).subscribe({
+        this.scoreService.updateScore(this.data.score_id, formData, this.data.leagueId).subscribe({
           next: (val: any) => {
             this._coreService.openSnackBar('Team score updated successfully');
             this._dialogRef.close(true);

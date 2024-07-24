@@ -40,6 +40,7 @@ export interface Features {
 export class NewscontentComponent {
   dataSource: Tile[] = [];
   imagePath: string | null = null;
+  newsData: any[] | null = null;
 
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -58,7 +59,7 @@ export class NewscontentComponent {
   getContent():void {
     this._contentService.getContent().subscribe(
       (data: Features[]) => {
-      // Update tiles based on fetched data
+      this.newsData = data;
       this.updateTiles(data);
       this.imagePath =`${this._configService.URL_CONTENT_IMAGE}`;
     },

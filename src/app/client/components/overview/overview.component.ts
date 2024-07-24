@@ -22,6 +22,7 @@ import { GalleryService } from '../../../services/gallery.service';
 export class OverviewComponent {
 
   teamId: number | null = null;
+  slug: string | null = null;
   aboutData: any | null = null;
   contentData: any[] | null = null;
   content: SafeHtml  | null = null;
@@ -41,19 +42,39 @@ export class OverviewComponent {
     private sanitizer: DomSanitizer
   ) {}
 
-  ngOnInit(): void {
+ngOnInit(): void {
     this.imagePath = `${this._configService.URL_CONTENT_IMAGE}`;
     this.imageGalleryPath = `${this._configService.URL_IMAGE}`;
     this.imageLogoPath = `${this._configService.URL_IMAGE}`;
     this.route.params.subscribe(params => {
-      this.teamId = +params['id'];
-      if (this.teamId) {
-        this.getTeamAboutByTeamId(this.teamId);
-        this.getContentByTeamId(this.teamId);
-        this.getTeamById(this.teamId);
-        this.getGalleryByTeamId(this.teamId);
+      this.slug = params['params'];
+      if (this.slug) {
+        this.getTeambySlug(this.slug);
+      } else if (this.teamId) {
+        this.loadTeamData(this.teamId);
       }
     });
+  }
+
+  getTeambySlug(slug: string) {
+    this.teamService.getTeambySlug(slug).subscribe({
+      next: (res) => {
+        this.teamId = res.id;
+        if (this.teamId) {
+          this.loadTeamData(this.teamId);
+        }
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
+
+  loadTeamData(teamId: number) {
+    this.getTeamAboutByTeamId(teamId);
+    this.getContentByTeamId(teamId);
+    this.getTeamById(teamId);
+    this.getGalleryByTeamId(teamId);
   }
 
   getTeamAboutByTeamId(teamId: number) {
@@ -64,6 +85,7 @@ export class OverviewComponent {
       },
       error: (err) => {
         console.log(err);
+        this.content = ''
       }
     })
   }
@@ -71,7 +93,7 @@ export class OverviewComponent {
   getContentByTeamId(teamId: number) {
     this.contentService.getContentByTeamId(teamId).subscribe({
       next: (res) => {
-        this.contentData = res
+        this.contentData = res.filter((content: any) => content.status === 'Published');
       },
       error: (err) => {
         console.log(err)

@@ -56,7 +56,7 @@ const routes: Routes = [
             component: TeamsComponent
           },
           {
-            path: 'clubs/:id',
+            path: 'clubs/:params',
             component: ClubsComponent
           }
         ]

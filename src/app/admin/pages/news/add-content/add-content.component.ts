@@ -12,6 +12,7 @@ import { CoreService } from '../../../../core/core.service';
 import { ContentsService } from '../../../../services/contents.service';
 import { ApiService } from '../../../../services/api.service';
 import { TeamService } from '../../../../services/team.service';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-add-content',
@@ -39,6 +40,7 @@ export class AddContentComponent {
   contentForm: FormGroup;
   contentId: number | null = null;
   showTeamSelect = false;
+  quillEditorRef: any;
 
   constructor(
     private _fb: FormBuilder,
@@ -69,6 +71,38 @@ export class AddContentComponent {
         this.loadContent(this.contentId);
       }
     });
+  }
+
+  getEditorInstance(editorInstance: any) {
+    this.quillEditorRef = editorInstance;
+    const toolbar = this.quillEditorRef.getModule('toolbar');
+    toolbar.addHandler('image', this.uploadImageHandler);
+  }
+
+  uploadImageHandler = () => {
+    const input = document.createElement('input');
+    input.setAttribute('type', 'file');
+    input.setAttribute('accept', 'image/*');
+    input.click();
+    input.onchange = async () => {
+      const files = input.files;
+      if (files && files.length > 0) {
+        Array.from(files).forEach(file => {
+          const range = this.quillEditorRef.getSelection();
+          const randomFileName = this.generateRandomString(10) + this.getFileExtension(file.name);
+          this._contService.uploadFile(file, randomFileName).subscribe({
+            next: (res) => {
+              if (res?.imagePath) {
+                this.quillEditorRef.insertEmbed(range.index, 'image', environment.apiUrl + res?.imagePath);
+              }
+            },
+            error: (err) => {
+              console.error('Upload failed:', err);
+            }
+          });
+        });
+      }
+    };
   }
 
   getTeams() {
@@ -163,6 +197,8 @@ export class AddContentComponent {
   }
 
   onSubmit() {
+    const editorContent = this.quillEditorRef.root.innerHTML;
+    this.contentForm.patchValue({ content: editorContent });
     if (this.contentForm.valid) {
       this.contentForm.markAllAsTouched();
       if (this.contentId) {

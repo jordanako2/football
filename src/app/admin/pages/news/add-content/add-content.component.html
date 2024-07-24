@@ -106,6 +106,7 @@
                 [style]="{ height: '300px', width: '100%' }"
                 [placeholder]="'Enter full content here...'"
                 formControlName="content"
+                (onEditorCreated)="getEditorInstance($event)"
               ></quill-editor>
             </div>
           </div>

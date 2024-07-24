@@ -33,6 +33,7 @@ export class TeamAddEditComponent implements OnInit {
     this.teamForm = this._fb.group({
       file_name: '',
       team: '',
+      slug: '',
       coach: '',
       place: '',
     })
@@ -90,9 +91,16 @@ export class TeamAddEditComponent implements OnInit {
     this.teamForm = this._fb.group({
       file_name: '',
       team: ['', [Validators.required, Validators.minLength(3)]],
+      slug: ['', [Validators.required]],
       coach: ['', [Validators.required, Validators.minLength(3)]],
       place: ['', [Validators.required, Validators.minLength(3)]]
     });
+
+    this.teamForm.get('team')?.valueChanges.subscribe(value => {
+      const slug = value?.toLowerCase().replace(/ /g, '-');
+      this.teamForm.get('slug')?.setValue(slug, { emitEvent: false });
+    });
+    
     if (this.data) {
       this.teamForm.patchValue(this.data);
       if (this.data.file_name) {
@@ -116,7 +124,7 @@ export class TeamAddEditComponent implements OnInit {
             this._dialogRef.close(true);
           },
           error: (err: any) => {
-            console.error(err);
+            this._coreService.openSnackBar(err.error.message)
           }
         })
       } else {
@@ -128,7 +136,7 @@ export class TeamAddEditComponent implements OnInit {
             this._dialogRef.close(true);
           },
           error: (err: any) => {
-            console.error(err);
+            this._coreService.openSnackBar(err.error.message)
           }
         })
       }

@@ -33,6 +33,7 @@ interface Player {
 export class SquadsComponent {
 
   teamId: number | null = null;
+  slug: string | null = null;
   imagePath: string | null = null;
   imageLogoPath: string | null = null;
   squadData: Player[] = [];
@@ -48,9 +49,31 @@ export class SquadsComponent {
     this.imagePath = `${this._configService.URL_SQUAD_IMAGE}`;
     this.imageLogoPath = `${this._configService.URL_LOGO_IMAGE}`;
     this.route.params.subscribe(params => {
-      this.teamId = +params['id'];  
-      this.getSquadByTeamId(this.teamId);
+      this.slug = params['params'];
+      if (this.slug) {
+        this.getTeambySlug(this.slug);
+      } else if (this.teamId) {
+        this.loadTeamData(this.teamId);
+      }
     });
+  }
+
+  getTeambySlug(slug: string) {
+    this.teamService.getTeambySlug(slug).subscribe({
+      next: (res) => {
+        this.teamId = res.id;
+        if (this.teamId) {
+          this.loadTeamData(this.teamId);
+        }
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
+
+  loadTeamData(teamId: number) {
+    this.getSquadByTeamId(teamId);
   }
 
   getSquadByTeamId(teamId: number) {

@@ -16,13 +16,14 @@
                             </mat-error>
                         </mat-form-field>
                         <div class="news-content">
-                            <quill-editor [modules]="modules" [style]="{ height: '300px' , width: '100%'}"
-                                [placeholder]="'Enter full content here...'" formControlName="desktop_content"></quill-editor>
+                            <quill-editor
+                                [modules]="modules"
+                                [style]="{ height: '300px', width: '100%' }"
+                                [placeholder]="'Enter full content here...'"
+                                formControlName="desktop_content"
+                                (onEditorCreated)="getEditorInstance($event)"
+                            ></quill-editor>
                         </div>
-                        <!-- <div class="news-content">
-                            <quill-editor [modules]="mobile_modules" [style]="{ height: '300px' , width: '40%'}"
-                                [placeholder]="'Enter full content here...'" formControlName="mobile_content"></quill-editor>
-                        </div> -->
                     </div>
                 </div>
                 <button mat-raised-button color="primary" type="submit">{{ aboutData ? 'Update' : 'Save' }}</button>

@@ -1,8 +1,7 @@
 <div class="wrapper">
     <div class="container">
-        <h1>About</h1>
         <div class="about" *ngIf="content; else noContent">
-            <div [innerHTML]="content"></div>
+            <div class="ql-editor" [innerHTML]="content"></div>
         </div>
         <ng-template #noContent>
             <div class="about">

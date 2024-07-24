@@ -21,11 +21,27 @@
       </div>
     </mat-grid-tile>
   </mat-grid-list>
+
+  <div class="grid-content-mobile">
+    <div class="container">
+      <div class="content-container" *ngFor="let data of newsData | slice:0:3">
+        <div class="content" [routerLink]="'/news/' + data.id">
+          <div class="image" *ngIf="data.file_name">
+            <img *ngIf="imagePath" [src]="imagePath + data.file_name" alt="Club News">
+          </div>
+          <div class="club-content">
+            <h1 class="title">{{ data.title }}</h1>
+            <p class="description">{{ data.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   
   
   
   
-  <mat-grid-list cols="6" rowHeight="290px" class="grid-content-mobile">
+  <!-- <mat-grid-list cols="6" rowHeight="290px" class="grid-content-mobile">
     <mat-grid-tile
       *ngFor="let tile of dataSource"
       [colspan]="tile.cols"
@@ -45,4 +61,4 @@
         <p>{{ tile.description }}</p>
       </div>
     </mat-grid-tile>
-  </mat-grid-list>
+  </mat-grid-list> -->

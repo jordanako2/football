@@ -10,8 +10,8 @@ export class ScoreService {
 
   constructor(private _http: HttpClient) { }
 
-  addScore(data: any): Observable<any> {
-    return this._http.post(environment.apiUrl+`/football/scores`, data);
+  addScore(data: any, leagueId: number): Observable<any> {
+    return this._http.post(environment.apiUrl+`/football/scores/league/${leagueId}`, data);
   }
 
   updateScore(id: number, data: any, leagueId: number): Observable<any> {

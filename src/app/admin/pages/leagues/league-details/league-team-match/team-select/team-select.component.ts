@@ -99,7 +99,7 @@ export class TeamSelectComponent {
         });
       } else {
         this.teamForm.markAllAsTouched();
-        this.scoreService.addScore(formData).subscribe({
+        this.scoreService.addScore(formData, formData.league_id).subscribe({
           next: (val: any) => {
             this._coreService.openSnackBar('Team score added successfully');
             this._dialogRef.close(true);

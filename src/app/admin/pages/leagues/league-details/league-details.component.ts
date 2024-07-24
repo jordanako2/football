@@ -12,6 +12,7 @@ import { LeagueTeamUpdateComponent } from './league-team-update/league-team-upda
 import { LeagueService } from '../../../../services/league.service';
 import { MatTabsModule } from '@angular/material/tabs';
 import { LeagueTeamMatchComponent } from './league-team-match/league-team-match.component';
+import { ScoreUpdateService } from '../../../../services/score-league.service';
 
 export interface PeriodicElement {
   position: number;
@@ -50,6 +51,7 @@ export class LeagueDetailsComponent {
     public dialog: MatDialog, 
     private route: ActivatedRoute,
     private leagueTeamService: LeagueTeamService,
+    private scoreUpdateService: ScoreUpdateService,
     private leagueService: LeagueService,
     private _configService: ApiService,
   ) {}
@@ -60,6 +62,11 @@ export class LeagueDetailsComponent {
       this.leagueId = +params['id'];  
       this.getLeagueTeams(this.leagueId);
       this.getLeagueById(this.leagueId);
+    });
+    this.scoreUpdateService.scoreUpdated$.subscribe(() => {
+      if (this.leagueId !== null) {
+        this.getLeagueTeams(this.leagueId); 
+      }
     });
   }
 

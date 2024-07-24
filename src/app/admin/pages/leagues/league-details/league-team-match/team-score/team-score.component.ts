@@ -15,6 +15,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatchService } from '../../../../../../services/match.service';
 import { MatSelectModule } from '@angular/material/select';
 import { ScoreService } from '../../../../../../services/score.service';
+import { LeagueTeamService } from '../../../../../../services/league-team.service';
 
 @Component({
   selector: 'app-team-score',
@@ -48,6 +49,7 @@ export class TeamScoreComponent {
     private _coreService: CoreService,
     private _configService: ApiService,
     private teamService: TeamService,
+    private leagueTeamService: LeagueTeamService,
     private scoreService: ScoreService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {

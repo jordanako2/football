@@ -3,11 +3,12 @@ import { LeagueService } from '../../../services/league.service';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../../../services/api.service';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-matches',
   standalone: true,
-  imports: [CommonModule, MatIconModule],
+  imports: [CommonModule, MatIconModule, RouterLink],
   templateUrl: './matches.component.html',
   styleUrl: './matches.component.sass'
 })

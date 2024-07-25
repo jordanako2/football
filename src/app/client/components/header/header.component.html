@@ -43,7 +43,7 @@
                                         (click)="closeMenu()">HOME</button>
                                     <button mat-flat-button style="color: #0F0E6A !important ;" [routerLink]="'/news'"
                                         (click)="closeMenu()">NEWS</button>
-                                    <button mat-flat-button style="color: #0F0E6A !important ;"
+                                    <button mat-flat-button style="color: #0F0E6A !important ;" [routerLink]="'/fixtures'"
                                         (click)="closeMenu()">FIXTURES</button>
                                     <button mat-flat-button style="color: #0F0E6A !important ;"
                                         (click)="closeMenu()">RESULTS</button>
@@ -51,7 +51,7 @@
                                         (click)="closeMenu()">STATS</button>
                                 </div>
                                 <div class="item" [routerLink]="'/clubs'" (click)="closeMenu()"><span>CLUBS</span></div>
-                                <div class="item" (click)="closeMenu()"><span>FIXTURES</span></div>
+                                <div class="item" [routerLink]="'/fixtures'" (click)="closeMenu()"><span>FIXTURES</span></div>
                                 <div class="item" (click)="toggleSubmenu('footballcommunity')">
                                     <span [ngClass]="{ 'sub-menu-open': isSubmenuOpen ['footballcommunity']}">FOOTBALL &
                                         COMMUNITY</span>

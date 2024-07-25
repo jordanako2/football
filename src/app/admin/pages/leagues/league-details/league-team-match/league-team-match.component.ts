@@ -13,6 +13,7 @@ import { DatePipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { TeamScoreComponent } from './team-score/team-score.component';
+import { ScoreUpdateService } from '../../../../../services/score-league.service';
 
 @Component({
   selector: 'app-league-team-match',
@@ -35,6 +36,7 @@ export class LeagueTeamMatchComponent {
     private dialog: MatDialog, 
     private route: ActivatedRoute,
     private matchesService: MatchService,
+    private scoreUpdateService: ScoreUpdateService,
     private _configService: ApiService,
   ) {}
 
@@ -76,6 +78,7 @@ export class LeagueTeamMatchComponent {
       next: (val) => {
         if (val && this.leagueId) {
           this.getMatches(this.leagueId)
+          this.scoreUpdateService.notifyScoreUpdated();
         }
       },
       error: (err) => {

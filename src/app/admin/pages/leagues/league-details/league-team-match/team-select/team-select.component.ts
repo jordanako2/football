@@ -87,7 +87,7 @@ export class TeamSelectComponent {
         match_id: this.matchId
       };
       if (this.data.score_id) {
-        this.scoreService.updateScore(this.data.score_id, formData).subscribe({
+        this.scoreService.updateScore(this.data.score_id, formData, 0).subscribe({
           next: (val: any) => {
             this._coreService.openSnackBar('Team score updated successfully');
             this._dialogRef.close(true);
@@ -99,7 +99,7 @@ export class TeamSelectComponent {
         });
       } else {
         this.teamForm.markAllAsTouched();
-        this.scoreService.addScore(formData).subscribe({
+        this.scoreService.addScore(formData, formData.league_id).subscribe({
           next: (val: any) => {
             this._coreService.openSnackBar('Team score added successfully');
             this._dialogRef.close(true);

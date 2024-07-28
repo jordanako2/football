@@ -9,7 +9,7 @@ import { environment } from '../environments/environment';
 export const authInterceptor: HttpInterceptorFn = (req: HttpRequest<any>, next: HttpHandlerFn): Observable<HttpEvent<any>> => {
   const authService = inject(AuthService);
   const cookieService = inject(CookieService);
-  const authToken = cookieService.get('accessToken');
+  const authToken = cookieService.get('key');
 
   if (authToken) {
     req = req.clone({
@@ -22,7 +22,7 @@ export const authInterceptor: HttpInterceptorFn = (req: HttpRequest<any>, next: 
       if (error.status === 401 && !req.url.includes(environment.apiUrl+'/auth/refresh')) {
         return authService.refreshToken().pipe(
           switchMap(() => {
-            const newAccessToken = cookieService.get('accessToken');
+            const newAccessToken = cookieService.get('key');
             if (newAccessToken) {
               const authReq = req.clone({
                 headers: req.headers.set('Authorization', `Bearer ${newAccessToken}`)
@@ -32,7 +32,7 @@ export const authInterceptor: HttpInterceptorFn = (req: HttpRequest<any>, next: 
             return throwError(() => new Error('Failed to refresh token'));
           }),
           catchError((err) => {
-            authService.logout();
+            // authService.logout();
             return throwError(() => new Error('Failed to refresh token and logout'));
           })
         );

@@ -10,7 +10,6 @@ import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { User } from '../../user/user.interface';
-import { FacebookService } from '../../services/facebook.service';
 import { GoogleService } from '../../services/google.service';
 
 @Component({
@@ -40,7 +39,6 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
-    private facebookService: FacebookService,
     private googleService: GoogleService,
   ) {
     this.loginForm = this.formBuilder.group({
@@ -48,9 +46,7 @@ export class LoginComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
 
-    if (this.facebookService.accountValue) {
-      this.router.navigate(['/']);
-    }
+
   }
   get f() { return this.loginForm.controls; }
 
@@ -58,9 +54,7 @@ export class LoginComponent implements OnInit {
     this.googleService.initializeGoogleLogin();
   }
 
-  loginWithFacebook() {
-    this.facebookService.login();
-  }
+
 
   onSubmit(): void {
     this.submitted = true;
@@ -69,7 +63,7 @@ export class LoginComponent implements OnInit {
     }
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe({
       next: () => {
-        console.log('Login successful');
+       
       },
       error: (error) => {
         console.error('Login failed', error);

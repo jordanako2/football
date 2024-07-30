@@ -31,21 +31,6 @@
                                 <img *ngIf="element.scores[0].team.file_name" [src]="imagePath + element.scores[0].team.file_name"
                                     alt={{element.scores[0].team.file_name}} width="20px">
                                 {{ element.scores[0].team.team }}
-                                <div class="result-container">
-                                    <div *ngIf="element.scores[0].result === 'Win'; else notWin" class="win-content">
-                                        W
-                                    </div>
-                                    <ng-template #notWin>
-                                        <div *ngIf="element.scores[0].result === 'Loss'" class="loss-content">
-                                            L
-                                        </div>
-                                    </ng-template>
-                                    <ng-template *ngIf="element.scores[0].result === 'Draw'">
-                                        <div class="draw-content">
-                                            D
-                                        </div>
-                                    </ng-template>
-                                </div>
                             </div> 
                         </ng-container>
                         <ng-container *ngIf="!element.scores?.[0]">
@@ -64,6 +49,19 @@
                     <td mat-cell *matCellDef="let element">
                         <div class="result-content">
                             <ng-container *ngIf="element.scores?.[0]">
+                                <div class="result-container">
+                                    <div *ngIf="element.scores[0].result === 'Win'; else notWin" class="win-content">
+                                        W
+                                    </div>
+                                    <ng-template #notWin>
+                                        <div *ngIf="element.scores[0].result === 'Loss'" class="loss-content">
+                                            L
+                                        </div>
+                                    </ng-template>
+                                    <div class="draw-content" *ngIf="element.scores[0].result === 'Draw'">
+                                        D
+                                    </div>
+                                </div>
                                 <button mat-icon-button color="primary" matTooltip="Update score for this team" [matTooltipPosition]="'after'"
                                     (click)="updateScore(element, 0, element.scores[0].id, element.scores[0].team_id, element.scores[0].points, element.scores[0].result)">
                                     <mat-icon>add_circle</mat-icon>
@@ -77,6 +75,19 @@
                                     (click)="updateScore(element, 1, element.scores[1].id, element.scores[1].team_id, element.scores[1].points, element.scores[1].result)">
                                     <mat-icon>add_circle</mat-icon>
                                 </button>
+                                <div class="result-container">
+                                    <div *ngIf="element.scores[1].result === 'Win'; else notWin" class="win-content">
+                                        W
+                                    </div>
+                                    <ng-template #notWin>
+                                        <div *ngIf="element.scores[1].result === 'Loss'" class="loss-content">
+                                            L
+                                        </div>
+                                    </ng-template>
+                                    <div class="draw-content" *ngIf="element.scores[1].result === 'Draw'">
+                                        D
+                                    </div>
+                                </div>
                             </ng-container>
                             <ng-container *ngIf="!element.scores?.[1]"></ng-container>
                         </div>
@@ -87,21 +98,6 @@
                     <td mat-cell *matCellDef="let element">
                         <ng-container *ngIf="element.scores?.[1]">
                             <div class="team-content">
-                                <div class="result-container">
-                                    <div *ngIf="element.scores[1].result === 'Win'; else notWin" class="win-content">
-                                        W
-                                    </div>
-                                    <ng-template #notWin>
-                                        <div *ngIf="element.scores[1].result === 'Loss'" class="loss-content">
-                                            L
-                                        </div>
-                                    </ng-template>
-                                    <ng-template *ngIf="element.scores[1].result === 'Draw'">
-                                        <div class="draw-content">
-                                            D
-                                        </div>
-                                    </ng-template>
-                                </div>
                                 <img *ngIf="element.scores[1].team.file_name" [src]="imagePath + element.scores[1].team.file_name"
                                     alt={{element.scores[1].team.file_name}} width="20px">
                                 {{ element.scores[1].team.team }}

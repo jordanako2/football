@@ -106,6 +106,7 @@ export class TeamSelectComponent {
           },
           error: (err: any) => {
             const errorMessage = err?.error?.message || 'Error adding team score';
+            
             this._coreService.openSnackBar(errorMessage);
           }
         });

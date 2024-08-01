@@ -46,11 +46,24 @@
                     .team-fixtures
                         display: flex
                         align-items: center
+                        gap: 20px
                         width: 60%
-                        .team-container
+                        .team-container-a
                             display: flex
                             align-items: center
-                            justify-content: space-evenly
+                            justify-content: flex-end
+                            gap: 20px
+                            width: 40%
+                            .team-content
+                                font-size: 16px
+                            img
+                                width: 10%
+                                height: 10%
+                        .team-container-b
+                            display: flex
+                            align-items: center
+                            justify-content: flex-start
+                            gap: 20px
                             width: 40%
                             .team-content
                                 font-size: 16px
@@ -132,7 +145,7 @@
                         cursor: pointer
                     .match-content
                         display: flex
-                        align-items: center
+                        align-items: baseline
                         justify-content: space-between
                         gap: 10px
                         .team-fixtures

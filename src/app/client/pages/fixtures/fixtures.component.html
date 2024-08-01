@@ -13,23 +13,23 @@
                
                 <div class="match-content">
                     <div class="team-fixtures">
-                    <div class="team-container">
-                        <div class="team-content">
-                            {{ matches.scores[0].team.team }}
+                        <div class="team-container-a">
+                            <div class="team-content">
+                                {{ matches.scores[0].team.team }}
+                            </div>
+                            <img *ngIf="matches.scores[0].team.file_name" [src]="imagePath + matches.scores[0].team.file_name"
+                                alt={{matches.scores[0].team.file_name}}>
                         </div>
-                        <img *ngIf="matches.scores[0].team.file_name" [src]="imagePath + matches.scores[0].team.file_name"
-                            alt={{matches.scores[0].team.file_name}}>
-                    </div>
-                    <div class="time-container">
-                        {{ '2000-01-01T' + matches.match_time | date:'h:mm a' }}
-                    </div>
-                    <div class="team-container">
-                        <img *ngIf="matches.scores[1].team.file_name" [src]="imagePath + matches.scores[1].team.file_name"
-                            alt={{matches.scores[1].team.file_name}}>
-                        <div class="team-content">
-                            {{ matches.scores[1].team.team }}
+                        <div class="time-container">
+                            {{ '2000-01-01T' + matches.match_time | date:'h:mm a' }}
                         </div>
-                    </div>
+                        <div class="team-container-b">
+                            <img *ngIf="matches.scores[1].team.file_name" [src]="imagePath + matches.scores[1].team.file_name"
+                                alt={{matches.scores[1].team.file_name}}>
+                            <div class="team-content">
+                                {{ matches.scores[1].team.team }}
+                            </div>
+                        </div>
                     </div>
                     <div class="location-content"><mat-icon> location_on</mat-icon>{{ matches.location }} {{ '@' }}</div>
                     <div class="match">

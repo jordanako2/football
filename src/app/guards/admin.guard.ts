@@ -16,8 +16,6 @@ export const AdminGuard: CanActivateFn = (
     return false;
   }
 
-  console.log('User role:', user['role']);
-
   if (user['role'] !== 'Admin' && user['role'] !== 'Super Admin') {
     console.warn('Unauthorized role:', user['role']);
     router.navigate(['/admin']);

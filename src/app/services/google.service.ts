@@ -72,7 +72,6 @@ export class GoogleService {
       };
       this.userService.registerGoogleUser(data).subscribe(
         response => {
-          console.log('User login successfully:', response);
           this.userSubject.next(payLoad);
           this.isAuthenticatedSubject.next(true);
           this.ngZone.run(() => {

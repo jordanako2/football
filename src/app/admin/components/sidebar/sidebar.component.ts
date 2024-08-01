@@ -63,7 +63,7 @@ export class SidebarComponent {
     label: 'Teams',
     icon: 'flag',
     routerLink: '/admin/teams',
-    roles: ['Super Admin', 'Admin', 'Team']
+    roles: ['Super Admin', 'Admin', 'Team', 'Content Editor']
   },
   {
     label: 'Leagues',

@@ -13,10 +13,43 @@
                 font-weight: 600
                 font-size: 32px
         .body
-            table
-                width: 80%
-            .team-container
+            width: 100%
+            .table-content
+                margin-top: 20px
+                width: 100%
                 display: flex
-                align-items: center
-                gap: 10px
+                justify-content: center
+                .table-body
+                    width: 80%
+                    th
+                        color: #37003C
+                        font-weight: 700
+                    td
+                        font-weight: 500
+                        .team-container
+                            display: flex
+                            align-items: center
+                            gap: 20px
+            .error-container
+                background: linear-gradient(to right, #170BB0,#6C13E0, #FE0103 )
+                display: flex
+                justify-content: center
+                color: #FFFFFF
+                h1
+                    margin: 2% 10%
+                    letter-spacing: 5px
+                    font-weight: 600
+                    font-size: 32px
+
+@media screen and (max-width: 900px)
+    .wrapper
+        min-height: 50vh
+        padding-top: 77px
+        .container
+            .body 
+                .table-content
+                    overflow-x: auto 
+                    -webkit-overflow-scrolling: touch 
+                    .table-body
+                        width: 100%
     

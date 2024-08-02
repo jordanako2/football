@@ -4,6 +4,7 @@ import { LeagueService } from '../../../services/league.service';
 import { ApiService } from '../../../services/api.service';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterLink } from '@angular/router';
 
 
 
@@ -11,7 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-leagues',
   standalone: true,
-  imports: [MatTableModule, CommonModule, MatIconModule],
+  imports: [MatTableModule, CommonModule, MatIconModule, RouterLink],
   templateUrl: './leagues.component.html',
   styleUrl: './leagues.component.sass'
 })

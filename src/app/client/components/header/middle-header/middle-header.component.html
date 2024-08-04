@@ -38,21 +38,24 @@
                     </li>
                 </ul>
             </div>
-            
-  
-  
-  
-  
-  
             <div class="right-items">
                 <div *ngIf="!isAuthenticated" class="login" [routerLink]="'/login'">SIGN IN</div>
                 <div *ngIf="user" class="auth">
-                    <div *ngIf="user.role != 'User'">
-                        <!-- <button mat-flat-button class="team-button" [routerLink]="'/admin'">Dashboard</button> -->
-                    </div>
+                    <!-- <div *ngIf="user.picture; else ExcepUser"></div>
+                    <ng-template #ExcepUser>
+                        <div *ngIf="user.role !== 'User'">
+                            <button mat-flat-button class="team-button" [routerLink]="'/admin'">Dashboard</button>
+                        </div>
+                    </ng-template> -->
                     <div>
                         <button mat-button (click)="toggleDropdown()">Welcome, {{ user.given_name }} <mat-icon>keyboard_arrow_down</mat-icon></button>
                         <mat-card *ngIf="showDropdown">
+                            <div *ngIf="user.picture; else ExcepUser"></div>
+                            <ng-template #ExcepUser>
+                                <mat-selection-list *ngIf="user.role !== 'User'">
+                                    <mat-list-item [routerLink]="'/admin'"><mat-icon matListItemIcon>dashboard</mat-icon> Dashboard</mat-list-item>
+                                </mat-selection-list>
+                            </ng-template>
                             <mat-selection-list>
                                 <mat-list-item (click)="logout($event)"><mat-icon matListItemIcon>logout</mat-icon> Logout</mat-list-item>
                             </mat-selection-list>

@@ -32,6 +32,8 @@
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>Position</mat-label>
                         <mat-select formControlName="position">
+                            <mat-option [value]="'Head Coach'">Head Coach</mat-option>
+                            <mat-option [value]="'Assistant Coach'">Assistant Coach</mat-option>
                             <mat-option [value]="'Goalkeepers'">Goalkeepers</mat-option>
                             <mat-option [value]="'Defenders'">Defenders</mat-option>
                             <mat-option [value]="'Midfielders'">Midfielders</mat-option>

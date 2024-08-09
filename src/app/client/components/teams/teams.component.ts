@@ -6,6 +6,7 @@ import { CoreService } from '../../../core/core.service';
 import { ApiService } from '../../../services/api.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-teams',
@@ -21,12 +22,17 @@ export class TeamsComponent {
   constructor(
     private _teamService: TeamService,
     private _configService: ApiService,
+    private _titleService: Title
   ) {}
 
   ngOnInit(): void {
+    this.setTitle('Clubs');
     this.getTeams();
   }
-
+  setTitle(newTitle: string) {
+    this._titleService.setTitle(newTitle);
+  }
+  
   getTeams() {
     this._teamService.getTeams().subscribe({
       next: (res) => {

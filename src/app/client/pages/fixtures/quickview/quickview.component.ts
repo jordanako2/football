@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { LeagueService } from '../../../../services/league.service';
 import { ApiService } from '../../../../services/api.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-quickview',
@@ -19,9 +20,15 @@ export class QuickviewComponent {
   constructor(
     private leagueService: LeagueService,
     private configService: ApiService,
+    private _titleService: Title
   )
   {}
   ngOnInit(): void {
+    this.setTitle('Fixtures');
+  }
+
+  setTitle(newTitle: string) {
+    this._titleService.setTitle(newTitle);
   }
 
   getLeagueById(leagueId: number) {

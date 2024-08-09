@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LeagueService } from '../../../services/league.service';
 import { ApiService } from '../../../services/api.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog} from '@angular/material/dialog';
+import { Title } from '@angular/platform-browser'
 
 @Component({
   selector: 'app-fixtures',
@@ -17,7 +18,7 @@ import { MatDialog} from '@angular/material/dialog';
   templateUrl: './fixtures.component.html',
   styleUrl: './fixtures.component.sass'
 })
-export class FixturesComponent {
+export class FixturesComponent implements OnInit{
 
   leagueMatches: any[] = [];
   imagePath: string | null = null;
@@ -25,9 +26,11 @@ export class FixturesComponent {
     private leagueService: LeagueService,
     private configService: ApiService,
     private _dialog: MatDialog,
+    private _titleService: Title
   )
   {}
   ngOnInit(): void {
+    this.setTitle('Fixtures');
     this.imagePath = `${this.configService.URL_IMAGE}`;
     this.getLeagueTeams();
   }
@@ -41,6 +44,10 @@ export class FixturesComponent {
         console.log(err);
       }
     })
+  }
+
+  setTitle(newTitle: string) {
+    this._titleService.setTitle(newTitle);
   }
 
   // quickview(){

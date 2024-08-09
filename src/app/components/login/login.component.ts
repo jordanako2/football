@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { User } from '../../user/user.interface';
 import { GoogleService } from '../../services/google.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
@@ -40,6 +41,7 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private formBuilder: FormBuilder,
     private googleService: GoogleService,
+    private _titleService: Title
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -51,7 +53,12 @@ export class LoginComponent implements OnInit {
   get f() { return this.loginForm.controls; }
 
   ngOnInit(): void {
+    this.setTitle('User Portal');
     this.googleService.initializeGoogleLogin();
+  }
+
+  setTitle(newTitle: string) {
+    this._titleService.setTitle(newTitle);
   }
 
 

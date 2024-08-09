@@ -30,11 +30,11 @@
               <mat-form-field appearance="outline">
                 <mat-label>Page</mat-label>
                 <mat-select formControlName="name">
-                  <mat-option value="Wider Football">Wider Football</mat-option>
-                  <mat-option value="Community">Community</mat-option>
-                  <mat-option value="Who Are We">Who Are We</mat-option>
-                  <mat-option value="What Do We Do">What Do We Do</mat-option>
-                  <mat-option value="Partners">Partners</mat-option>
+                  <mat-option value="Wider Football">Football & Community > Wider Football</mat-option>
+                  <mat-option value="Community">Football & Community > Community</mat-option>
+                  <mat-option value="Who Are We">About Us > Who Are We</mat-option>
+                  <mat-option value="What Do We Do">About Us > What Do We Do</mat-option>
+                  <mat-option value="Partners">About Us > Partners</mat-option>
                 </mat-select>
                 <mat-error *ngIf="contentForm.get('name')?.hasError('required') && contentForm.get('name')?.touched">
                   Page is required

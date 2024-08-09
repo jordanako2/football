@@ -12,6 +12,8 @@ import { AddContentComponent } from './pages/news/add-content/add-content.compon
 import { AdminGuard } from '../guards/admin.guard';
 import { AuthGuard } from '../guards/auth.guard';
 import { TeamDetailsComponent } from './pages/teams/team-details/team-details.component';
+import { PageComponent } from './pages/page/page.component';
+import { PageAddEditComponent } from './pages/page/page-add-edit/page-add-edit.component';
 
 const routes: Routes = [
     {
@@ -30,6 +32,9 @@ const routes: Routes = [
           { path: 'contents', component: NewsComponent },
           { path: 'content/create', component: AddContentComponent },
           { path: 'content/edit/:id', component: AddContentComponent },
+          { path: 'pages', component: PageComponent },
+          { path: 'page/create', component: PageAddEditComponent },
+          { path: 'page/edit/:id', component: PageAddEditComponent },
         ]
     }
 ];

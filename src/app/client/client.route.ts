@@ -15,6 +15,7 @@ import { TeamsComponent } from './components/teams/teams.component';
 import { ClubsComponent } from './pages/clubs/clubs.component';
 import { FixturesComponent } from './pages/fixtures/fixtures.component';
 import { TablesComponent } from './pages/tables/tables.component';
+import { PageComponent } from './pages/page/page.component';
 
 
 const routes: Routes = [
@@ -68,6 +69,10 @@ const routes: Routes = [
           {
             path: 'tables',
             component: TablesComponent
+          },
+          {
+            path: ':params',
+            component: PageComponent
           },
         ]
     },

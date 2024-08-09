@@ -14,6 +14,7 @@ import { MatListItem, MatSelectionList } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
 import { GoogleService } from '../../../services/google.service';
 import { ApiService } from '../../../services/api.service';
+import { PageService } from '../../../services/page.service';
 
 @Component({
   selector: 'client-header',
@@ -24,6 +25,8 @@ import { ApiService } from '../../../services/api.service';
 })
 export class HeaderComponent {
 
+  pages: any[] = [];
+  abouts: any[] = [];
   imagePath: string | null = null;
   showDropdown = false;
   isAuthenticated: boolean = false;
@@ -40,6 +43,7 @@ export class HeaderComponent {
     private authService: AuthService,
     private googleService: GoogleService,
     private apiService: ApiService,
+    private pageService: PageService
   ) {}
 
   toggleSubmenu(menuName: string) {
@@ -49,7 +53,22 @@ export class HeaderComponent {
       }
     });
     this.isSubmenuOpen[menuName] = !this.isSubmenuOpen[menuName];
-  
+  }
+
+  getPages() {
+    this.pageService.getPages().subscribe({
+      next: (res) => {
+        this.pages = res.filter((page: any) => 
+          page.name === 'Wider Football' || page.name === 'Community'
+        );
+        this.abouts = res.filter((page: any) => 
+          page.name !== 'Wider Football' && page.name !== 'Community'
+        );
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
   }
   
   toggleDropdown() {
@@ -57,6 +76,7 @@ export class HeaderComponent {
   }
 
   ngOnInit() {
+    this.getPages()
     this.imagePath = `${this.apiService.URL_LOGO_IMAGE}`;
     this.authService.user$.subscribe(user => {
       this.user = user;

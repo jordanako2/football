@@ -59,8 +59,7 @@
                                         'keyboard_arrow_right' }}</mat-icon>
                                 </div>
                                 <div *ngIf="isSubmenuOpen ['footballcommunity']" class="sub-menu">
-                                    <button mat-flat-button style="color: #0F0E6A !important ;">WIDER FOOTBALL</button>
-                                    <button mat-flat-button style="color: #0F0E6A !important ;">COMMUNITY</button>
+                                    <button mat-flat-button style="color: #0F0E6A !important ;" (click)="closeMenu()" *ngFor="let page of pages" [routerLink]="'/' + page.slug">{{ page.name }}</button>
                                 </div>
                                 <div class="item" (click)="toggleSubmenu('about')">
                                     <span [ngClass]="{ 'sub-menu-open': isSubmenuOpen ['about'] }">ABOUT US</span>
@@ -68,12 +67,7 @@
                                         'keyboard_arrow_right' }}</mat-icon>
                                 </div>
                                 <div *ngIf="isSubmenuOpen ['about']" class="sub-menu">
-                                    <button mat-flat-button style="color: #0F0E6A !important ;" (click)="closeMenu()">WHO
-                                        ARE WE</button>
-                                    <button mat-flat-button style="color: #0F0E6A !important ;" (click)="closeMenu()">WHAT
-                                        DO WE DO</button>
-                                    <button mat-flat-button style="color: #0F0E6A !important ;"
-                                        (click)="closeMenu()">PARTNERS</button>
+                                    <button mat-flat-button style="color: #0F0E6A !important ;" (click)="closeMenu()" *ngFor="let about of abouts" [routerLink]="'/' + about.slug">{{ about.name }}</button>
                                 </div>
                             </div>
                             <div class="logout">

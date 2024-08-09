@@ -20,21 +20,15 @@
                     <li><a>FOOTBALL & COMMUNITY
                         <i class="material-icons">arrow_drop_down</i> </a>
                         <ul class="dropdown">
-                            <li><a>WIDER FOOTBALL</a></li>
-                            <li><a>COMMUNITY</a></li>
-                           
+                            <li *ngFor="let page of pages"><a [routerLink]="'/' + page.slug">{{ page.name }}</a></li> 
                         </ul>
                     </li>
 
                     <li><a>ABOUT US
                         <i class="material-icons">arrow_drop_down</i></a>
                         <ul class="dropdown">
-                            <li><a>WHO ARE WE</a></li>
-                            <li><a>WHAT DO WE DO</a></li>
-                            <li><a>PARTNERS</a></li>
+                            <li *ngFor="let about of abouts"><a [routerLink]="'/' + about.slug">{{ about.name }}</a></li> 
                         </ul>
-
-                        
                     </li>
                 </ul>
             </div>

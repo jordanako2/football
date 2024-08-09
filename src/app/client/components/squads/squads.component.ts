@@ -80,6 +80,22 @@ export class SquadsComponent {
     this.teamService.getSquadByTeamId(teamId).subscribe({
       next: (res: any) => {
         this.squadData = res.squad.filter((player: Player) => player.stat === 1);
+        this.squadData.sort((a: Player, b: Player) => {
+          const positionOrder = ['Head Coach', 'Assistant Coach'];
+          const aIndex = positionOrder.indexOf(a.position);
+          const bIndex = positionOrder.indexOf(b.position);
+          
+          if (aIndex === -1 && bIndex === -1) {
+            return 0;
+          } else if (aIndex === -1) {
+            return 1;
+          } else if (bIndex === -1) {
+            return -1;
+          } else {
+            return aIndex - bIndex;
+          }
+        });
+  
         this.playersByPosition = this.squadData.reduce((acc: any, player) => {
           if (!acc[player.position]) {
             acc[player.position] = [];
@@ -93,6 +109,24 @@ export class SquadsComponent {
       }
     });
   }
+
+  // getSquadByTeamId(teamId: number) {
+  //   this.teamService.getSquadByTeamId(teamId).subscribe({
+  //     next: (res: any) => {
+  //       this.squadData = res.squad.filter((player: Player) => player.stat === 1);
+  //       this.playersByPosition = this.squadData.reduce((acc: any, player) => {
+  //         if (!acc[player.position]) {
+  //           acc[player.position] = [];
+  //         }
+  //         acc[player.position].push(player);
+  //         return acc;
+  //       }, {});
+  //     },
+  //     error: (err: any) => {
+  //       console.log(err);
+  //     }
+  //   });
+  // }
 
   getPositions(): string[] {
     return Object.keys(this.playersByPosition);

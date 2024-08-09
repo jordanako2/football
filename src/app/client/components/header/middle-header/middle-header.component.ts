@@ -8,6 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatListItemIcon, MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
+import { PageService } from '../../../../services/page.service';
 
 @Component({
   selector: 'app-middle-header',
@@ -28,7 +29,8 @@ import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
   styleUrl: './middle-header.component.sass'
 })
 export class MiddleHeaderComponent {
-
+  pages: any[] = [];
+  abouts: any[] = [];
   showDropdown = false;
   isSubmenuOpen: any  = {
     leagues: false,
@@ -44,7 +46,8 @@ export class MiddleHeaderComponent {
 
   constructor(
     private authService: AuthService,
-    private googleService: GoogleService
+    private googleService: GoogleService,
+    private pageService: PageService
   ) {}
 
   toggleSubmenu(menuName: string) {
@@ -57,6 +60,22 @@ export class MiddleHeaderComponent {
   
   }
 
+  getPages() {
+    this.pageService.getPages().subscribe({
+      next: (res) => {
+        this.pages = res.filter((page: any) => 
+          page.name === 'Wider Football' || page.name === 'Community'
+        );
+        this.abouts = res.filter((page: any) => 
+          page.name !== 'Wider Football' && page.name !== 'Community'
+        );
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
+
 
   selectDashboard() {
     this.isDashboardSelected = true;
@@ -66,6 +85,7 @@ export class MiddleHeaderComponent {
   user: any;
 
   ngOnInit() {
+    this.getPages()
     this.authService.user$.subscribe(user => {
       this.user = user;
       this.showDropdown = false;

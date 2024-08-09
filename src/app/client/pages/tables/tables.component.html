@@ -1,0 +1,80 @@
+<div class="wrapper">
+    <div class="container">
+        <div class="header">
+            <h1>Tables</h1>
+        </div>
+        <div class="body">
+            <div *ngIf="leagues.length > 0; else NoLeagueTeams">
+                <div *ngFor="let league of leagues">
+                    <div class="header">
+                        <div class="title-container">
+                            <h2>{{ league.title }} Standings</h2>
+                        </div>
+                    </div>
+                    <div class="table-content">
+                        <div class="table-body">
+                            <table mat-table [dataSource]="league.teams">
+                                <ng-container matColumnDef="position">
+                                    <th mat-header-cell *matHeaderCellDef> Pos </th>
+                                    <td mat-cell *matCellDef="let element; let i = index"> {{ i + 1 }} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="team">
+                                    <th mat-header-cell *matHeaderCellDef class="custom-width-columm-team"> Club </th>
+                                    <td mat-cell *matCellDef="let element" class="custom-width-columm-team">
+                                        <div class="team-container">
+                                            <img *ngIf="element.file_name" [src]="imagePath + element.file_name" alt={{element.file_name}}
+                                                width="20px">
+                                            {{ element.team }}
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="played">
+                                    <th mat-header-cell *matHeaderCellDef class="custom-width-column"> Played </th>
+                                    <td mat-cell *matCellDef="let element" class="custom-width-column"> {{ element.played }} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="won">
+                                    <th mat-header-cell *matHeaderCellDef class="custom-width-column"> Won </th>
+                                    <td mat-cell *matCellDef="let element" class="custom-width-column"> {{ element.won }} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="drawn">
+                                    <th mat-header-cell *matHeaderCellDef class="custom-width-column"> Drawn </th>
+                                    <td mat-cell *matCellDef="let element" class="custom-width-column"> {{ element.drawn }} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="lost">
+                                    <th mat-header-cell *matHeaderCellDef class="custom-width-column"> Lost </th>
+                                    <td mat-cell *matCellDef="let element" class="custom-width-column"> {{ element.lost }} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="goals_for">
+                                    <th mat-header-cell *matHeaderCellDef class="custom-width-column"> GF </th>
+                                    <td mat-cell *matCellDef="let element" class="custom-width-column"> {{ element.gf }} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="goals_against">
+                                    <th mat-header-cell *matHeaderCellDef class="custom-width-column"> GA </th>
+                                    <td mat-cell *matCellDef="let element" class="custom-width-column"> {{ element.ga }} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="goals_difference">
+                                    <th mat-header-cell *matHeaderCellDef class="custom-width-column"> GD </th>
+                                    <td mat-cell *matCellDef="let element" class="custom-width-column"> {{ element.gd }} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="points">
+                                    <th mat-header-cell *matHeaderCellDef class="custom-width-column"> Pts </th>
+                                    <td mat-cell *matCellDef="let element" class="custom-width-column-pts"> {{ element.points }} </td>
+                                </ng-container>
+                    
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ng-template #NoLeagueTeams>
+                <div class="error-container">
+                    <div class="error-content">
+                        <h2>No Teams Standing Posted Yet</h2>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>

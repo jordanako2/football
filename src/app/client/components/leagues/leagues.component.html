@@ -40,7 +40,7 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
         <div class="footer">
-            <div class="matches">
+            <div class="matches" [routerLink]="'/tables'">
                 <span>View More</span>
                 <mat-icon>arrow_right_alt</mat-icon>
             </div>

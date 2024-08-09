@@ -1,0 +1,78 @@
+<div class="wrapper">
+    <div class="container">
+      <div class="header">
+        <button
+          mat-flat-button
+          extended
+          color="primary"
+          [routerLink]="'/admin/pages'"
+        >
+          <mat-icon>keyboard_arrow_left</mat-icon>
+          Back
+        </button>
+      </div>
+      <h1>Page Information</h1>
+      <div class="body">
+        <form [formGroup]="contentForm" (ngSubmit)="onSubmit()">
+          <div class="content">
+            <div class="row">
+              <mat-form-field appearance="outline">
+                <mat-label>Status</mat-label>
+                <mat-select formControlName="status">
+                  <mat-option value="Draft">Draft</mat-option>
+                  <mat-option value="Published">Published</mat-option>
+                </mat-select>
+                <mat-error *ngIf="contentForm.get('status')?.hasError('required') && contentForm.get('status')?.touched">
+                  Page status is required
+                </mat-error>
+              </mat-form-field> 
+              
+              <mat-form-field appearance="outline">
+                <mat-label>Page</mat-label>
+                <mat-select formControlName="name">
+                  <mat-option value="Wider Football">Football & Community > Wider Football</mat-option>
+                  <mat-option value="Community">Football & Community > Community</mat-option>
+                  <mat-option value="Who Are We">About Us > Who Are We</mat-option>
+                  <mat-option value="What Do We Do">About Us > What Do We Do</mat-option>
+                  <mat-option value="Partners">About Us > Partners</mat-option>
+                </mat-select>
+                <mat-error *ngIf="contentForm.get('name')?.hasError('required') && contentForm.get('name')?.touched">
+                  Page is required
+                </mat-error>
+              </mat-form-field>  
+
+              <mat-form-field appearance="outline">
+                <mat-label>Slug</mat-label>
+                <input matInput placeholder="Slug" formControlName="slug">
+                <mat-error *ngIf="contentForm.get('slug')?.hasError('required') && contentForm.get('slug')?.touched">
+                    Slug is required
+                </mat-error>
+              </mat-form-field>
+  
+              <mat-form-field appearance="outline">
+                <mat-label>Meta Title</mat-label>
+                <input matInput placeholder="Meta Title" formControlName="meta_title" />
+              </mat-form-field>
+  
+              <mat-form-field appearance="outline">
+                <mat-label>Meta Description</mat-label>
+                <textarea matInput formControlName="meta_description"></textarea>
+              </mat-form-field>
+  
+              <div class="news-content">
+                <quill-editor
+                  [modules]="modules"
+                  [style]="{ height: '300px', width: '100%' }"
+                  [placeholder]="'Enter full content here...'"
+                  formControlName="content"
+                  (onEditorCreated)="getEditorInstance($event)"
+                ></quill-editor>
+              </div>
+            </div>
+          </div>
+          <button mat-raised-button color="primary" type="submit">Save</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  

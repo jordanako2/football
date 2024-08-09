@@ -12,7 +12,7 @@
                         <li><a [routerLink]="'/news'">NEWS</a></li>
                         <li><a [routerLink]="'/fixtures'">FIXTURES</a></li>
                         <li><a>RESULTS</a></li>
-                        <li><a>STATS</a></li>
+                        <!-- <li><a>STATS</a></li> -->
                     </ul>
                 </li>
                     <li><a [routerLink]="'/clubs'">CLUBS</a></li>
@@ -20,39 +20,36 @@
                     <li><a>FOOTBALL & COMMUNITY
                         <i class="material-icons">arrow_drop_down</i> </a>
                         <ul class="dropdown">
-                            <li><a>WIDER FOOTBALL</a></li>
-                            <li><a>COMMUNITY</a></li>
-                           
+                            <li *ngFor="let page of pages"><a [routerLink]="'/' + page.slug">{{ page.name }}</a></li> 
                         </ul>
                     </li>
 
                     <li><a>ABOUT US
                         <i class="material-icons">arrow_drop_down</i></a>
                         <ul class="dropdown">
-                            <li><a>WHO ARE WE</a></li>
-                            <li><a>WHAT DO WE DO</a></li>
-                            <li><a>PARTNERS</a></li>
+                            <li *ngFor="let about of abouts"><a [routerLink]="'/' + about.slug">{{ about.name }}</a></li> 
                         </ul>
-
-                        
                     </li>
                 </ul>
             </div>
-            
-  
-  
-  
-  
-  
             <div class="right-items">
                 <div *ngIf="!isAuthenticated" class="login" [routerLink]="'/login'">SIGN IN</div>
                 <div *ngIf="user" class="auth">
-                    <div *ngIf="user.role != 'User'">
-                        <!-- <button mat-flat-button class="team-button" [routerLink]="'/admin'">Dashboard</button> -->
-                    </div>
+                    <!-- <div *ngIf="user.picture; else ExcepUser"></div>
+                    <ng-template #ExcepUser>
+                        <div *ngIf="user.role !== 'User'">
+                            <button mat-flat-button class="team-button" [routerLink]="'/admin'">Dashboard</button>
+                        </div>
+                    </ng-template> -->
                     <div>
                         <button mat-button (click)="toggleDropdown()">Welcome, {{ user.given_name }} <mat-icon>keyboard_arrow_down</mat-icon></button>
                         <mat-card *ngIf="showDropdown">
+                            <div *ngIf="user.picture; else ExcepUser"></div>
+                            <ng-template #ExcepUser>
+                                <mat-selection-list *ngIf="user.role !== 'User'">
+                                    <mat-list-item [routerLink]="'/admin'"><mat-icon matListItemIcon>dashboard</mat-icon> Dashboard</mat-list-item>
+                                </mat-selection-list>
+                            </ng-template>
                             <mat-selection-list>
                                 <mat-list-item (click)="logout($event)"><mat-icon matListItemIcon>logout</mat-icon> Logout</mat-list-item>
                             </mat-selection-list>

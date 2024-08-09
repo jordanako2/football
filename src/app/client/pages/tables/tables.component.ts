@@ -1,25 +1,22 @@
 import { Component } from '@angular/core';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { LeagueService } from '../../../services/league.service';
 import { ApiService } from '../../../services/api.service';
+import { MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterLink } from '@angular/router';
-
-
-
 
 @Component({
-  selector: 'app-leagues',
+  selector: 'app-tables',
   standalone: true,
-  imports: [MatTableModule, CommonModule, MatIconModule, RouterLink],
-  templateUrl: './leagues.component.html',
-  styleUrl: './leagues.component.sass'
+  imports: [MatTableModule, CommonModule, MatIconModule],
+  templateUrl: './tables.component.html',
+  styleUrl: './tables.component.sass'
 })
-export class LeaguesComponent {
+export class TablesComponent {
+
   leagues: any[] = [];
   imagePath: string | null = null;
-  displayedColumns: string[] = ['position', 'team', 'played', 'gd', 'points'];
+  displayedColumns: string[] = ['position', 'team', 'played', 'won', 'drawn', 'lost', 'goals_for', 'goals_against', 'goals_difference', 'points'];
 
   constructor(
     private leagueService: LeagueService,
@@ -35,6 +32,7 @@ export class LeaguesComponent {
     this.leagueService.getLeagueTeams().subscribe({
       next: (res) => {
         this.leagues = res;
+        console.log(res)
       },
       error: (err) => {
         console.log(err);

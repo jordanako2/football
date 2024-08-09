@@ -78,6 +78,12 @@ export class SidebarComponent {
     roles: ['Super Admin', 'Admin', 'Content Editor']
   },
   {
+    label: 'Pages',
+    icon: 'new_releases',
+    routerLink: '/admin/pages',
+    roles: ['Super Admin', 'Admin', 'Content Editor']
+  },
+  {
     label: 'Users',
     icon: 'group',
     routerLink: '/admin/users',

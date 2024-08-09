@@ -40,6 +40,11 @@ export class LeagueService {
               team: team.team.team,
               file_name: team.team.file_name,
               played: team.played,
+              won: team.won,
+              drawn: team.drawn,
+              lost: team.lost,
+              gf: team.goals_for,
+              ga: team.goals_against,
               gd: team.goals_difference,
               points: team.points,
             }))

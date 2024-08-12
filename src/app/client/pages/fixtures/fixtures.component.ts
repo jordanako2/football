@@ -6,7 +6,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog} from '@angular/material/dialog';
 import { Title } from '@angular/platform-browser'
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { QuickviewComponent } from './quickview/quickview.component';
 
 @Component({
   selector: 'app-fixtures',
@@ -15,7 +16,8 @@ import { RouterLink } from '@angular/router';
     CommonModule,
     MatIconModule,
     MatButtonModule,
-    RouterLink
+    RouterLink,
+    QuickviewComponent
   ],
   templateUrl: './fixtures.component.html',
   styleUrl: './fixtures.component.sass'
@@ -28,7 +30,8 @@ export class FixturesComponent implements OnInit{
     private leagueService: LeagueService,
     private configService: ApiService,
     private _dialog: MatDialog,
-    private _titleService: Title
+    private _titleService: Title,
+    private router: Router
   )
   {}
   ngOnInit(): void {
@@ -65,4 +68,10 @@ export class FixturesComponent implements OnInit{
   //     }
   //   })
   // }
+
+  onFixtureClick(matches: any) {
+    this.router.navigate(['/quickview'], {
+      state: { matches }
+    });
+  }
 }

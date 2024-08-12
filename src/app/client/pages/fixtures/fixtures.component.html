@@ -9,7 +9,7 @@
             <h2>{{ date.match_date | date:'EEEE dd MMMM, YYYY' }}</h2>
             <h2>{{ leagues.title }}</h2>
         </div>
-            <div *ngFor="let matches of date.matches" class="match-container" [routerLink]="'/fixtures/' + matches.id">
+            <div *ngFor="let matches of date.matches" class="match-container" (click)="onFixtureClick(matches)">
                
                 <div class="match-content">
                     <div class="team-fixtures">

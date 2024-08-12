@@ -1,82 +1,50 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { LeagueService } from '../../../../services/league.service';
-import { ApiService } from '../../../../services/api.service';
+import { Component, OnInit } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
-import { TeamService } from '../../../../services/team.service';
-import { FormBuilder, FormGroup,ReactiveFormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { Router } from '@angular/router';
+import { LeagueService } from '../../../../services/league.service';
+import { ApiService } from '../../../../services/api.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-quickview',
   standalone: true,
   imports: [
-    CommonModule, MatTableModule, MatTabsModule,MatSelectModule, MatFormFieldModule,ReactiveFormsModule
+    CommonModule, MatTableModule, MatTabsModule,MatSelectModule, MatFormFieldModule, MatIconModule
   ],
   templateUrl: './quickview.component.html',
   styleUrl: './quickview.component.sass'
 })
-export class QuickviewComponent {
-
-  form: FormGroup;
-  leagues: any[] = [];
-  fixures: any[] = [];
-  initialLeagueId: number | null = null;
+export class QuickviewComponent implements OnInit {
   imagePath: string | null = null;
-  teamId: number | null = null;
-  slug: string | null = null;
-
-  constructor (
-    private fb: FormBuilder,
+  matches: any;
+  leagueMatches: any[] = [];
+  
+  constructor(
+    private router: Router, 
     private leagueService: LeagueService,
-    private teamService: TeamService,
     private configService: ApiService,
-    private route: ActivatedRoute,
   ) {
-    this.form = this.fb.group({
-      league: ['']
-    });
+    const navigation = this.router.getCurrentNavigation();
+    this.matches = navigation?.extras.state?.['matches'];
   }
 
   ngOnInit(): void {
-    this.getLeagues();
     this.imagePath = `${this.configService.URL_IMAGE}`;
+    this.getLeagueTeams();
   }
-
-
-  getLeagues() {
-    this.leagueService.getLeagues().subscribe({
-      next: (res: any[]) => {
-        this.leagues = res.filter(league => league.status === 'Posted' || league.status === 'Completed')
-        this.initialLeagueId = res[0].id
-        if (this.initialLeagueId && this.teamId) {
-          this.getTeamFixures(this.initialLeagueId, this.teamId);
-          this.form.patchValue({ league: this.initialLeagueId }); 
-        }
+  getLeagueTeams() {
+    this.leagueService.getLeagueMatches().subscribe({
+      next: (res) => {
+        this.leagueMatches = res;
       },
       error: (err) => {
         console.log(err);
       }
     })
   }
-
-  getTeamFixures(leagueId: number, teamId: number) {
-    this.teamService.getTeamFixures(leagueId, teamId).subscribe({
-      next: (res: any[]) => {
-        this.fixures = res.map(item => item.match);  
-      },
-      error: (err) => {
-        console.error('Error fetching fixtures:', err);
-      }
-    });
-  }
-
-  onLeagueChange(leagueId: number) {
-    this.getTeamFixures(leagueId, this.teamId!); 
-  }
-
 
 }

@@ -68,7 +68,7 @@ const routes: Routes = [
             component: FixturesComponent
           },
           {
-            path: 'fixtures/:id',
+            path: 'quickview',
             component: QuickviewComponent
           },
           {

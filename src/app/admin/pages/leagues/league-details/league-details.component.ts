@@ -80,19 +80,30 @@ export class LeagueDetailsComponent {
       }
     });
   }
+  
 
   getLeagueTeams(leagueId: number) {
     this.leagueTeamService.getLeagueTeams(leagueId).subscribe({
       next: (res) => {
+        console.log(res);
         const activeTeams = res.filter((team: PeriodicElement) => team.stat !== 0);
         const inactiveTeams = res.filter((team: PeriodicElement) => team.stat === 0);
-
-        activeTeams.sort((a: PeriodicElement, b: PeriodicElement) => b.points - a.points);
+  
+        activeTeams.sort((a: PeriodicElement, b: PeriodicElement) => {
+          if (b.points !== a.points) {
+            return b.points - a.points; 
+          } else if (b.goals_for !== a.goals_for) {
+            return b.goals_for - a.goals_for; 
+          } else {
+            return b.goals_difference - a.goals_difference; 
+          }
+        });
+  
         const sortedTeams = [...activeTeams, ...inactiveTeams];
         sortedTeams.forEach((element: PeriodicElement, index: number) => {
           element.position = index + 1;
         });
-
+  
         this.dataSource = new MatTableDataSource(sortedTeams);
       },
       error: (err) => {
@@ -100,6 +111,7 @@ export class LeagueDetailsComponent {
       }
     });
   }
+  
 
 
   openDialog(): void {

@@ -27,7 +27,6 @@ export class MatchesComponent {
     this.getLeagueTeams();
   }
 
-
   getLeagueTeams() {
     this.leagueService.getLeagueMatches().subscribe({
       next: (res) => {

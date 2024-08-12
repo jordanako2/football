@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog} from '@angular/material/dialog';
 import { Title } from '@angular/platform-browser'
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-fixtures',
@@ -13,7 +14,8 @@ import { Title } from '@angular/platform-browser'
   imports: [
     CommonModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    RouterLink
   ],
   templateUrl: './fixtures.component.html',
   styleUrl: './fixtures.component.sass'

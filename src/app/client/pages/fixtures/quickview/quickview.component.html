@@ -1,9 +1,27 @@
 <div class="wrapper">
-    <div class="container">
-        <div class="body">
-          
-          <h1>Coming Soon!</h1>
-        </div>
-    </div>
+  <div class="header">
+    <h1>Fixtures here</h1>
   </div>
-  
+  <div class="container">
+      <div class="fixure-content" *ngFor="let match of fixures">
+          <h2>{{ match.match_date | date:'EEEE dd MMMM YYYY' }}</h2>
+          <div class="match-contents">
+              <div class="match-team">
+                  <div class="team">{{ match.scores[0].team.team }}</div>
+                  <img *ngIf="match.scores[0].team.file_name" [src]="imagePath + match.scores[0].team.file_name"
+                      alt={{match.scores[0].team.file_name}} width="30px">
+                      <div class="time-container">
+                        {{ '2000-01-01T' + match.match_time | date:'h:mm a' }}
+                    </div>
+                  <img *ngIf="match.scores[1].team.file_name" [src]="imagePath + match.scores[1].team.file_name"
+                      alt={{match.scores[1].team.file_name}} width="30px">
+                  <div class="team">{{ match.scores[1].team.team }}</div>
+              </div>
+              <div class="location">
+                  {{ match.location }}
+              </div>
+          </div>
+      
+  </div>
+</div>
+</div>

@@ -16,6 +16,7 @@ import { ClubsComponent } from './pages/clubs/clubs.component';
 import { FixturesComponent } from './pages/fixtures/fixtures.component';
 import { TablesComponent } from './pages/tables/tables.component';
 import { PageComponent } from './pages/page/page.component';
+import { QuickviewComponent } from './pages/fixtures/quickview/quickview.component';
 
 
 const routes: Routes = [
@@ -65,6 +66,10 @@ const routes: Routes = [
           {
             path: 'fixtures',
             component: FixturesComponent
+          },
+          {
+            path: 'fixtures/:id',
+            component: QuickviewComponent
           },
           {
             path: 'tables',

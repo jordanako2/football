@@ -1,13 +1,10 @@
 <div class="wrapper">
-  <div class="header">
-    <h1>Fixture Details</h1>
-  </div>
   <div class="container">
     <div *ngFor="let leagues of leagueMatches" class="body">
       <div *ngFor="let date of leagues.matches" class="date-container">
           <div class="fixture-header">
-          <h2>{{ date.match_date | date:'EEEE dd MMMM, YYYY' }}</h2>
-          <div class="location-content"><h2><mat-icon> location_on</mat-icon>{{ matches.location }}</h2> </div>
+          <h2>{{ date.match_date | date:'dd MMMM, YYYY' }}</h2>
+          <div class="location-content"><h2><mat-icon> location_on</mat-icon>{{ matches?.location || 'Location not available' }}</h2> </div>
       </div>
     <div class="fixure-content" *ngIf="matches">
 

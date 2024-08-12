@@ -20,7 +20,7 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class QuickviewComponent implements OnInit {
   imagePath: string | null = null;
-  matches: any;
+  matches: any = {};
   leagueMatches: any[] = [];
   
   constructor(
@@ -35,6 +35,7 @@ export class QuickviewComponent implements OnInit {
   ngOnInit(): void {
     this.imagePath = `${this.configService.URL_IMAGE}`;
     this.getLeagueTeams();
+    
   }
   getLeagueTeams() {
     this.leagueService.getLeagueMatches().subscribe({

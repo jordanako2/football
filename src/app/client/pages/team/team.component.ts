@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-team',
@@ -21,6 +22,7 @@ export class TeamComponent {
   constructor(
     private _fb: FormBuilder, 
     private _configService: ApiService,
+    private _titleService: Title
   ) {
     this.teamForm = this._fb.group({
       file_name: '',
@@ -31,6 +33,7 @@ export class TeamComponent {
   }
 
   ngOnInit(): void {
+    this.setTitle('Clubs');
     this.imagePath = `${this._configService.URL_IMAGE}no_image.jpg`;
   }
 
@@ -41,5 +44,10 @@ export class TeamComponent {
         file_name: this.selectedImage.name 
       });
     }
+  }
+
+
+  setTitle(newTitle: string) {
+    this._titleService.setTitle(newTitle);
   }
 }

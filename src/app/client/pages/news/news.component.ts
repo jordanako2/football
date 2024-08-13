@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { RouterLink } from '@angular/router';
 import { NewsService } from '../../../services/news.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-news',
@@ -24,6 +25,7 @@ export class NewsComponent {
   constructor(
     private _contentService: NewsService,
     private _configService: ApiService,
+    private _titleService: Title
   ) {}
 
   getContent() {
@@ -39,9 +41,14 @@ export class NewsComponent {
   }
 
   ngOnInit(): void {
+    this.setTitle('News');
     this.getContent();
   }
 
+  setTitle(newTitle: string) {
+    this._titleService.setTitle(newTitle);
+  }
+  
 
   applyFilter(event: Event) {
   }

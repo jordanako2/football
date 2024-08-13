@@ -9,7 +9,7 @@
             <h2>{{ date.match_date | date:'EEEE dd MMMM, YYYY' }}</h2>
             <h2>{{ leagues.title }}</h2>
         </div>
-            <div *ngFor="let matches of date.matches" class="match-container">
+            <div *ngFor="let matches of date.matches" class="match-container" (click)="onFixtureClick(matches)">
                
                 <div class="match-content">
                     <div class="team-fixtures">
@@ -32,8 +32,7 @@
                         </div>
                     </div>
                     <div class="location-content"><mat-icon> location_on</mat-icon>{{ matches.location }} {{ '@' }}</div>
-                    <div class="match">
-                        <span>Quick View</span>
+                    <div class="match"  >
                         <mat-icon>arrow_right_alt</mat-icon>
                     </div>
                 </div>

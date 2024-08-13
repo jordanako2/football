@@ -1,7 +1,7 @@
 .wrapper
     width: 100%
     min-height: 100vh
-    padding-top: 136px
+    margin-top: 136px
     .header
         display: flex
         justify-content: center
@@ -103,12 +103,6 @@
         
 @media screen and (max-width: 1200px)
     .wrapper
-        width: 100%
-        margin-top: 77px
-        display: flex
-        flex-direction: column
-        justify-content: center
-        margin-bottom: 10px
         .header
             display: flex
             justify-content: center
@@ -126,12 +120,14 @@
             width: 100%
             .body
                 width: 100%
+                margin-inline: 20px
                 .date-container
                     .fixture-header
                         width: 100%
                         display: flex
                         justify-content: space-between
                 .match-container
+                    width: 100%
                     color: black
                     display: flex
                     flex-direction: column
@@ -139,11 +135,8 @@
                     gap: 20px
                     padding-bottom: 10px
                     border-bottom: 1px solid #e6e3e3
-                    &:hover
-                        background: linear-gradient(to right, #170BB0,#6C13E0, #FE0103 )
-                        color: #fff
-                        cursor: pointer
                     .match-content
+                        width: 100%
                         display: flex
                         align-items: baseline
                         justify-content: space-between
@@ -151,18 +144,28 @@
                         .team-fixtures
                             display: flex
                             align-items: center
-                            .team-container
+                            .team-container-a
                                 display: flex
                                 align-items: center
-                                justify-content: space-evenly
-                                width: 50%
+                                gap: 20px
+                                width: 100%
                                 .team-content
                                     font-size: 16px
                                 img
-                                    width: 15%
-                                    height: 15%
+                                    width: 30%
+                                    height: 30%
+                            .team-container-b
+                                display: flex
+                                align-items: center
+                                gap: 20px
+                                width: 100%
+                                .team-content
+                                    font-size: 16px
+                                img
+                                    width: 30%
+                                    height: 30%
                             .time-container
-                                width: 20%
+                                width: 40%
                                 padding: 5px 0
                                 border: solid 1px #c1c1c2
                                 border-radius: 10px
@@ -179,7 +182,15 @@
                             padding-inline: 10px
                             cursor: pointer
                             color: #000
-                            border-radius: 5px
-                            &:hover
-                                background-color: #EFEFEF
-    
+                            span
+                                display: none
+
+@media screen and (max-width: 900px)
+    .wrapper
+        margin-top: 77px
+        padding: 0
+        .body
+            margin-inline: 20px
+
+
+            

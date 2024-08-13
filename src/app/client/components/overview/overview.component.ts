@@ -25,7 +25,7 @@ export class OverviewComponent {
   slug: string | null = null;
   aboutData: any | null = null;
   contentData: any[] | null = null;
-  content: SafeHtml  | null = null;
+  content: string | null = null;
   imagePath: string | null = null;
   imageGalleryPath: string | null = null;
   imageLogoPath: string | null = null;
@@ -81,7 +81,8 @@ ngOnInit(): void {
     this.teamAboutService.getTeamAboutByTeamId(teamId).subscribe({
       next: (res) => {
         this.aboutData = res;
-        this.content = this.sanitizer.bypassSecurityTrustHtml(res.desktop_content);
+        // const safeHtml: SafeHtml = this.sanitizer.bypassSecurityTrustHtml(res.desktop_content);
+        this.content = res.desktop_content;
       },
       error: (err) => {
         console.log(err);

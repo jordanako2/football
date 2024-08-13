@@ -48,8 +48,16 @@ export class LeagueService {
               gd: team.goals_difference,
               points: team.points,
             }))
-            .sort((a: any, b: any) => b.points - a.points)
-            .slice(0, 10),
+            .sort((a: any, b: any) => {
+              if (b.points !== a.points) {
+                return b.points - a.points; 
+              } else if (b.gf !== a.gf) {
+                return b.gf - a.gf; 
+              } else {
+                return b.gd - a.gd;
+              }
+            })
+            // .slice(0, 10),
         }));
       })
     );

@@ -67,10 +67,10 @@ const routes: Routes = [
             path: 'fixtures',
             component: FixturesComponent
           },
-          {
-            path: 'quickview',
-            component: QuickviewComponent
-          },
+          // {
+          //   path: 'quickview',
+          //   component: QuickviewComponent
+          // },
           {
             path: 'tables',
             component: TablesComponent

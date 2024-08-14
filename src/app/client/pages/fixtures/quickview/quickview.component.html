@@ -1,44 +1,44 @@
 <div class="wrapper">
-  <div class="container">
-    <div *ngFor="let leagues of leagueMatches" class="body">
-      <div *ngFor="let date of leagues.matches" class="date-container">
-          <div class="fixture-header">
-          <h2>{{ date.match_date | date:'dd MMMM, YYYY' }}</h2>
-          <div class="location-content"><h2><mat-icon> location_on</mat-icon>{{ matches?.location || 'Location not available' }}</h2> </div>
-      </div>
-    <div class="fixure-content" *ngIf="matches">
-
-      <div class="match-contents">
-        <div class="match-team">
-          <div class="team">{{ matches.scores[0].team.team }}</div>
-          <img *ngIf="matches.scores[0].team.file_name" [src]="imagePath + matches.scores[0].team.file_name"
-              alt="{{matches.scores[0].team.file_name}}" width="30px">
-          <div class="time-container">
-            {{ '2000-01-01T' + matches.match_time | date:'h:mm a' }}
+    <div class="container">
+      <div *ngFor="let leagues of leagueMatches" class="body">
+        <div *ngFor="let date of leagues.matches" class="date-container">
+            <div class="fixture-header">
+            <h2>{{ date.match_date | date:'dd MMMM, YYYY' }}</h2>
+            <div class="location-content"><h2><mat-icon> location_on</mat-icon>{{ matches?.location || 'Location not available' }}</h2> </div>
+        </div>
+      <div class="fixure-content" *ngIf="matches">
+  
+        <div class="match-contents">
+          <div class="match-team">
+            <div class="team">{{ matches.scores[0].team.team }}</div>
+            <img *ngIf="matches.scores[0].team.file_name" [src]="imagePath + matches.scores[0].team.file_name"
+                alt="{{matches.scores[0].team.file_name}}" width="30px">
+            <div class="time-container">
+              {{ '2000-01-01T' + matches.match_time | date:'h:mm a' }}
+            </div>
+            <img *ngIf="matches.scores[1].team.file_name" [src]="imagePath + matches.scores[1].team.file_name"
+                alt="{{matches.scores[1].team.file_name}}" width="30px">
+            <div class="team">{{ matches.scores[1].team.team }}</div>
           </div>
-          <img *ngIf="matches.scores[1].team.file_name" [src]="imagePath + matches.scores[1].team.file_name"
-              alt="{{matches.scores[1].team.file_name}}" width="30px">
-          <div class="team">{{ matches.scores[1].team.team }}</div>
         </div>
       </div>
+      </div>
+      <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center">
+        <mat-tab label="Latest">
+            
+              <div class="body">Coming Soon</div>
+            
+        </mat-tab>
+        <mat-tab label="Squad">
+            
+              <div class="body">Coming Soon</div>
+            
+        </mat-tab>
+        <mat-tab label="Stats">
+            
+              <div class="body">Coming Soon</div>
+            
+        </mat-tab>
+    </mat-tab-group>
     </div>
-    </div>
-    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center">
-      <mat-tab label="Latest">
-          
-            <div class="body">Coming Soon</div>
-          
-      </mat-tab>
-      <mat-tab label="Squad">
-          
-            <div class="body">Coming Soon</div>
-          
-      </mat-tab>
-      <mat-tab label="Stats">
-          
-            <div class="body">Coming Soon</div>
-          
-      </mat-tab>
-  </mat-tab-group>
   </div>
-</div>

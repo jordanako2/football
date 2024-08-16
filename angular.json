@@ -28,7 +28,9 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/ball.png"
+              "src/ball.png",
+              "src/robots.txt",
+              "src/assets/sitemap.xml"
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",

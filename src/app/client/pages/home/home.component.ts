@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit{
   constructor(private _titleService: Title) {}
 
   ngOnInit(): void {
-    this.setTitle('BOHOL FOOTBALL LEAGUE ');
+    this.setTitle('Bohol Football League ');
   }
   
   setTitle(newTitle: string) {

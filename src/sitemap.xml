@@ -1,9 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://bfl.ph/</loc>
+    <loc>http://localhost:4200/login</loc>
   </url>
   <url>
-    <loc>https://bfl.ph/about</loc>
+    <loc>http://localhost:4200/profile</loc>
+  </url>
+  <url>
+    <loc>http://localhost:4200/team</loc>
+  </url>
+  <url>
+    <loc>http://localhost:4200/news</loc>
+  </url>
+  <url>
+    <loc>http://localhost:4200/clubs</loc>
+  </url>
+  <url>
+    <loc>http://localhost:4200/fixtures</loc>
+  </url>
+  <url>
+    <loc>http://localhost:4200/tables</loc>
+  </url>
+  <url>
+    <loc>http://localhost:4200/tests/links</loc>
+  </url>
+  <url>
+    <loc>http://localhost:4200/clubs/huskies-fc</loc>
+  </url>
+  <url>
+    <loc>http://localhost:4200/clubs/tagbilaran-tigers</loc>
+  </url>
+  <url>
+    <loc>http://localhost:4200/clubs/panglao-dolphins</loc>
+  </url>
+  <url>
+    <loc>http://localhost:4200/clubs/tubigon-fc</loc>
+  </url>
+  <url>
+    <loc>http://localhost:4200/clubs/clarin-fc</loc>
+  </url>
+  <url>
+    <loc>http://localhost:4200/clubs/sagbayan-fc</loc>
+  </url>
+  <url>
+    <loc>http://localhost:4200/clubs/talibon-fc</loc>
+  </url>
+  <url>
+    <loc>http://localhost:4200/clubs/alicia-fc</loc>
+  </url>
+  <url>
+    <loc>http://localhost:4200/clubs/seirra-bullones-fc</loc>
+  </url>
+  <url>
+    <loc>http://localhost:4200/clubs/gaher-fc</loc>
+  </url>
+  <url>
+    <loc>http://localhost:4200/wider-football</loc>
+  </url>
+  <url>
+    <loc>http://localhost:4200/community</loc>
   </url>
 </urlset>

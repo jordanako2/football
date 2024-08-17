@@ -53,10 +53,6 @@ export const routes: Routes = [
             component: NewsDetailsComponent
           },
           {
-            path:'news/:id',
-            component: FeatureDetailsComponent
-          },
-          {
             path: 'clubs',
             component: TeamsComponent
           },

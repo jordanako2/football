@@ -1,63 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://localhost:4200/login</loc>
+    <loc>https://bfl.ph/login</loc>
   </url>
   <url>
-    <loc>http://localhost:4200/profile</loc>
+    <loc>https://bfl.ph/profile</loc>
   </url>
   <url>
-    <loc>http://localhost:4200/team</loc>
+    <loc>https://bfl.ph/team</loc>
   </url>
   <url>
-    <loc>http://localhost:4200/news</loc>
+    <loc>https://bfl.ph/news</loc>
   </url>
   <url>
-    <loc>http://localhost:4200/clubs</loc>
+    <loc>https://bfl.ph/clubs</loc>
   </url>
   <url>
-    <loc>http://localhost:4200/fixtures</loc>
+    <loc>https://bfl.ph/fixtures</loc>
   </url>
   <url>
-    <loc>http://localhost:4200/tables</loc>
+    <loc>https://bfl.ph/tables</loc>
   </url>
   <url>
-    <loc>http://localhost:4200/tests/links</loc>
+    <loc>https://bfl.ph/clubs/huskies-fc</loc>
   </url>
   <url>
-    <loc>http://localhost:4200/clubs/huskies-fc</loc>
+    <loc>https://bfl.ph/clubs/tagbilaran-tigers</loc>
   </url>
   <url>
-    <loc>http://localhost:4200/clubs/tagbilaran-tigers</loc>
+    <loc>https://bfl.ph/clubs/panglao-dolphins</loc>
   </url>
   <url>
-    <loc>http://localhost:4200/clubs/panglao-dolphins</loc>
+    <loc>https://bfl.ph/clubs/tubigon-fc</loc>
   </url>
   <url>
-    <loc>http://localhost:4200/clubs/tubigon-fc</loc>
+    <loc>https://bfl.ph/clubs/clarin-fc</loc>
   </url>
   <url>
-    <loc>http://localhost:4200/clubs/clarin-fc</loc>
+    <loc>https://bfl.ph/clubs/sagbayan-fc</loc>
   </url>
   <url>
-    <loc>http://localhost:4200/clubs/sagbayan-fc</loc>
+    <loc>https://bfl.ph/clubs/talibon-fc</loc>
   </url>
   <url>
-    <loc>http://localhost:4200/clubs/talibon-fc</loc>
+    <loc>https://bfl.ph/clubs/alicia-fc</loc>
   </url>
   <url>
-    <loc>http://localhost:4200/clubs/alicia-fc</loc>
+    <loc>https://bfl.ph/clubs/seirra-bullones-fc</loc>
   </url>
   <url>
-    <loc>http://localhost:4200/clubs/seirra-bullones-fc</loc>
+    <loc>https://bfl.ph/clubs/gaher-fc</loc>
   </url>
   <url>
-    <loc>http://localhost:4200/clubs/gaher-fc</loc>
-  </url>
-  <url>
-    <loc>http://localhost:4200/wider-football</loc>
-  </url>
-  <url>
-    <loc>http://localhost:4200/community</loc>
+    <loc>https://bfl.ph/who-are-we</loc>
   </url>
 </urlset>

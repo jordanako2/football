@@ -17,7 +17,6 @@ import { FixturesComponent } from './pages/fixtures/fixtures.component';
 import { TablesComponent } from './pages/tables/tables.component';
 import { PageComponent } from './pages/page/page.component';
 import { QuickviewComponent } from './pages/fixtures/quickview/quickview.component';
-import { LinksComponent } from './pages/links/links.component';
 
 
 export const routes: Routes = [
@@ -75,10 +74,6 @@ export const routes: Routes = [
           {
             path: ':params',
             component: PageComponent
-          },
-          {
-            path: 'tests/links',
-            component: LinksComponent
           },
         ]
     },

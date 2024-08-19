@@ -7,38 +7,44 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog} from '@angular/material/dialog';
 import { Title } from '@angular/platform-browser'
 import { Router, RouterLink } from '@angular/router';
-import { QuickviewComponent } from './quickview/quickview.component';
 
 @Component({
-  selector: 'app-fixtures',
+  selector: 'app-results',
   standalone: true,
   imports: [
     CommonModule,
     MatIconModule,
     MatButtonModule,
     RouterLink,
-    QuickviewComponent
   ],
-  templateUrl: './fixtures.component.html',
-  styleUrl: './fixtures.component.sass'
+  templateUrl: './results.component.html',
+  styleUrl: './results.component.sass'
 })
-export class FixturesComponent implements OnInit{
-
+export class ResultsComponent {
   leagueMatches: any[] = [];
   imagePath: string | null = null;
   constructor(
     private leagueService: LeagueService,
     private configService: ApiService,
-    private _dialog: MatDialog,
     private _titleService: Title,
-    private router: Router
   )
   {}
   ngOnInit(): void {
-    this.setTitle('Fixtures');
+    this.setTitle('Results');
     this.imagePath = `${this.configService.URL_IMAGE}`;
     this.getLeagueTeams();
   }
+
+  // getLeagueTeams() {
+  //   this.leagueService.getLeagueMatches().subscribe({
+  //     next: (res) => {
+  //       this.leagueMatches = res;
+  //     },
+  //     error: (err) => {
+  //       console.log(err);
+  //     }
+  //   })
+  // }
 
   getLeagueTeams() {
     this.leagueService.getLeagueMatches().subscribe({
@@ -63,27 +69,8 @@ export class FixturesComponent implements OnInit{
     });
   }
 
+
   setTitle(newTitle: string) {
     this._titleService.setTitle(newTitle);
-  }
-
-  // quickview(){
-  //   const dialogRef = this._dialog.open(QuickviewComponent);
-  //   dialogRef.afterClosed().subscribe({
-  //     next: (val) => {
-  //       if (val) {
-  //         // this.getLeagueMatches()();
-  //       }
-  //     },
-  //     error: (err) => {
-  //       console.log(err);
-  //     }
-  //   })
-  // }
-
-  onFixtureClick(matches: any) {
-    this.router.navigate(['/quickview'], {
-      state: { matches }
-    });
   }
 }

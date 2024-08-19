@@ -17,6 +17,7 @@ import { FixturesComponent } from './pages/fixtures/fixtures.component';
 import { TablesComponent } from './pages/tables/tables.component';
 import { PageComponent } from './pages/page/page.component';
 import { QuickviewComponent } from './pages/fixtures/quickview/quickview.component';
+import { ResultsComponent } from './pages/results/results.component';
 
 
 export const routes: Routes = [
@@ -62,6 +63,10 @@ export const routes: Routes = [
           {
             path: 'fixtures',
             component: FixturesComponent
+          },
+          {
+            path: 'results',
+            component: ResultsComponent
           },
           // {
           //   path: 'quickview',

@@ -27,14 +27,35 @@ export class MatchesComponent {
     this.getLeagueTeams();
   }
 
+  // getLeagueTeams() {
+  //   this.leagueService.getLeagueMatches().subscribe({
+  //     next: (res) => {
+  //       this.leagueMatches = res;
+  //     },
+  //     error: (err) => {
+  //       console.log(err);
+  //     }
+  //   })
+  // }
+
   getLeagueTeams() {
     this.leagueService.getLeagueMatches().subscribe({
-      next: (res) => {
-        this.leagueMatches = res;
+      next: (res: any[]) => {
+        this.leagueMatches = res.map((league: any) => {
+          return {
+            ...league,
+            matches: league.matches.map((matchDay: any) => {
+              return {
+                ...matchDay,
+                matches: matchDay.matches.filter((match: any) => match.status === 'Posted').slice(0, 5) 
+              };
+            })
+          };
+        });
       },
       error: (err) => {
         console.log(err);
       }
-    })
+    });
   }
 }

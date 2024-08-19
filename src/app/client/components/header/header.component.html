@@ -45,13 +45,14 @@
                                         (click)="closeMenu()">NEWS</button>
                                     <button mat-flat-button style="color: #0F0E6A !important ;" [routerLink]="'/fixtures'"
                                         (click)="closeMenu()">FIXTURES</button>
-                                    <button mat-flat-button style="color: #0F0E6A !important ;"
-                                        (click)="closeMenu()">RESULTS</button>
+                                    <button mat-flat-button style="color: #0F0E6A !important ;" [routerLink]="'/tables'"
+                                        (click)="closeMenu()">STANDINGS</button>
                                     <!-- <button mat-flat-button style="color: #0F0E6A !important ;"
                                         (click)="closeMenu()">STATS</button> -->
                                 </div>
-                                <div class="item" [routerLink]="'/clubs'" (click)="closeMenu()"><span>CLUBS</span></div>
                                 <div class="item" [routerLink]="'/fixtures'" (click)="closeMenu()"><span>FIXTURES</span></div>
+                                <div class="item" [routerLink]="'/tables'" (click)="closeMenu()"><span>STANDINGS</span></div>
+                                <div class="item" [routerLink]="'/clubs'" (click)="closeMenu()"><span>CLUBS</span></div>
                                 <div class="item" (click)="toggleSubmenu('footballcommunity')">
                                     <span [ngClass]="{ 'sub-menu-open': isSubmenuOpen ['footballcommunity']}">FOOTBALL &
                                         COMMUNITY</span>

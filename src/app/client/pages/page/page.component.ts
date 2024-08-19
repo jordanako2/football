@@ -3,11 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { PageService } from '../../../services/page.service';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, Meta, SafeHtml, Title } from '@angular/platform-browser';
+import { QuillModule } from 'ngx-quill';
 
 @Component({
   selector: 'app-page',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, QuillModule],
   templateUrl: './page.component.html',
   styleUrl: './page.component.sass'
 })
@@ -15,7 +16,8 @@ export class PageComponent {
   data: any | null = null;
   imagePath: string | null = null;
   slug: string | null = null;
-  content: SafeHtml  | null = null;
+  // content: SafeHtml  | null = null;
+  content: string | null = null;
 
   constructor(
     private pageService: PageService,
@@ -44,7 +46,7 @@ export class PageComponent {
       next: (res) => {
         if (res.status == 'Published') {
           this.data = res;
-          this.content = this.sanitizer.bypassSecurityTrustHtml(res.content);
+          this.content = res.content
           this.setTitleAndMeta(res.meta_title, res.meta_description);
         }
       },

@@ -19,7 +19,7 @@ import { PageComponent } from './pages/page/page.component';
 import { QuickviewComponent } from './pages/fixtures/quickview/quickview.component';
 
 
-const routes: Routes = [
+export const routes: Routes = [
     {
         path: '',
         component: ClientComponent,
@@ -50,10 +50,6 @@ const routes: Routes = [
           {
             path:'news/:id',
             component: NewsDetailsComponent
-          },
-          {
-            path:'news/:id',
-            component: FeatureDetailsComponent
           },
           {
             path: 'clubs',

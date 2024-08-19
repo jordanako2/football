@@ -8,6 +8,7 @@ export const environment = {
     imageContentUrl: 'https://florify.online/uploads/content/',
     imageSquadUrl: 'https://florify.online/uploads/squad/',
     imageLogo: 'https://florify.online/uploads/website/',
+    clientUrl: 'http://localhost:4200/',
 };
 
 

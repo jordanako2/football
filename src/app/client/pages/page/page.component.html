@@ -3,8 +3,8 @@
         <div class="header">
             <h1>{{ data.name }}</h1>
         </div>
-        <div class="content">
-            <div [innerHTML]="content"></div>
+        <div class="content" *ngIf="content;">
+            <quill-view-html [content]="content" class="ql-editor"></quill-view-html>
         </div>
     </div>
 </div>

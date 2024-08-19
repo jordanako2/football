@@ -55,6 +55,7 @@ export class LeagueTeamMatchComponent {
         res.forEach(match => {
           match.matchTime = new Date(`2000-01-01T${match.match_time}`);
         });
+        res.sort((a, b) => new Date(a.match_date).getTime() - new Date(b.match_date).getTime());
         this.dataSource = new MatTableDataSource(res);
       },
       error: (err) => {

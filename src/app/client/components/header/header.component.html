@@ -39,12 +39,14 @@
                                         'keyboard_arrow_right' }}</mat-icon>
                                 </div>
                                 <div *ngIf="isSubmenuOpen ['leagues']" class="sub-menu">
-                                    <button mat-flat-button style="color: #0F0E6A !important ;"
+                                    <button mat-flat-button style="color: #0F0E6A !important ;" [routerLink]="'/'"
                                         (click)="closeMenu()">HOME</button>
                                     <button mat-flat-button style="color: #0F0E6A !important ;" [routerLink]="'/news'"
                                         (click)="closeMenu()">NEWS</button>
                                     <button mat-flat-button style="color: #0F0E6A !important ;" [routerLink]="'/fixtures'"
                                         (click)="closeMenu()">FIXTURES</button>
+                                    <button mat-flat-button style="color: #0F0E6A !important ;" [routerLink]="'/results'"
+                                        (click)="closeMenu()">RESULTS</button>
                                     <button mat-flat-button style="color: #0F0E6A !important ;" [routerLink]="'/tables'"
                                         (click)="closeMenu()">STANDINGS</button>
                                     <!-- <button mat-flat-button style="color: #0F0E6A !important ;"

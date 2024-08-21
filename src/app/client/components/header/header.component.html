@@ -39,15 +39,15 @@
                                         'keyboard_arrow_right' }}</mat-icon>
                                 </div>
                                 <div *ngIf="isSubmenuOpen ['leagues']" class="sub-menu">
-                                    <button mat-flat-button style="background-color: #7C32E2 !important ;color: #fff;" [routerLink]="'/'"
+                                    <button mat-flat-button style="color: #0F0E6A !important ;" [routerLink]="'/'"
                                         (click)="closeMenu()">HOME</button>
-                                    <button mat-flat-button style="background-color: #7C32E2 !important ;color: #fff;" [routerLink]="'/news'"
+                                    <button mat-flat-button style="color: #0F0E6A !important ;" [routerLink]="'/news'"
                                         (click)="closeMenu()">NEWS</button>
-                                    <button mat-flat-button style="background-color: #7C32E2 !important ;color: #fff;" [routerLink]="'/fixtures'"
+                                    <button mat-flat-button style="color: #0F0E6A !important ;" [routerLink]="'/fixtures'"
                                         (click)="closeMenu()">FIXTURES</button>
-                                    <button mat-flat-button style="background-color: #7C32E2 !important ;color: #fff;" [routerLink]="'/results'"
+                                    <button mat-flat-button style="color: #0F0E6A !important ;" [routerLink]="'/results'"
                                         (click)="closeMenu()">RESULTS</button>
-                                    <button mat-flat-button style="background-color: #7C32E2 !important ; color: #fff;" [routerLink]="'/tables'"
+                                    <button mat-flat-button style="color: #0F0E6A !important ;" [routerLink]="'/tables'"
                                         (click)="closeMenu()">STANDINGS</button>
                                     <!-- <button mat-flat-button style="color: #0F0E6A !important ;"
                                         (click)="closeMenu()">STATS</button> -->
@@ -62,7 +62,7 @@
                                         'keyboard_arrow_right' }}</mat-icon>
                                 </div>
                                 <div *ngIf="isSubmenuOpen ['footballcommunity']" class="sub-menu">
-                                    <button mat-flat-button style="background-color: #7C32E2 !important ;color: #fff;" (click)="closeMenu()" *ngFor="let page of pages" [routerLink]="'/' + page.slug">{{ page.name }}</button>
+                                    <button mat-flat-button style="color: #0F0E6A !important ;" (click)="closeMenu()" *ngFor="let page of pages" [routerLink]="'/' + page.slug">{{ page.name }}</button>
                                 </div>
                                 <div class="item" (click)="toggleSubmenu('about')">
                                     <span [ngClass]="{ 'sub-menu-open': isSubmenuOpen ['about'] }">ABOUT US</span>
@@ -70,7 +70,7 @@
                                         'keyboard_arrow_right' }}</mat-icon>
                                 </div>
                                 <div *ngIf="isSubmenuOpen ['about']" class="sub-menu">
-                                    <button mat-flat-button style="background-color: #7C32E2 !important ;color: #fff;" (click)="closeMenu()" *ngFor="let about of abouts" [routerLink]="'/' + about.slug">{{ about.name }}</button>
+                                    <button mat-flat-button style="color: #0F0E6A !important ;" (click)="closeMenu()" *ngFor="let about of abouts" [routerLink]="'/' + about.slug">{{ about.name }}</button>
                                 </div>
                             </div>
                             <div class="logout">

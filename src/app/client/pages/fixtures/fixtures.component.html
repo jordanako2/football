@@ -31,7 +31,11 @@
                             </div>
                         </div>
                     </div>
+                    <div class="match-status-content" *ngIf="matches.status == 'Live'">
+                        {{ matches.status | uppercase }}
+                    </div>
                     <div class="location-content"><mat-icon>location_on</mat-icon>{{ matches.location }} {{ '@' }}</div>
+                    
                     <!-- <div class="match">
                         <mat-icon>arrow_right_alt</mat-icon>
                     </div> -->

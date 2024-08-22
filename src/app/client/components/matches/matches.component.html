@@ -7,7 +7,12 @@
             <div *ngFor="let date of leagues.matches" class="date-container">
                 <p>{{ date.match_date | date:'EEEE dd MMMM, YYYY' }}</p>
                 <div *ngFor="let matches of date.matches" class="match-container">
-                    <div class="location-content">{{ matches.location }} {{ '@' }} {{ '2000-01-01T' + matches.match_time | date:'h:mm a' }}</div>
+                    <div class="location-container">
+                        <div class="location-content">{{ matches.location }} {{ '@' }} {{ '2000-01-01T' + matches.match_time | date:'h:mm a' }}</div>
+                        <div class="match-status-content" *ngIf="matches.status == 'Live'">
+                            {{ matches.status | uppercase }}
+                        </div>
+                    </div>
                     <div class="match-content">
                         <div class="team-container">
                             <div class="team-content">

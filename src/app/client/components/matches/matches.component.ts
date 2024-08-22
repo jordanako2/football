@@ -47,7 +47,9 @@ export class MatchesComponent {
             matches: league.matches.map((matchDay: any) => {
               return {
                 ...matchDay,
-                matches: matchDay.matches.filter((match: any) => match.status === 'Posted').slice(0, 5) 
+                matches: matchDay.matches
+                .filter((match: any) => match.status === 'Posted' || match.status === 'Live')
+                .slice(0, 5)
               };
             })
           };

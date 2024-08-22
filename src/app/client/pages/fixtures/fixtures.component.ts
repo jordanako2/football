@@ -50,7 +50,7 @@ export class FixturesComponent implements OnInit{
               return {
                 ...matchDay,
                 matches: matchDay.matches.filter((match: any) =>
-                  match.status === 'Posted' || match.status === 'Completed'
+                  match.status === 'Posted' || match.status === 'Completed' || match.status === 'Live'
                 )
               };
             })

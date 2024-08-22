@@ -56,7 +56,7 @@ export class ResultsComponent {
               return {
                 ...matchDay,
                 matches: matchDay.matches.filter((match: any) =>
-                  match.status === 'Posted' || match.status === 'Completed'
+                  match.status === 'Posted' || match.status === 'Completed' || match.status === 'Live'
                 )
               };
             })

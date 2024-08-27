@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { LeagueService } from '../../../services/league.service';
-import { ApiService } from '../../../services/api.service';
-import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialog} from '@angular/material/dialog';
-import { Title } from '@angular/platform-browser'
+import { MatDialog } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { Title } from '@angular/platform-browser';
 import { Router, RouterLink } from '@angular/router';
+import { ApiService } from '../../../services/api.service';
+import { LeagueService } from '../../../services/league.service';
 import { QuickviewComponent } from './quickview/quickview.component';
 
 @Component({
@@ -46,14 +46,17 @@ export class FixturesComponent implements OnInit{
         this.leagueMatches = res.map((league: any) => {
           return {
             ...league,
-            matches: league.matches.map((matchDay: any) => {
-              return {
-                ...matchDay,
-                matches: matchDay.matches.filter((match: any) =>
-                  match.status === 'Posted'
-                )
-              };
-            })
+            matches: league.matches
+              .filter((matchDay: any) => 
+                matchDay.matches.some((match: any) => match.status !== 'Completed')
+              )
+              .map((matchDay: any) => {
+                return {
+                  ...matchDay,
+                  matches: matchDay.matches
+                    .filter((match: any) => match.status === 'Posted')
+                };
+              })
           };
         });
       },
@@ -61,7 +64,7 @@ export class FixturesComponent implements OnInit{
         console.log(err);
       }
     });
-  }
+  }  
 
   setTitle(newTitle: string) {
     this._titleService.setTitle(newTitle);

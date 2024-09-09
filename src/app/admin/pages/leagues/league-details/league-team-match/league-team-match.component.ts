@@ -66,6 +66,7 @@ export class LeagueTeamMatchComponent {
 
   updateScore(element: any, index: number, id: number, team_id: number, points: number, result: string) {
     const dialogRef = this.dialog.open(TeamScoreComponent, {
+        disableClose: true,
         data: { 
           score_id: id,
           team_id: team_id,

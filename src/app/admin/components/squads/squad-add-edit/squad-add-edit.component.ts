@@ -50,6 +50,7 @@ export class SquadAddEditComponent {
       birth_place: '',
       height: 0,
       position: '',
+      jersey_no: 0,
       stat: 0,
     })
   }
@@ -112,6 +113,7 @@ export class SquadAddEditComponent {
       birth_place: [''],
       height: 0,
       position: ['', [Validators.required]],
+      jersey_no: 0,
       stat: 1,
       team_id: [this.teamId],
     });

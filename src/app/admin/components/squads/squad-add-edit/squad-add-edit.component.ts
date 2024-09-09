@@ -145,7 +145,6 @@ export class SquadAddEditComponent {
           }
         })
       } else {
-        console.log(this.squadForm.value)
         this.squadForm.markAllAsTouched();
         this.squadService.addSquad(this.squadForm.value).subscribe({
           next: (val: any) => {

@@ -10,7 +10,6 @@ import { CoreService } from '../../../../../core/core.service';
 import { PlayerScoreService } from '../../../../../services/player-score.service';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 @Component({
   selector: 'app-player-score-add',
@@ -22,7 +21,6 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
     MatInputModule, 
     ReactiveFormsModule, 
     CommonModule, 
-    NgxMaterialTimepickerModule,
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,

@@ -48,7 +48,7 @@ export class FixturesComponent implements OnInit{
             ...league,
             matches: league.matches
               .filter((matchDay: any) => 
-                matchDay.matches.some((match: any) => match.status !== 'Completed')
+                matchDay.matches.some((match: any) => match.status !== 'Completed' && match.status !== 'Live')
               )
               .map((matchDay: any) => {
                 return {

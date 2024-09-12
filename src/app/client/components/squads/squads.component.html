@@ -6,7 +6,7 @@
                 <mat-card-content>
                     <div *ngIf="player.file_name; else noImageTemplate" class="player-images">
                         <img [src]="imagePath + '/' + player.file_name" alt="{{ player.first_name }} {{ player.last_name }}"
-                            class="player-image">
+                            class="player-image" (contextmenu)="disableRightClick($event)" draggable="false">
                     </div>
                     <ng-template #noImageTemplate>
                         <div class="no-image">

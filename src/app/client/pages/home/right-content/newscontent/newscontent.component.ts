@@ -25,6 +25,7 @@ export interface Features {
   title: string;
   description: string;
   file_name: string;
+  created_on: string;
   id: number;
 }
 
@@ -53,12 +54,10 @@ export class NewscontentComponent {
     
   }
 
-
-
-
   getContent():void {
     this._contentService.getContent().subscribe(
       (data: Features[]) => {
+        data.sort((a, b) => new Date(b.created_on).getTime() - new Date(a.created_on).getTime());
       this.newsData = data;
       this.updateTiles(data);
       this.imagePath =`${this._configService.URL_CONTENT_IMAGE}`;
@@ -68,7 +67,6 @@ export class NewscontentComponent {
     }
   );
   }
-
 
 updateTiles(featureData: Features[]): void {
   this.breakpointObserver.observe(['(max-width: 600px)']).subscribe((state: BreakpointState) => {

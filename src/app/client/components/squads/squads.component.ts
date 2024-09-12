@@ -1,13 +1,13 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card'; 
+import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
-import { CommonModule } from '@angular/common';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';  // Import MatCardModule
-import { TeamService } from '../../../services/team.service';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
+import { TeamService } from '../../../services/team.service';
 
 interface Player {
   id: number;
@@ -26,7 +26,7 @@ interface Player {
 @Component({
   selector: 'app-squads',
   standalone: true,
-  imports: [MatTableModule, MatTabsModule, CommonModule, MatIconModule, RouterLink, MatButtonModule, MatCardModule],  // Added MatCardModule
+  imports: [MatTableModule, MatTabsModule, CommonModule, MatIconModule, RouterLink, MatButtonModule, MatCardModule],  
   templateUrl: './squads.component.html',
   styleUrls: ['./squads.component.sass']
 })
@@ -37,7 +37,7 @@ export class SquadsComponent {
   imagePath: string | null = null;
   imageLogoPath: string | null = null;
   squadData: Player[] = [];
-  playersByPosition: { [key: string]: Player[] } = {};  // Property to hold grouped data
+  playersByPosition: { [key: string]: Player[] } = {}; 
   
   constructor(
     private route: ActivatedRoute,
@@ -56,6 +56,10 @@ export class SquadsComponent {
         this.loadTeamData(this.teamId);
       }
     });
+  }
+
+  disableRightClick(event: MouseEvent) {
+    event.preventDefault();
   }
 
   getTeambySlug(slug: string) {

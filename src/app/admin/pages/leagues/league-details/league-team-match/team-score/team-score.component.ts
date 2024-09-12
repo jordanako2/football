@@ -16,6 +16,10 @@ import { MatchService } from '../../../../../../services/match.service';
 import { MatSelectModule } from '@angular/material/select';
 import { ScoreService } from '../../../../../../services/score.service';
 import { LeagueTeamService } from '../../../../../../services/league-team.service';
+import { SquadService } from '../../../../../../services/squad.service';
+import { PlayerScoreAddComponent } from '../../player-score-add/player-score-add.component';
+import { PlayerScoreService } from '../../../../../../services/player-score.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-team-score',
@@ -27,7 +31,8 @@ import { LeagueTeamService } from '../../../../../../services/league-team.servic
     MatInputModule, 
     ReactiveFormsModule, 
     CommonModule, 
-    MatSelectModule
+    MatSelectModule,
+    MatIconModule
   ],
   templateUrl: './team-score.component.html',
   styleUrl: './team-score.component.sass'
@@ -35,13 +40,17 @@ import { LeagueTeamService } from '../../../../../../services/league-team.servic
 export class TeamScoreComponent {
 
   teams: any[] = [];
+  playerScores: any[] = [];
   selectedImage: File | null = null;
   imagePath: string | null = null;
+  imagePathSquad: string | null = null;
   teamForm: FormGroup;
   leagueId: number | null = null;
   matchId: number | null = null;
   teamName: string | null = null;
   teamId: any;
+  players: any[] = [];
+  // squadTeamId: number | null = null;
 
   constructor(
     private _fb: FormBuilder, 
@@ -49,7 +58,9 @@ export class TeamScoreComponent {
     private _coreService: CoreService,
     private _configService: ApiService,
     private teamService: TeamService,
-    private leagueTeamService: LeagueTeamService,
+    private squadService: SquadService,
+    private dialog: MatDialog, 
+    private playerScoreService: PlayerScoreService,
     private scoreService: ScoreService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
@@ -64,8 +75,10 @@ export class TeamScoreComponent {
   ngOnInit(): void {
     this.teamForm.patchValue(this.data);
     this.imagePath =`${this._configService.URL_IMAGE}`;
+    this.imagePathSquad =`${this._configService.URL_IMAGE}/squad/`;
     this.getTeams()
     this.getTeambyId()
+    this.getPlayerScores()
   }
 
   getTeams() {
@@ -83,6 +96,7 @@ export class TeamScoreComponent {
     this.teamService.getTeamById(this.data.team_id).subscribe({
       next: (res: any) => {
         this.teamId = res
+        this.getSquadbyTeamId(res.id)
       },
       error: (err: any) => {
         console.log(err)
@@ -90,6 +104,94 @@ export class TeamScoreComponent {
     }
     );
   }
+
+  getSquadbyTeamId(squadTeamId: any) {
+    this.squadService.getSquadByTeamId(squadTeamId).subscribe({
+      next: (res: any) => {
+        this.players = res.sort((a: any, b: any) => a.jersey_no - b.jersey_no);
+      },
+      error: (err: any) => {
+        console.log(err)
+      }
+    }
+    );
+  }
+
+  getPlayerScores() {
+    this.playerScoreService.getPlayerScoresbyTeamIdandMatchId(this.data.team_id, this.data.matchId).subscribe({
+      next: (res) => {
+        this.playerScores = res.sort((a: any, b: any) => {
+        if (a.minutes !== b.minutes) {
+          return b.minutes - a.minutes; 
+        }
+        return b.seconds - a.seconds; 
+      });
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
+
+  openEditPlayerScoreForm(data: any) {
+    const dialogRef = this.dialog.open(PlayerScoreAddComponent, {
+       data: {
+        playerData: data, 
+        teamId: this.data.team_id,
+        scoreId: this.data.score_id,
+        players: this.players,
+        matchId: this.matchId,
+        leagueId: this.leagueId
+      }
+    });
+    dialogRef.afterClosed().subscribe({
+        next: (val) => {
+          if (val) {
+            this.getPlayerScores()
+          }
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      })
+  }
+
+  deletePlayerScore(id: number) {
+    this.playerScoreService.deletePlayerScore(id).subscribe({
+      next: (res) => {
+        this._coreService.openSnackBar('Player score deleted successfully', 'DONE')
+        this.getPlayerScores()
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+  }
+
+
+  openAddPlayerScore() {
+    const dialogRef = this.dialog.open(PlayerScoreAddComponent, {
+      data: {
+        teamId: this.data.team_id,
+        scoreId: this.data.score_id,
+        players: this.players,
+        matchId: this.matchId,
+        leagueId: this.leagueId
+      },
+    });
+
+    dialogRef.afterClosed().subscribe({
+      next: (val) => {
+        if (val) {
+          this.getPlayerScores()
+        }
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
+
 
   onSubmit() {
     if (this.teamForm.valid) {

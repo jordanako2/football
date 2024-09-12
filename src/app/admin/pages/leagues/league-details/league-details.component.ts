@@ -41,7 +41,7 @@ export interface PeriodicElement {
 })
 export class LeagueDetailsComponent {
 
-  displayedColumns: string[] = ['position', 'team_id', 'played', 'won', 'drawn', 'lost', 'goals_for', 'goals_against', 'goals_difference', 'points', 'stat', 'action'];
+  displayedColumns: string[] = ['position', 'team_id', 'played', 'won', 'drawn', 'lost', 'goals_for', 'goals_against', 'goals_difference', 'points', 'stat'];
   leagueId: number | null = null;
   dataSource!: MatTableDataSource<any>;
   imagePath: string | null = null;

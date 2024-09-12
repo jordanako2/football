@@ -1,0 +1,39 @@
+<div class="wrapper">
+    <form [formGroup]="playerScoreForm" (ngSubmit)="onSubmit()">
+        <div mat-dialog-content class="content">
+            <div class="row">
+                <mat-form-field appearance="outline" class="select-team">
+                    <mat-label>Select Player</mat-label>
+                    <mat-select formControlName="player_id">
+                        <mat-option *ngFor="let player of players" [value]="player.id">
+                            {{ player.jersey_no }}, {{ player.first_name }} {{ player.last_name }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="playerScoreForm.get('player_id')?.hasError('required') && playerScoreForm.get('player_id')?.touched">
+                        Player selection is required
+                    </mat-error>
+                </mat-form-field>
+                <div class="time-container">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Minutes</mat-label>
+                        <input matInput formControlName="minutes" type="number">
+                        <mat-error *ngIf="playerScoreForm.get('minutes')?.hasError('required') && playerScoreForm.get('minutes')?.touched">
+                            Minutes is required
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Seconds</mat-label>
+                        <input matInput formControlName="seconds" type="number">
+                        <mat-error *ngIf="playerScoreForm.get('seconds')?.hasError('required') && playerScoreForm.get('seconds')?.touched">
+                            Seconds is required
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div mat-dialog-actions class="actions">
+            <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+            <button mat-raised-button color="primary" type="submit">Save</button>
+        </div>
+    </form>
+</div>

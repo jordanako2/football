@@ -22,6 +22,10 @@ export class SquadService {
     return this._http.get(environment.apiUrl + `/football/squads/${id}`);
   }
 
+  getSquadByTeamId(teamId: number): Observable<any> {
+    return this._http.get(environment.apiUrl + `/football/squads/team/${teamId}`);
+  }
+
   getSquads(): Observable<any> {
     return this._http.get(environment.apiUrl+`/football/squads`);
   }

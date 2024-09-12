@@ -7,14 +7,25 @@
             <div *ngFor="let date of leagues.matches" class="date-container">
                 <p>{{ date.match_date | date:'EEEE dd MMMM, YYYY' }}</p>
                 <div *ngFor="let matches of date.matches" class="match-container">
-                    <div class="location-content">{{ matches.location }} {{ '@' }} {{ '2000-01-01T' + matches.match_time | date:'h:mm a' }}</div>
+                    <div class="location-container">
+                        <div class="location-content">{{ matches.location }} {{ '@' }} {{ '2000-01-01T' + matches.match_time | date:'h:mm a' }}</div>
+                        <div class="match-status-content" *ngIf="matches.status == 'Live'">
+                            {{ matches.status | uppercase }}
+                        </div>
+                    </div>
                     <div class="match-content">
                         <div class="team-container">
-                            <div class="team-content">
-                                {{ matches.scores[0].team.team }}
+                            <div class="player-score-container">
+                                <div class="team-content">
+                                    {{ matches.scores[0].team.team }}
+                                </div>
+                                <img *ngIf="matches.scores[0].team.file_name" [src]="imagePath + matches.scores[0].team.file_name"
+                                    alt={{matches.scores[0].team.file_name}}>
                             </div>
-                            <img *ngIf="matches.scores[0].team.file_name" [src]="imagePath + matches.scores[0].team.file_name"
-                                alt={{matches.scores[0].team.file_name}}>
+                            <div class="player-score-content" *ngIf="matches.scores[0].playerScores[0]">
+                                {{ matches.scores[0].playerScores[0].player.first_name }} 
+                                {{ matches.scores[0].playerScores[0].player.last_name }}
+                            </div>
                         </div>
                         <div class="score-container">
                             {{ matches.scores[0].points }}
@@ -22,10 +33,16 @@
                             {{ matches.scores[1].points }}
                         </div>
                         <div class="team-container">
-                            <img *ngIf="matches.scores[1].team.file_name" [src]="imagePath + matches.scores[1].team.file_name"
-                                alt={{matches.scores[1].team.file_name}}>
-                            <div class="team-content">
-                                {{ matches.scores[1].team.team }}
+                            <div class="player-score-container">
+                                <img *ngIf="matches.scores[1].team.file_name" [src]="imagePath + matches.scores[1].team.file_name"
+                                    alt={{matches.scores[1].team.file_name}}>
+                                <div class="team-content">
+                                    {{ matches.scores[1].team.team }}
+                                </div>
+                            </div>
+                            <div class="player-score-content" *ngIf="matches.scores[1].playerScores[0]">
+                                {{ matches.scores[1].playerScores[0].player.first_name }}
+                                {{ matches.scores[1].playerScores[0].player.last_name }}
                             </div>
                         </div>
                     </div>

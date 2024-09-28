@@ -1,2 +1,56 @@
-.example-spacer 
-    flex: 1 1 auto
+.wrapper
+    .example-spacer
+        flex: 1 1 auto
+    .menu-button
+        display: none
+    .menu
+        position: absolute
+        top: 0
+        left: 0
+        height: 100vh 
+        width: 280px
+        background-color: #2D323E
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2)
+        z-index: 1000
+        display: flex
+        flex-direction: column
+        border-radius: 0
+        transform: translateX(-100%) 
+        transition: transform 0.3s ease 
+
+        .close-button
+            position: absolute
+            right: 0
+
+
+        .header
+            background-color: #1E2129
+            padding: 24px 0 64px 0
+            display: flex
+            flex-direction: column
+            align-items: center
+            font-weight: 400
+
+            .title
+                font-size: 16px
+                margin: 0
+                letter-spacing: 1px
+            .email
+                margin: 0
+                font-size: 12px
+                color: gray
+
+    .menu-visible
+        transform: translateX(0) 
+
+    a
+        color: white
+        margin-left: 20px
+
+    mat-icon
+        margin-right: 8px
+
+@media only screen and (max-width: 1200px) 
+    .wrapper
+        .menu-button
+            display: block

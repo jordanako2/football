@@ -1,11 +1,42 @@
-<mat-toolbar color="primary">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-        <mat-icon>menu</mat-icon>
-    </button>
-    <span>ADMIN PORTAL</span>
-    <span class="example-spacer"></span>
-    <a mat-fab extended routerLink="/">
-        <mat-icon>home</mat-icon>
-        Website
-    </a>
-</mat-toolbar>
+<div class="wrapper">
+    <mat-toolbar color="primary">
+        <div class="menu-button">
+            <button mat-icon-button (click)="toggleMenu()">
+            <mat-icon>menu</mat-icon>
+            </button>
+        </div>
+        <div class="menu" [ngClass]="{'menu-visible': menuVisible}">
+            <div class="close-button">
+                <button mat-icon-button (click)="toggleMenu()">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </div>
+            <div class="header">
+                <h3 class="title">Hello, {{ user.given_name }}</h3>
+                <p class="email">{{ user.email }}</p>
+            </div>
+            <ng-container *ngFor="let item of menuItems">
+                <mat-list-item *ngIf="role && item.roles.includes(role)" 
+                               [routerLink]="item.routerLink" 
+                               routerLinkActive="active" 
+                               [routerLinkActiveOptions]="{ exact: true }" 
+                               (click)="toggleMenu()">
+                    <mat-icon matListItemIcon [style.color]="'#FFFFFF'">{{ item.icon }}</mat-icon>
+                    <a matListItemTitle>{{ item.label }}</a>
+                </mat-list-item>
+            </ng-container>
+            <mat-list-item (click)="logout($event); toggleMenu()">
+                <mat-icon matListItemIcon [style.color]="'#FFFFFF'">logout</mat-icon>
+                <a matListItemTitle>Logout</a>
+            </mat-list-item>
+        </div>
+
+        <span>ADMIN PORTAL</span>
+        <span class="example-spacer"></span>
+
+        <a mat-fab extended routerLink="/">
+          <mat-icon>home</mat-icon>
+          Website
+        </a>
+    </mat-toolbar>
+</div>

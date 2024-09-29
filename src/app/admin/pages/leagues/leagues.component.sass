@@ -2,28 +2,33 @@
     height: 90vh
     padding: 0 20px
     .header
+        padding-top: 50px
         height: 15%
         display: flex
         justify-content: space-between
-        align-items: center
+        align-items: baseline
         flex-wrap: wrap
         gap: 10px
+        h1
+            font-weight: 300
         .search
-            width: 50%
+            width: 40%
             .search-content
                 width: 100%
                 .search-input
                     width: 100%
     .content
         height: 80%
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px
+        border: 1px solid #E0E0E0
         .table-container 
             height: 90%
             overflow: auto
             .action-content
                 display: flex
                 align-items: center
+                gap: 10px
                 button
+                    height: 30px
                     font-size: 12px
         .paginator
             border-top: 1px solid #DCDCDC

@@ -10,11 +10,12 @@ import { CoreService } from '../../../core/core.service';
 import { ActivatedRoute } from '@angular/router';
 import { ContentsService } from '../../../services/contents.service';
 import { environment } from '../../../environments/environment';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-overview',
   standalone: true,
-  imports: [QuillModule, CommonModule, MatSelectModule, MatFormFieldModule, FormsModule, ReactiveFormsModule, MatButtonModule],
+  imports: [QuillModule, CommonModule, MatSelectModule, MatIconModule, MatFormFieldModule, FormsModule, ReactiveFormsModule, MatButtonModule],
   templateUrl: './overview.component.html',
   styleUrl: './overview.component.sass'
 })

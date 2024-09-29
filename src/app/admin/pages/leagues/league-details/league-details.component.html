@@ -17,8 +17,8 @@
                 <mat-tab label="Standings">
                     <div class="tab-content">
                         <div class="header-league-teams">
-                            <button mat-flat-button color="primary" (click)="openDialog()">
-                                Add League Teams
+                            <button mat-fab extended color="primary" (click)="openDialog()">
+                                <mat-icon>add</mat-icon> Add Team
                             </button>
                         </div>
                         <table mat-table [dataSource]="dataSource">

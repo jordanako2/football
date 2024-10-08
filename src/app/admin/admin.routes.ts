@@ -14,6 +14,7 @@ import { AuthGuard } from '../guards/auth.guard';
 import { TeamDetailsComponent } from './pages/teams/team-details/team-details.component';
 import { PageComponent } from './pages/page/page.component';
 import { PageAddEditComponent } from './pages/page/page-add-edit/page-add-edit.component';
+import { AssociationsComponent } from './pages/associations/associations.component';
 
 const routes: Routes = [
     {
@@ -35,6 +36,7 @@ const routes: Routes = [
           { path: 'pages', component: PageComponent },
           { path: 'page/create', component: PageAddEditComponent },
           { path: 'page/edit/:id', component: PageAddEditComponent },
+          { path: 'associations', component: AssociationsComponent },
         ]
     }
 ];

@@ -53,7 +53,7 @@ export class AssociateMemberAddEditComponent {
       zipcode: '',
       phone: '',
       mail: '',
-      associationId: ['', [Validators.required]],
+      associationId: this.data.paramsId,
     })
   }
 
@@ -78,7 +78,7 @@ export class AssociateMemberAddEditComponent {
   onSubmit() {
     if (this.associateMemberForm.valid) {
       this.associateMemberForm.markAllAsTouched();
-      if (this.data) {
+      if (this.data.id) {
         this.associateMemberService.updateAssociateMember(this.data.id, this.associateMemberForm.value).subscribe({
           next: () => {
             this.coreService.openSnackBar('Associate member updated successfully')

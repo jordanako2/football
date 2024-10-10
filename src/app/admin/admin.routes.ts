@@ -15,6 +15,7 @@ import { TeamDetailsComponent } from './pages/teams/team-details/team-details.co
 import { PageComponent } from './pages/page/page.component';
 import { PageAddEditComponent } from './pages/page/page-add-edit/page-add-edit.component';
 import { AssociationsComponent } from './pages/associations/associations.component';
+import { AssociateMembersComponent } from './pages/associate-members/associate-members.component';
 
 const routes: Routes = [
     {
@@ -37,6 +38,7 @@ const routes: Routes = [
           { path: 'page/create', component: PageAddEditComponent },
           { path: 'page/edit/:id', component: PageAddEditComponent },
           { path: 'associations', component: AssociationsComponent },
+          { path: 'associate-members', component: AssociateMembersComponent },
         ]
     }
 ];

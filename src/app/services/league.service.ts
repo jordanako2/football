@@ -51,10 +51,10 @@ export class LeagueService {
             .sort((a: any, b: any) => {
               if (b.points !== a.points) {
                 return b.points - a.points; 
-              } else if (b.gf !== a.gf) {
-                return b.gf - a.gf; 
+              } else if (b.gd !== a.gd) {
+                return b.gd - a.gd; 
               } else {
-                return b.gd - a.gd;
+                return b.gf - a.gf;
               }
             })
             // .slice(0, 10),

@@ -2,7 +2,7 @@
     <div class="container">
       <div class="header">
         <button
-          mat-flat-button
+          mat-fab
           extended
           color="primary"
           [routerLink]="'/admin/pages'"
@@ -10,8 +10,8 @@
           <mat-icon>keyboard_arrow_left</mat-icon>
           Back
         </button>
+        <span>Page Information</span>
       </div>
-      <h1>Page Information</h1>
       <div class="body">
         <form [formGroup]="contentForm" (ngSubmit)="onSubmit()">
           <div class="content">
@@ -70,7 +70,9 @@
               </div>
             </div>
           </div>
-          <button mat-raised-button color="primary" type="submit">Save</button>
+          <button mat-fab extended color="primary" type="submit">
+            <mat-icon>save</mat-icon> Save
+          </button>
         </form>
       </div>
     </div>

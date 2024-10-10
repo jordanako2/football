@@ -7,7 +7,9 @@
                 <mat-icon matPrefix>search</mat-icon>
             </mat-form-field>
         </div>
-        <button id="item3" mat-flat-button color="primary" (click)="openAddEditTeamForm()">ADD TEAM</button>
+        <button id="item3" mat-fab extended color="primary" (click)="openAddEditTeamForm()">
+            <mat-icon>add</mat-icon> Add Team
+        </button>
     </div>
     <div class="content">
         <div class="table-container">
@@ -35,19 +37,16 @@
                         <th mat-header-cell *matHeaderCellDef> Action </th>
                         <td mat-cell *matCellDef="let row"> 
                             <div class="action-container">
-                                <button mat-icon-button color="primary" (click)="openEditForm(row)">
-                                    <mat-icon>edit</mat-icon>
+                                <button class="view-button" mat-fab extended color="accent" (click)="openEditForm(row)">
+                                    <mat-icon>edit</mat-icon> Edit
                                 </button>
                                 <button class="view-button" mat-fab extended color="primary" [routerLink]="'/admin/teams/' + row.id">
                                     <mat-icon>remove_red_eye</mat-icon> View
                                 </button>
                             </div>
-                            <!-- <button mat-icon-button color="warn" (click)="deleteTeam(row.id)">
-                                <mat-icon>delete</mat-icon>
-                            </button> -->
                         </td>
                     </ng-container>
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns sticky: true"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                     <tr class="mat-row" *matNoDataRow>
                         <td class="mat-cell" colspan="5" align="center" style="padding: 20px;">No team record found.</td>

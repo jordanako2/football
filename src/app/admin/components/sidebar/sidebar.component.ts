@@ -84,6 +84,18 @@ export class SidebarComponent {
     roles: ['Super Admin', 'Admin', 'Content Editor']
   },
   {
+    label: 'Associations',
+    icon: 'new_releases',
+    routerLink: '/admin/associations',
+    roles: ['Super Admin', 'Admin', 'Content Editor']
+  },
+  {
+    label: 'Associate Members',
+    icon: 'new_releases',
+    routerLink: '/admin/associate-members',
+    roles: ['Super Admin', 'Admin', 'Content Editor']
+  },
+  {
     label: 'Users',
     icon: 'group',
     routerLink: '/admin/users',

@@ -18,7 +18,7 @@
                         <div class="news-content">
                             <quill-editor
                                 [modules]="modules"
-                                [style]="{ height: '300px', width: '100%' }"
+                                [style]="{ height: '430px', width: '100%' }"
                                 [placeholder]="'Enter full content here...'"
                                 formControlName="desktop_content"
                                 (onEditorCreated)="getEditorInstance($event)"
@@ -26,7 +26,7 @@
                         </div>
                     </div>
                 </div>
-                <button mat-raised-button color="primary" type="submit">{{ aboutData ? 'Update' : 'Save' }}</button>
+                <button mat-fab extended color="primary" type="submit"><mat-icon>save</mat-icon> {{ aboutData ? 'Update' : 'Save' }}</button>
             </form>
         </div>
     </div>

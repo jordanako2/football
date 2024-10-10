@@ -38,9 +38,9 @@
                                 <button class="view-button" mat-fab extended color="accent" (click)="openEditForm(row)">
                                     <mat-icon>edit</mat-icon> Edit
                                 </button>
-                                <!-- <button mat-icon-button color="warn" (click)="deleteTeam(row.id)">
-                                    <mat-icon>delete</mat-icon>
-                                </button> -->
+                                <button class="view-button" mat-fab extended color="primary" [routerLink]="row.id">
+                                    <mat-icon>remove_red_eye</mat-icon> View
+                                </button>
                             </div>
                         </td>
                     </ng-container>

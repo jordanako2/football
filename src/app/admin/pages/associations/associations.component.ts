@@ -11,6 +11,7 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { AssociationAddEditComponent } from './association-add-edit/association-add-edit.component';
 import { AssociationService } from './associations.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-associations',
@@ -25,7 +26,8 @@ import { AssociationService } from './associations.service';
     MatSortModule, 
     MatPaginatorModule, 
     MatIconModule, 
-    MatSnackBarModule
+    MatSnackBarModule,
+    RouterLink
   ],
   templateUrl: './associations.component.html',
   styleUrl: './associations.component.sass'

@@ -58,23 +58,11 @@
                     <mat-label>Email</mat-label>
                     <input matInput placeholder="Email" formControlName="mail">
                 </mat-form-field>
-                <mat-form-field appearance="outline" class="field">
-                    <mat-label>Associations</mat-label>
-                    <mat-select formControlName="associationId">
-                        <mat-option *ngFor="let association of associations" [value]="association.id">
-                            {{ association.orgName }}  
-                        </mat-option>
-                    </mat-select>
-                    <mat-error
-                        *ngIf="associateMemberForm.get('associationId')?.hasError('required') && associateMemberForm.get('associationId')?.touched">
-                        Association is required
-                    </mat-error>
-                </mat-form-field>
             </div>
         </div>
         <div mat-dialog-actions class="actions">
             <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
-            <button mat-raised-button color="primary" type="submit">{{data ? 'Update' : 'Save'}}</button>
+            <button mat-raised-button color="primary" type="submit">{{data.id ? 'Update' : 'Save'}}</button>
         </div>
     </form>
 </div>

@@ -78,7 +78,7 @@ export const routes: Routes = [
             component: TablesComponent
           },
           {
-            path: 'club-locators',
+            path: 'club-locator',
             component: ClubLocatorsComponent
           },
           {

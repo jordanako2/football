@@ -1,0 +1,49 @@
+<div class="wrapper">
+    <div mat-dialog-title class="title">Team Details</div>
+    <form [formGroup]="clubForm" (ngSubmit)="onSubmit()">
+        <div mat-dialog-content class="content">
+            <div class="row">
+                <mat-form-field appearance="outline">
+                    <mat-label>Club Name</mat-label>
+                    <input matInput placeholder="Club Name" formControlName="clubName">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Municipality</mat-label>
+                    <input matInput placeholder="Municipality" formControlName="municipality">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Categories</mat-label>
+                    <input matInput placeholder="Categories" formControlName="categories">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Contact</mat-label>
+                    <input matInput placeholder="Contact" formControlName="contact">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Phone</mat-label>
+                    <input matInput placeholder="Phone" formControlName="phone">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Training Ground</mat-label>
+                    <input matInput placeholder="Training Ground" formControlName="trainingGround">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Facebook Club</mat-label>
+                    <input matInput placeholder="Facebook Club" formControlName="facebookClub">
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>District</mat-label>
+                    <mat-select formControlName="district">
+                        <mat-option [value]="'1st'">1st</mat-option>
+                        <mat-option [value]="'2nd'">2nd</mat-option>
+                        <mat-option [value]="'3rd'">3rd</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div mat-dialog-actions class="actions">
+            <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+            <button mat-raised-button color="primary" type="submit">{{ data ? 'Update' : 'Save' }}</button>
+        </div>
+    </form>
+</div>

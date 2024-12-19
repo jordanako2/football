@@ -1,0 +1,74 @@
+.wrapper
+    min-height: 100vh
+    padding-top: 136px
+    .container
+        .header
+            background: linear-gradient(to right, #170BB0,#6C13E0, #FE0103 )
+            display: flex
+            justify-content: center
+            color: #FFFFFF
+            h1
+                margin: 2% 10%
+                letter-spacing: 5px
+                font-weight: 600
+                font-size: 32px
+            h2
+                margin-top: 5%
+        .body
+            width: 100%
+            .card-content
+                display: none
+            .table-content
+                margin-top: 20px
+                width: 100%
+                display: flex
+                justify-content: center
+                .table-body
+                    width: 80%
+                    th
+                        color: #37003C
+                        font-weight: 700
+                    td
+                        font-weight: 500
+                        .team-container
+                            display: flex
+                            align-items: center
+                            gap: 20px
+            .error-container
+                background: linear-gradient(to right, #170BB0,#6C13E0, #FE0103 )
+                display: flex
+                justify-content: center
+                color: #FFFFFF
+                h1
+                    margin: 2% 10%
+                    letter-spacing: 5px
+                    font-weight: 600
+                    font-size: 32px
+                    
+::ng-deep .mat-mdc-text-field-wrapper 
+    height: 40px !important
+::ng-deep .mat-mdc-form-field-flex 
+    margin-top: -7px !important
+
+
+@media screen and (max-width: 900px)
+    .wrapper
+        min-height: 50vh
+        padding-top: 77px
+        .container
+            .body 
+                .card-content
+                    display: block
+                    padding: 10px
+                    .card-item
+                        margin-bottom: 10px
+                    p
+                        margin: 0
+                        padding: 0
+                .table-content
+                    display: none
+                    overflow-x: auto 
+                    -webkit-overflow-scrolling: touch 
+                    .table-body
+                        width: 100%
+    

@@ -56,12 +56,13 @@
                                 <div class="item" [routerLink]="'/results'" (click)="closeMenu()"><span>RESULTS</span></div>
                                 <div class="item" [routerLink]="'/tables'" (click)="closeMenu()"><span>STANDINGS</span></div>
                                 <div class="item" [routerLink]="'/clubs'" (click)="closeMenu()"><span>CLUBS</span></div>
-                                <div class="item" (click)="toggleSubmenu('footballcommunity')">
-                                    <span [ngClass]="{ 'sub-menu-open': isSubmenuOpen ['footballcommunity']}">FOOTBALL &
+                                <div class="item" [routerLink]="'/club-locator'" (click)="closeMenu()"><span>CLUB LOCATOR</span></div>
+                                <!-- <div class="item" (click)="toggleSubmenu('footballcommunity')">
+                                    <span [ngClass]="{ 'sub-menu-open': isSubmenuOpen ['footballcommunity']}">FOOTBALL
                                         COMMUNITY</span>
                                     <mat-icon>{{ isSubmenuOpen ['footballcommunity'] ? 'keyboard_arrow_down' :
                                         'keyboard_arrow_right' }}</mat-icon>
-                                </div>
+                                </div> -->
                                 <div *ngIf="isSubmenuOpen ['footballcommunity']" class="sub-menu">
                                     <button mat-flat-button style="background-color: #7C32E2 !important ;color: #fff;" (click)="closeMenu()" *ngFor="let page of pages" [routerLink]="'/' + page.slug">{{ page.name }}</button>
                                 </div>

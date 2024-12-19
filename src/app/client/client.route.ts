@@ -18,6 +18,7 @@ import { TablesComponent } from './pages/tables/tables.component';
 import { PageComponent } from './pages/page/page.component';
 import { QuickviewComponent } from './pages/fixtures/quickview/quickview.component';
 import { ResultsComponent } from './pages/results/results.component';
+import { ClubLocatorsComponent } from './pages/club-locators/club-locators.component';
 
 
 export const routes: Routes = [
@@ -75,6 +76,10 @@ export const routes: Routes = [
           {
             path: 'tables',
             component: TablesComponent
+          },
+          {
+            path: 'club-locator',
+            component: ClubLocatorsComponent
           },
           {
             path: ':params',

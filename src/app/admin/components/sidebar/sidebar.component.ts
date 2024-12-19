@@ -84,10 +84,10 @@ export class SidebarComponent {
     roles: ['Super Admin', 'Admin', 'Content Editor']
   },
   {
-    label: 'Associations',
-    icon: 'new_releases',
-    routerLink: '/admin/associations',
-    roles: ['Super Admin', 'Admin', 'Content Editor']
+    label: 'Club Locators',
+    icon: 'flag',
+    routerLink: '/admin/club-locators',
+    roles: ['Super Admin', 'Admin', 'Team', 'Content Editor']
   },
   {
     label: 'Users',

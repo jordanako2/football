@@ -3,11 +3,13 @@ import { TeamService } from '../../../../services/team.service';
 import { ApiService } from '../../../../services/api.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { MatIcon } from '@angular/material/icon';
+
 
 @Component({
   selector: 'app-top-header',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink,MatIcon],
   templateUrl: './top-header.component.html',
   styleUrl: './top-header.component.sass',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
